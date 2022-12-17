@@ -4,6 +4,7 @@
  */
 package bankapp;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
@@ -12,63 +13,48 @@ import java.util.UUID;
  */
 public class BankAccount {
     private final String _iban;
-    private double _balance;
-    private TransactionHistory _transactionHistory;
-    
-    public BankAccount() {
-        _transactionHistory = new TransactionHistory();
-        _iban = UUID.randomUUID().toString();
-        _balance = 0;
-    }
+    private BigDecimal _balance;
+    private String _name;
+    private UUID _userId;
 
     public String getIban() {
         return _iban;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return _balance;
     }
 
-    public TransactionHistory getTransactionHistory() {
-        return _transactionHistory;
+    public String getName() {
+        return _name;
+    }
+
+    public void setName(String _name) {
+        this._name = _name;
+    }
+
+    public UUID getUserId() {
+        return _userId;
     }
     
-    public void DepositMoney(double amountOfMoney) {
-        AddMoney(amountOfMoney);
-        
-        DepositTransaction depositTransaction = new DepositTransaction(amountOfMoney, this);
-        _transactionHistory.AddTransaction(depositTransaction);
+    public BankAccount(String name, UUID userId) {
+        _iban = IBANGenerator.Generate("BG");
+        _balance = BigDecimal.ZERO;
+        _name = name;
+        _userId = userId;
     }
     
-    public void TransferMoney(double amountOfMoney, BankAccount toBankAccount) {
-        RemoveMoney(amountOfMoney);
-        
-        TransferTransaction transferTransaction = new TransferTransaction(amountOfMoney, this, toBankAccount);
-        _transactionHistory.AddTransaction(transferTransaction);
-        
-        TransferTransaction oppositeTransaction = new TransferTransaction(amountOfMoney, toBankAccount, this);
-        toBankAccount.AddMoney(amountOfMoney);
-        toBankAccount._transactionHistory.AddTransaction(oppositeTransaction);
-    }
-    
-    public void WithdrawMoney(double amountOfMoney) {
-        RemoveMoney(amountOfMoney);
-        
-        NegativeTransaction negativeTransaction = new NegativeTransaction(amountOfMoney, this);
-        _transactionHistory.AddTransaction(negativeTransaction);
-    }
-    
-    private void AddMoney(double amountOfMoney) throws IllegalArgumentException {
-        if(amountOfMoney < 0) {
+    private void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+        if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
             throw new IllegalArgumentException("The amount of money cannot be less than zero");
         }
-        _balance += amountOfMoney;
+        _balance.add(amountOfMoney);
     }
     
-    private void RemoveMoney(double amountOfMoney) throws IllegalArgumentException {
-        if(amountOfMoney < 0) {
+    private void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+        if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
             throw new IllegalArgumentException("The amount of money cannot be less than zero");
         }
-        _balance -= amountOfMoney;
+        _balance.subtract(amountOfMoney);
     }
 }
