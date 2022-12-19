@@ -60,6 +60,6 @@ public class BankAccount {
             throw new InsufficientFundsException(amountOfMoney);
         }
         
-        _balance.subtract(amountOfMoney);
+        _balance = _balance.subtract(amountOfMoney);
     }
 }
