@@ -15,7 +15,7 @@ public class BankAccount {
     private final String _iban;
     private BigDecimal _balance;
     private String _name;
-    private UUID _userId;
+    private final UUID _userId;
 
     public String getIban() {
         return _iban;
@@ -44,14 +44,16 @@ public class BankAccount {
         _userId = userId;
     }
     
-    private void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+    public void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+        //if amountOfMoney is less than zero throw an exception
         if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
             throw new IllegalArgumentException("The amount of money cannot be less than zero");
         }
         _balance.add(amountOfMoney);
     }
     
-    private void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+        //if amountOfMoney is less than zero throw an exception
         if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
             throw new IllegalArgumentException("The amount of money cannot be less than zero");
         }
