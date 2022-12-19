@@ -51,7 +51,7 @@ public class BankAccount {
         _balance = _balance.add(amountOfMoney);
     }
     
-    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException, InsufficientFundsException {
+    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
