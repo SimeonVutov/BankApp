@@ -45,18 +45,16 @@ public class BankAccount {
     }
     
     public void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
-        //if amountOfMoney is less than zero throw an exception
-        if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
-            throw new IllegalArgumentException("The amount of money cannot be less than zero");
+        if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
-        _balance.add(amountOfMoney);
+        _balance = _balance.add(amountOfMoney);
     }
     
     public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
-        //if amountOfMoney is less than zero throw an exception
-        if(amountOfMoney.compareTo(BigDecimal.ZERO) == -1) {
-            throw new IllegalArgumentException("The amount of money cannot be less than zero");
+        if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
-        _balance.subtract(amountOfMoney);
+        _balance = _balance.subtract(amountOfMoney);
     }
 }
