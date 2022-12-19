@@ -48,13 +48,18 @@ public class BankAccount {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
+        
         _balance = _balance.add(amountOfMoney);
     }
     
-    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException, InsufficientFundsException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
+        if(amountOfMoney.compareTo(_balance) > 0) {
+            throw new InsufficientFundsException(amountOfMoney);
+        }
+        
         _balance = _balance.subtract(amountOfMoney);
     }
 }
