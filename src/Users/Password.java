@@ -14,7 +14,7 @@ import java.util.Base64;
  *
  * @author Simeon_32
  */
-public class Password implements java.io.Serializable {
+public class Password {
     private static final String ALGORITHM = "SHA-256";
     private static final int SALT_SIZE = 16;
     
@@ -33,14 +33,14 @@ public class Password implements java.io.Serializable {
     }
     
     public Password(String encoded) {
-        String[] parts = encoded.split(":");
+        String[] parts = encoded.split("`");
         salt = Base64.getDecoder().decode(parts[0]);
         hash = Base64.getDecoder().decode(parts[1]);
     }
     
     public boolean verify(char[] password) throws Exception {
         byte[] testHash = hashPassword(password);
-                
+        
         // Clear the password from memory
         Arrays.fill(password, Character.MIN_VALUE);
 
@@ -66,7 +66,7 @@ public class Password implements java.io.Serializable {
     
     @Override
     public String toString() {
-        return Base64.getEncoder().encodeToString(salt) + ":" +
+        return Base64.getEncoder().encodeToString(salt) + "`" +
                 Base64.getEncoder().encodeToString(hash);
     }
 }

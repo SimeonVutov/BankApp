@@ -14,7 +14,7 @@ import java.util.UUID;
 public class User {
     private Person _person;
     private String _username;
-    private String _password;
+    private Password _password;
     private String _email;
     private final UUID _userId;
 
@@ -38,31 +38,19 @@ public class User {
         _email = _email;
     }
     
-    public void setPassword(String password) {
-        _password = password;
+    public Password getPassword() {
+        return _password;
     }
 
     public UUID getUserId() {
         return _userId;
     }
     
-    public User(Person person, String username, String password, String email) {
+    public User(Person person, String username, char[] password, String email) throws Exception {
         _person = person;
         _username = username;
-        _password = password;
+        _password = new Password(password);
         _email = email;
         _userId = UUID.randomUUID();
-    }
-    
-    public User(Person person, String username, String password, String email, UUID userId) {
-        _person = person;
-        _username = username;
-        _password = password;
-        _email = email;
-        _userId = userId;
-    }
-    
-    public boolean doesPasswordMatch(String password) {
-        return _password.equals(password);
     }
 }
