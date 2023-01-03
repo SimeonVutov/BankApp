@@ -5,13 +5,14 @@
 
 package Users;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  *
  * @author Simeon_32
  */
-public class User {
+public class User implements Serializable {
     private Person _person;
     private String _username;
     private Password _password;
@@ -46,7 +47,7 @@ public class User {
         return _userId;
     }
     
-    public User(Person person, String username, char[] password, String email) throws Exception {
+    public User(Person person, String username, char[] password, String email) {
         _person = person;
         _username = username;
         _password = new Password(password);

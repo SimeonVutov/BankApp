@@ -5,6 +5,7 @@
 
 package Users;
 
+import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Arrays;
@@ -14,22 +15,26 @@ import java.util.Base64;
  *
  * @author Simeon_32
  */
-public class Password {
+public class Password implements Serializable {
     private static final String ALGORITHM = "SHA-256";
     private static final int SALT_SIZE = 16;
     
     private byte[] salt;
     private byte[] hash;
     
-    public Password(char[] password) throws Exception {
+    public Password(char[] password) {
         SecureRandom random = new SecureRandom();
         salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
         
-        hash = hashPassword(password);
+        var hashedPass = hashPassword(password);
         
-        // Clear the password from memory
-        Arrays.fill(password, Character.MIN_VALUE);
+        if(hashedPass != null) {
+            hash = hashedPass;
+            
+            // Clear the password from memory
+            Arrays.fill(password, Character.MIN_VALUE);
+        }
     }
     
     public Password(String encoded) {
@@ -38,30 +43,44 @@ public class Password {
         hash = Base64.getDecoder().decode(parts[1]);
     }
     
-    public boolean verify(char[] password) throws Exception {
+    public boolean verify(char[] password) {
         byte[] testHash = hashPassword(password);
         
-        // Clear the password from memory
-        Arrays.fill(password, Character.MIN_VALUE);
-
-        return Arrays.equals(hash, testHash);
+        if(testHash != null) {
+            hash = testHash;
+            
+            // Clear the password from memory
+            Arrays.fill(password, Character.MIN_VALUE);
+            return Arrays.equals(hash, testHash);
+        }
+        
+        return false;
     }
     
-    public void changePassword(char[] newPassword) throws Exception {
+    public void changePassword(char[] newPassword) {
         SecureRandom random = new SecureRandom();
         salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
 
-        hash = hashPassword(newPassword);
+        var hashedPass = hashPassword(newPassword);
         
-        // Clear the password from memory
-        Arrays.fill(newPassword, Character.MIN_VALUE);
+        if(hashedPass != null) {
+            hash = hashedPass;
+            
+            // Clear the password from memory
+            Arrays.fill(newPassword, Character.MIN_VALUE);
+        }
     }
     
-    private byte[] hashPassword(char[] password) throws Exception {
-        MessageDigest md = MessageDigest.getInstance(ALGORITHM);
-        md.update(salt);
-        return md.digest(new String(password).getBytes("UTF-8"));
+    private byte[] hashPassword(char[] password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(ALGORITHM);
+            md.update(salt);
+            return md.digest(new String(password).getBytes("UTF-8"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
     @Override

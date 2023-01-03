@@ -7,11 +7,12 @@ import bankapp.BankAccount;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.io.Serializable;
 /**
  *
  * @author Simeon_32
  */
-public class Transaction {
+public class Transaction implements Serializable {
     private final BigDecimal _money;
     private final BankAccount _fromBankAccount;
     private final BankAccount _toBankAccount;

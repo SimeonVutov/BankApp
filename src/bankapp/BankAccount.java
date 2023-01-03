@@ -6,12 +6,13 @@ package bankapp;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import java.io.Serializable;
 
 /**
  *
  * @author Moni
  */
-public class BankAccount {
+public class BankAccount implements Serializable {
     private final String _iban;
     private BigDecimal _balance;
     private String _name;
