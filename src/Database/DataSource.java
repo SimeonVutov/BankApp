@@ -41,6 +41,8 @@ public class DataSource {
         
         _transactions = new HashMap<>();
         _transactionsFileController = new FileController<>(_transactions, tempPath.resolve("transactions.txt"));
+        
+        loadAllData();
     }
     
     public void addUser(User user) throws ItemAlreadyExistsException {
@@ -100,6 +102,18 @@ public class DataSource {
     
     public User getUserById(UUID id) {
         return _users.get(id);
+    }
+    
+    public User getUserByCredentials(String username, char[] password) throws InvalidUserCredentialsException {
+        for(var user : _users.values()) {
+            if(user.getUsername().equals(username)) {
+                if(user.getPassword().verify(password)) {
+                    return user;
+                }
+            }
+        }
+        
+        throw new InvalidUserCredentialsException("Username or password is wrong.");
     }
     
     public BankAccount getBankAccountByIban(String iban) {
