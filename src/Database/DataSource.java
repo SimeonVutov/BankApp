@@ -136,6 +136,10 @@ public class DataSource {
         return _transactions.get(id);
     }
     
+    public List<Transaction> getTransactions() {
+        return new LinkedList<>(_transactions.values());
+    }
+    
     public void loadAllData() {
         _usersFileController.load();
         _bankAccountsFileController.load();

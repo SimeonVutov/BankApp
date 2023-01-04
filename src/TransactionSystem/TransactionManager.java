@@ -36,14 +36,14 @@ public class TransactionManager {
         _transactionProcessor.Start();
     }
     
-    public void CreateTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) {
+    public void createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException {
         try {
             Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
             DataSource.DATA_SOURCE.addTransaction(newTransaction);
             _transactions.add(newTransaction);
             _transactionProcessor.AddTransactionToQueue(newTransaction);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException(e.getMessage());
         } catch (ItemAlreadyExistsException e) {
             e.printStackTrace();
         }
