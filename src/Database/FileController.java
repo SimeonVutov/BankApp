@@ -39,7 +39,7 @@ public class FileController<T> {
         }
     }
     
-    public void Save() {
+    public void save() {
         File file = new File(_filePath.toString());
         try {
             FileOutputStream fos = new FileOutputStream(file);
@@ -55,7 +55,7 @@ public class FileController<T> {
         }
     }
     
-    public void Load() {
+    public void load() {
         File file = new File(_filePath.toString());
         
         try {

@@ -12,6 +12,8 @@ import bankapp.BankAccount;
 import TransactionSystem.Transaction;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -19,6 +21,7 @@ import java.nio.file.Paths;
  */
 public class DataSource {
     private final String ApplicationName = "BankApp";
+    public static final DataSource DATA_SOURCE = new DataSource();
     private HashMap<UUID, User> _users;
     private FileController<HashMap<UUID, User>> _usersFileController;
     
@@ -28,7 +31,7 @@ public class DataSource {
     private HashMap<UUID, Transaction> _transactions;
     private FileController<HashMap<UUID, Transaction>> _transactionsFileController;
     
-    public DataSource() {
+    private DataSource() {
         Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(ApplicationName);
         _users = new HashMap<>();
         _usersFileController = new FileController(_users, tempPath.resolve("users.txt"));
@@ -53,11 +56,16 @@ public class DataSource {
         else {
             try {
                 _users.put(user.getUserId(), user);
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            _usersFileController.Save();
+            _usersFileController.save();
         }
+    }
+    
+    public void removeUser(UUID userId) {
+        _users.remove(userId);
+        _usersFileController.save();
     }
     
     public void addBankAccount(BankAccount bankAccount) throws ItemAlreadyExistsException {
@@ -66,8 +74,13 @@ public class DataSource {
         }
         else {
             _bankAccounts.put(bankAccount.getIban(), bankAccount);
-            _bankAccountsFileController.Save();
+            _bankAccountsFileController.save();
         }
+    }
+    
+    public void removeBankAccount(String iban) {
+        _bankAccounts.remove(iban);
+        _bankAccountsFileController.save();
     }
     
     public void addTransaction(Transaction transaction) throws ItemAlreadyExistsException {
@@ -76,19 +89,48 @@ public class DataSource {
         }
         else {
             _transactions.put(transaction.getTransactionId(), transaction);
-            _transactionsFileController.Save();
+            _transactionsFileController.save();
         }
     }
     
+    public void removeTransaction(UUID transactionId) {
+        _transactions.remove(transactionId);
+        _transactionsFileController.save();
+    }
+    
+    public User getUserById(UUID id) {
+        return _users.get(id);
+    }
+    
+    public BankAccount getBankAccountByIban(String iban) {
+        return _bankAccounts.get(iban);
+    }
+    
+    public List<BankAccount> getBankAccountsForUser(User user) {
+        List<BankAccount> list = new LinkedList<>();
+        
+        for(var bankAccount : _bankAccounts.values()) {
+            if(bankAccount.getUserId().equals(user.getUserId())) {
+                list.add(bankAccount);
+            }
+        }
+        
+        return list;
+    }
+    
+    public Transaction getTransactionById(UUID id) {
+        return _transactions.get(id);
+    }
+    
     public void loadAllData() {
-        _usersFileController.Load();
-        _bankAccountsFileController.Load();
-        _transactionsFileController.Load();
+        _usersFileController.load();
+        _bankAccountsFileController.load();
+        _transactionsFileController.load();
     }
     
     public void saveAllData() {
-        _usersFileController.Save();
-        _bankAccountsFileController.Save();
-        _transactionsFileController.Save();
+        _usersFileController.save();
+        _bankAccountsFileController.save();
+        _transactionsFileController.save();
     }
 }

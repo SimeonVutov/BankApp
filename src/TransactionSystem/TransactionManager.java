@@ -4,7 +4,8 @@
  */
 package TransactionSystem;
 
-import bankapp.BankAccount;
+import Database.ItemAlreadyExistsException;
+import Database.DataSource;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -35,10 +36,34 @@ public class TransactionManager {
         _transactionProcessor.Start();
     }
     
-    public void CreateTransaction(BigDecimal money, BankAccount fromBankAccount, BankAccount toBankAccount) {
-        Transaction newTransaction = new Transaction(money, fromBankAccount, toBankAccount);
-        _transactions.add(newTransaction);
-        // TODO: Save the transaction to the database if its creation is successful
-        _transactionProcessor.AddTransactionToQueue(newTransaction);
+    public void CreateTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) {
+        try {
+            Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
+            DataSource.DATA_SOURCE.addTransaction(newTransaction);
+            _transactions.add(newTransaction);
+            _transactionProcessor.AddTransactionToQueue(newTransaction);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (ItemAlreadyExistsException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public List<Transaction> getTransactionsByBankAccountIban(String iban) {
+        List<Transaction> transactions = new LinkedList<>();
+        
+        for(var transaction : _transactions) {
+            String fromBankAccountIban = transaction.getFromBankAccountIban();
+            String toBankAccountIban = transaction.getToBankAccountIban();
+            
+            if(fromBankAccountIban != null && fromBankAccountIban.equals(iban)) {
+                transactions.add(transaction);
+            }
+            else if(toBankAccountIban != null && toBankAccountIban.equals(iban)) {
+                transactions.add(transaction);
+            }
+        }
+        
+        return transactions;
     }
 }

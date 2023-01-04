@@ -4,6 +4,7 @@
  */
 package TransactionSystem;
 import bankapp.BankAccount;
+import Database.DataSource;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -14,8 +15,8 @@ import java.io.Serializable;
  */
 public class Transaction implements Serializable {
     private final BigDecimal _money;
-    private final BankAccount _fromBankAccount;
-    private final BankAccount _toBankAccount;
+    private final String _fromBankAccountIban;
+    private final String _toBankAccountIban;
     private final LocalDate _transactionDate;
     private final UUID _transactionId;
     private TransactionStatus _status;
@@ -23,6 +24,14 @@ public class Transaction implements Serializable {
 
     public BigDecimal getMoney() {
         return _money;
+    }
+    
+    public String getFromBankAccountIban() {
+        return _fromBankAccountIban;
+    }
+    
+    public String getToBankAccountIban() {
+        return _toBankAccountIban;
     }
 
     public TransactionStatus getStatus() {
@@ -41,17 +50,17 @@ public class Transaction implements Serializable {
         return _transactionId;
     }
     
-    public Transaction(BigDecimal money, BankAccount fromBankAccount, BankAccount toBankAccount) {
+    public Transaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException {
         _money = money;
-        _fromBankAccount = fromBankAccount;
-        _toBankAccount = toBankAccount;
+        _fromBankAccountIban = fromBankAccountIban;
+        _toBankAccountIban = toBankAccountIban;
         _status = TransactionStatus.Pending;
         _transactionDate = LocalDate.now();
         _transactionId = UUID.randomUUID();
-        DetermineTransactionType(fromBankAccount, toBankAccount);
+        DetermineTransactionType(fromBankAccountIban, toBankAccountIban);
     }
     
-    private void DetermineTransactionType(BankAccount fromBankAccount, BankAccount toBankAccount) throws IllegalArgumentException {
+    private void DetermineTransactionType(String fromBankAccount, String toBankAccount) throws IllegalArgumentException {
         if(fromBankAccount == null && toBankAccount == null) {
             throw new IllegalArgumentException("Invalid transaction.");
         }
@@ -67,19 +76,40 @@ public class Transaction implements Serializable {
     }
     
     public void Execute() {
-        // TODO: Add check if the BankAccount exist before adding or removing money from it
         boolean transferMoneyRemoved = false;
         try {
             if(_type == TransactionType.Deposit) {
-                _toBankAccount.AddMoney(_money);
+                BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_toBankAccountIban);
+                
+                if(toBankAccount != null) {
+                    toBankAccount.AddMoney(_money);
+                }
+                else {
+                    _status = TransactionStatus.Failded;
+                }
             }
             else if(_type == TransactionType.Withdraw) {
-                _fromBankAccount.RemoveMoney(_money);
+                BankAccount fromBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_fromBankAccountIban);
+                
+                if(fromBankAccount != null) {
+                    fromBankAccount.RemoveMoney(_money);
+                }
+                else {
+                    _status = TransactionStatus.Failded;
+                }
             }
             else if(_type == TransactionType.Transfer) {
-                _fromBankAccount.RemoveMoney(_money);
-                transferMoneyRemoved = true;
-                _toBankAccount.AddMoney(_money);
+                BankAccount fromBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_fromBankAccountIban);
+                BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_toBankAccountIban);
+                
+                if(fromBankAccount != null && toBankAccount != null) {
+                    fromBankAccount.RemoveMoney(_money);
+                    transferMoneyRemoved = true;
+                    toBankAccount.AddMoney(_money);
+                }
+                else {
+                    _status = TransactionStatus.Failded;
+                }
             }
         } catch (Exception e) {
             _status = TransactionStatus.Failded;
@@ -87,7 +117,7 @@ public class Transaction implements Serializable {
             //If in the transfer transaction the removal of money has passed, but the adding has failed
             //Return the removed money
             if(_type == TransactionType.Transfer && transferMoneyRemoved) {
-                _fromBankAccount.AddMoney(_money);
+                DataSource.DATA_SOURCE.getBankAccountByIban(_fromBankAccountIban).AddMoney(_money);
             }
         }
     }
