@@ -6,13 +6,14 @@ package Users;
  */
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Simeon_32
  */
-public class Person {
+public class Person implements Serializable {
     private String _firstName;
     private String _secondName;
     private String _lastName;
