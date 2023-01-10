@@ -14,18 +14,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 /**
  *
  * @author Simeon_32
  */
 public class FileController<T> {
-    private T _saveObj;
     private Path _filePath;
     
-    public FileController(T saveObj, Path path) {
+    public FileController(Path path) {
         _filePath = path;
-        _saveObj = saveObj;
         
         if(!Files.exists(_filePath)) {
             System.out.println("Directory does not exist " + _filePath);
@@ -39,13 +38,13 @@ public class FileController<T> {
         }
     }
     
-    public void save() {
+    public void save(HashMap<? extends Object, T> hashMap) {
         File file = new File(_filePath.toString());
         try {
             FileOutputStream fos = new FileOutputStream(file);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             
-            oos.writeObject(_saveObj);
+            oos.writeObject(hashMap);
             oos.close();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -55,16 +54,18 @@ public class FileController<T> {
         }
     }
     
-    public void load() {
+    public HashMap<? extends Object, T> load() {
         File file = new File(_filePath.toString());
         
         try {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             
-            _saveObj = (T) ois.readObject();
+            var hashMap = (HashMap<? extends Object, T>) ois.readObject();
             ois.close();
             fis.close();
+            
+            return hashMap;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -74,5 +75,7 @@ public class FileController<T> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        return null;
     }
 }

@@ -24,30 +24,26 @@ public class DataSource {
     private final String ApplicationName = "BankApp";
     public static final DataSource DATA_SOURCE = new DataSource();
     private HashMap<UUID, User> _users;
-    private FileController<HashMap<UUID, User>> _usersFileController;
+    private FileController<User> _usersFileController;
     
     private HashMap<String, BankAccount> _bankAccounts;
-    private FileController<HashMap<String, BankAccount>> _bankAccountsFileController;
+    private FileController<BankAccount> _bankAccountsFileController;
     
     private HashMap<UUID, Transaction> _transactions;
-    private FileController<HashMap<UUID, Transaction>> _transactionsFileController;
+    private FileController<Transaction> _transactionsFileController;
     
     private HashMap<UUID, PlannedPayment> _plannedPayments;
-    private FileController<HashMap<UUID, PlannedPayment>> _plannedPaymentsFileController;
+    private FileController<PlannedPayment> _plannedPaymentsFileController;
     
     private DataSource() {
         Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(ApplicationName);
-        _users = new HashMap<>();
-        _usersFileController = new FileController(_users, tempPath.resolve("users.txt"));
+        _usersFileController = new FileController(tempPath.resolve("users.txt"));
         
-        _bankAccounts = new HashMap<>();
-        _bankAccountsFileController = new FileController<>(_bankAccounts, tempPath.resolve("bankAccounts.txt"));
+        _bankAccountsFileController = new FileController<>(tempPath.resolve("bankAccounts.txt"));
         
-        _transactions = new HashMap<>();
-        _transactionsFileController = new FileController<>(_transactions, tempPath.resolve("transactions.txt"));
+        _transactionsFileController = new FileController<>(tempPath.resolve("transactions.txt"));
         
-        _plannedPayments = new HashMap<>();
-        _plannedPaymentsFileController = new FileController<>(_plannedPayments, tempPath.resolve("plannedPayments.txt"));
+        _plannedPaymentsFileController = new FileController<>(tempPath.resolve("plannedPayments.txt"));
         
         loadAllData();
     }
@@ -68,13 +64,13 @@ public class DataSource {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            _usersFileController.save();
+            _usersFileController.save(_users);
         }
     }
     
     public void removeUser(UUID userId) {
         _users.remove(userId);
-        _usersFileController.save();
+        _usersFileController.save(_users);
     }
     
     public void addBankAccount(BankAccount bankAccount) throws ItemAlreadyExistsException {
@@ -83,13 +79,13 @@ public class DataSource {
         }
         else {
             _bankAccounts.put(bankAccount.getIban(), bankAccount);
-            _bankAccountsFileController.save();
+            _bankAccountsFileController.save(_bankAccounts);
         }
     }
     
     public void removeBankAccount(String iban) {
         _bankAccounts.remove(iban);
-        _bankAccountsFileController.save();
+        _bankAccountsFileController.save(_bankAccounts);
     }
     
     public void addTransaction(Transaction transaction) throws ItemAlreadyExistsException {
@@ -98,13 +94,13 @@ public class DataSource {
         }
         else {
             _transactions.put(transaction.getTransactionId(), transaction);
-            _transactionsFileController.save();
+            _transactionsFileController.save(_transactions);
         }
     }
     
     public void removeTransaction(UUID transactionId) {
         _transactions.remove(transactionId);
-        _transactionsFileController.save();
+        _transactionsFileController.save(_transactions);
     }
     
     public void addPlannedPayment(PlannedPayment plannedPayment) throws ItemAlreadyExistsException {
@@ -113,13 +109,13 @@ public class DataSource {
         }
         else {
             _plannedPayments.put(plannedPayment.getId(), plannedPayment);
-            _plannedPaymentsFileController.save();
+            _plannedPaymentsFileController.save(_plannedPayments);
         }
     }
     
     public void removePlannedPayment(UUID plannedPaymentId) {
         _plannedPayments.remove(plannedPaymentId);
-        _plannedPaymentsFileController.save();
+        _plannedPaymentsFileController.save(_plannedPayments);
     }
     
     public User getUserById(UUID id) {
@@ -175,16 +171,43 @@ public class DataSource {
     }
     
     public void loadAllData() {
-        _usersFileController.load();
-        _bankAccountsFileController.load();
-        _transactionsFileController.load();
-        _plannedPaymentsFileController.load();
+        HashMap<UUID, User> usersHashMap = (HashMap<UUID, User>) _usersFileController.load();
+        if(usersHashMap != null) {
+            _users = usersHashMap;
+        }
+        else {
+            _users = new HashMap<>();
+        }
+        
+        HashMap<String, BankAccount> bankAccountsHashMap = (HashMap<String, BankAccount>) _bankAccountsFileController.load();
+        if(bankAccountsHashMap != null) {
+            _bankAccounts = bankAccountsHashMap;
+        }
+        else {
+            _bankAccounts = new HashMap<>();
+        }
+        
+        HashMap<UUID, Transaction> transactionsHashMap = (HashMap<UUID, Transaction>) _transactionsFileController.load();
+        if(transactionsHashMap != null) {
+            _transactions = transactionsHashMap;
+        }
+        else {
+            _transactions = new HashMap<>();
+        }
+        
+        HashMap<UUID, PlannedPayment> plannedPaymentsHashMap = (HashMap<UUID, PlannedPayment>) _plannedPaymentsFileController.load();
+        if(plannedPaymentsHashMap != null) {
+            _plannedPayments = plannedPaymentsHashMap;
+        }
+        else {
+            _plannedPayments = new HashMap<>();
+        }
     }
     
     public void saveAllData() {
-        _usersFileController.save();
-        _bankAccountsFileController.save();
-        _transactionsFileController.save();
-        _plannedPaymentsFileController.save();
+        _usersFileController.save(_users);
+        _bankAccountsFileController.save(_bankAccounts);
+        _transactionsFileController.save(_transactions);
+        _plannedPaymentsFileController.save(_plannedPayments);
     }
 }
