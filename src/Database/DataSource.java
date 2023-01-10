@@ -10,10 +10,13 @@ import java.util.UUID;
 import Users.User;
 import bankapp.BankAccount;
 import TransactionSystem.Transaction;
+import PlannedPayments.PlannedPayment;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,6 +34,9 @@ public class DataSource {
     private HashMap<UUID, Transaction> _transactions;
     private FileController<HashMap<UUID, Transaction>> _transactionsFileController;
     
+    private HashMap<UUID, PlannedPayment> _plannedPayments;
+    private FileController<HashMap<UUID, PlannedPayment>> _plannedPaymentsFileController;
+    
     private DataSource() {
         Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(ApplicationName);
         _users = new HashMap<>();
@@ -42,7 +48,16 @@ public class DataSource {
         _transactions = new HashMap<>();
         _transactionsFileController = new FileController<>(_transactions, tempPath.resolve("transactions.txt"));
         
+        _plannedPayments = new HashMap<>();
+        _plannedPaymentsFileController = new FileController<>(_plannedPayments, tempPath.resolve("plannedPayments.txt"));
+        
         loadAllData();
+        try {
+            addPlannedPayment(new PlannedPayment(null, null, null, null));
+        } catch (ItemAlreadyExistsException ex) {
+            System.out.println(ex);
+        }
+        System.out.println(_plannedPayments.size());
     }
     
     public void addUser(User user) throws ItemAlreadyExistsException {
@@ -86,7 +101,7 @@ public class DataSource {
     }
     
     public void addTransaction(Transaction transaction) throws ItemAlreadyExistsException {
-        if(_transactions.containsKey(transaction)) {
+        if(_transactions.containsKey(transaction.getTransactionId())) {
             throw new ItemAlreadyExistsException("Transaction with this id already exists");
         }
         else {
@@ -98,6 +113,21 @@ public class DataSource {
     public void removeTransaction(UUID transactionId) {
         _transactions.remove(transactionId);
         _transactionsFileController.save();
+    }
+    
+    public void addPlannedPayment(PlannedPayment plannedPayment) throws ItemAlreadyExistsException {
+        if(_plannedPayments.containsKey(plannedPayment.getId())) {
+            throw new ItemAlreadyExistsException("Planned payment with this id already exists.");
+        }
+        else {
+            _plannedPayments.put(plannedPayment.getId(), plannedPayment);
+            _plannedPaymentsFileController.save();
+        }
+    }
+    
+    public void removePlannedPayment(UUID plannedPaymentId) {
+        _plannedPayments.remove(plannedPaymentId);
+        _plannedPaymentsFileController.save();
     }
     
     public User getUserById(UUID id) {
@@ -140,15 +170,29 @@ public class DataSource {
         return new LinkedList<>(_transactions.values());
     }
     
+    public List<PlannedPayment> getPlannedPaymentsByBankAccountIban(String iban) {
+        List<PlannedPayment> list = new LinkedList<>();
+        
+        for(var plannedPayment : _plannedPayments.values()) {
+            if(plannedPayment.getBankAccountIban().equals(iban)) {
+                list.add(plannedPayment);
+            }
+        }
+        
+        return list;
+    }
+    
     public void loadAllData() {
         _usersFileController.load();
         _bankAccountsFileController.load();
         _transactionsFileController.load();
+        _plannedPaymentsFileController.load();
     }
     
     public void saveAllData() {
         _usersFileController.save();
         _bankAccountsFileController.save();
         _transactionsFileController.save();
+        _plannedPaymentsFileController.save();
     }
 }
