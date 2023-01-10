@@ -16,16 +16,11 @@ import java.util.List;
  * @author Simeon_32
  */
 public class TransactionManager {
+    public static final TransactionManager TRANSACTION_MANAGER = new TransactionManager(DataSource.DATA_SOURCE.getTransactions());
     private List<Transaction> _transactions;
     private TransactionProcessor _transactionProcessor;
     
-    public TransactionManager() {
-        _transactions = new LinkedList<Transaction>();
-        _transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
-        _transactionProcessor.Start();
-    }
-    
-    public TransactionManager(List<Transaction> transactions) {
+    private TransactionManager(List<Transaction> transactions) {
         _transactions = transactions;
         _transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
         for (Transaction transaction : transactions) {
@@ -36,17 +31,11 @@ public class TransactionManager {
         _transactionProcessor.Start();
     }
     
-    public void createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException {
-        try {
-            Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
-            DataSource.DATA_SOURCE.addTransaction(newTransaction);
-            _transactions.add(newTransaction);
-            _transactionProcessor.AddTransactionToQueue(newTransaction);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        } catch (ItemAlreadyExistsException e) {
-            e.printStackTrace();
-        }
+    public void createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
+        Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
+        DataSource.DATA_SOURCE.addTransaction(newTransaction);
+        _transactions.add(newTransaction);
+        _transactionProcessor.AddTransactionToQueue(newTransaction);
     }
     
     public List<Transaction> getTransactionsByBankAccountIban(String iban) {
