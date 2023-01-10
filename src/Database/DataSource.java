@@ -15,8 +15,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -52,12 +50,6 @@ public class DataSource {
         _plannedPaymentsFileController = new FileController<>(_plannedPayments, tempPath.resolve("plannedPayments.txt"));
         
         loadAllData();
-        try {
-            addPlannedPayment(new PlannedPayment(null, null, null, null));
-        } catch (ItemAlreadyExistsException ex) {
-            System.out.println(ex);
-        }
-        System.out.println(_plannedPayments.size());
     }
     
     public void addUser(User user) throws ItemAlreadyExistsException {
