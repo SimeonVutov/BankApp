@@ -36,7 +36,7 @@ public class LogInFrame extends javax.swing.JFrame {
         haveAnAccountBtn = new javax.swing.JLabel();
         logInUserNameLabel = new javax.swing.JLabel();
         logInPasswordLabel = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 115, 115));
@@ -96,8 +96,8 @@ public class LogInFrame extends javax.swing.JFrame {
         logInPasswordLabel.setForeground(new java.awt.Color(0, 0, 0));
         logInPasswordLabel.setText("Password");
 
-        jPasswordField1.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(524, 52));
+        passwordField.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        passwordField.setPreferredSize(new java.awt.Dimension(524, 52));
 
         javax.swing.GroupLayout logInPanelLayout = new javax.swing.GroupLayout(logInPanel);
         logInPanel.setLayout(logInPanelLayout);
@@ -116,7 +116,7 @@ public class LogInFrame extends javax.swing.JFrame {
                             .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(logInUserNameLabel)
                             .addComponent(logInPasswordLabel)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141))))
             .addGroup(logInPanelLayout.createSequentialGroup()
                 .addGroup(logInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +140,7 @@ public class LogInFrame extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(logInPasswordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
                 .addComponent(logInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
@@ -231,12 +231,12 @@ public class LogInFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel haveAnAccountBtn;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton logInBtn;
     private javax.swing.JPanel logInPanel;
     private javax.swing.JLabel logInPasswordLabel;
     private javax.swing.JLabel logInTitleLabel;
     private javax.swing.JLabel logInUserNameLabel;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton singUpBtn;
     private javax.swing.JTextField userNameTextField;
     // End of variables declaration//GEN-END:variables
