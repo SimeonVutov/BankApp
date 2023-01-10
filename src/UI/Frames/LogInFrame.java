@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Elements;
-import javax.swing.ImageIcon;
+import UI.UI_Variables;
 /**
  *
  * @author Bubo & Yana
@@ -13,8 +13,14 @@ public class LogInFrame extends javax.swing.JFrame {
     /**
      * Creates new form LogInFrame
      */
-    public LogInFrame() {
+    public LogInFrame(Application application) {
         initComponents();
+        
+        //UI settings
+        setSize(1920, 935);
+        setBackground(UI_Variables.BACKGROUND_COLOR);
+        
+        setVisible(true);
     }
     
     
@@ -56,33 +62,18 @@ public class LogInFrame extends javax.swing.JFrame {
 
         userNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         userNameTextField.setPreferredSize(new java.awt.Dimension(524, 52));
-        userNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTextFieldActionPerformed(evt);
-            }
-        });
 
         logInBtn.setBackground(new java.awt.Color(255, 115, 115));
         logInBtn.setFont(new java.awt.Font("Gadugi", 0, 36)); // NOI18N
         logInBtn.setForeground(new java.awt.Color(0, 0, 0));
         logInBtn.setText("Log In");
         logInBtn.setPreferredSize(new java.awt.Dimension(215, 85));
-        logInBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInBtnActionPerformed(evt);
-            }
-        });
 
         singUpBtn.setBackground(new java.awt.Color(255, 255, 255));
         singUpBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         singUpBtn.setForeground(new java.awt.Color(0, 0, 0));
         singUpBtn.setText("Sing Up");
         singUpBtn.setPreferredSize(new java.awt.Dimension(204, 85));
-        singUpBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                singUpBtnActionPerformed(evt);
-            }
-        });
 
         haveAnAccountBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         haveAnAccountBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -181,52 +172,6 @@ public class LogInFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameTextFieldActionPerformed
-
-    private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_logInBtnActionPerformed
-
-    private void singUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUpBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_singUpBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogInFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LogInFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;

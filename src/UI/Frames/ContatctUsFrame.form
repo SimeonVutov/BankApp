@@ -60,7 +60,7 @@
                   <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                   <Component id="transactionsBtn" min="-2" pref="169" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lonasBtn" min="-2" pref="174" max="-2" attributes="0"/>
+                  <Component id="loansBtn" min="-2" pref="174" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="contactUsBtn" min="-2" pref="157" max="-2" attributes="0"/>
                   <EmptySpace pref="1057" max="32767" attributes="0"/>
@@ -78,7 +78,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="transactionsBtn" alignment="3" max="32767" attributes="0"/>
-                          <Component id="lonasBtn" alignment="3" max="32767" attributes="0"/>
+                          <Component id="loansBtn" alignment="3" max="32767" attributes="0"/>
                           <Component id="contactUsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -116,7 +116,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="transactionsBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="lonasBtn">
+        <Component class="javax.swing.JButton" name="loansBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="73" green="73" red="ff" type="rgb"/>
@@ -133,7 +133,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lonasBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loansBtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="contactUsBtn">

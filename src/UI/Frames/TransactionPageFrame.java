@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Elements;
+package UI.Frames;
 
 import UI.UI_Variables;
 
@@ -15,11 +15,16 @@ public class TransactionPageFrame extends javax.swing.JFrame {
     /**
      * Creates new form TransactionPageFrame
      */
-    public TransactionPageFrame() {
+    public TransactionPageFrame(Application application) {
         initComponents();
         
+        //UI settings
         setSize(1920, 935);
         setBackground(UI_Variables.BACKGROUND_COLOR);
+        
+        //Setting information
+        
+        
         setVisible(true);
     }
 

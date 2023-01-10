@@ -322,9 +322,6 @@
                   <Dimension value="[524, 52]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmPasswordFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="passwordField">
               <Properties>
