@@ -35,10 +35,10 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         logOutBtn = new javax.swing.JButton();
         userInformationPanel = new javax.swing.JPanel();
         userInformationLabel = new javax.swing.JLabel();
-        passwordLabel = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         userNameLabel = new javax.swing.JLabel();
-        passwordLabelWriting = new javax.swing.JLabel();
+        nameLabelWriting = new javax.swing.JLabel();
         userNameLabelWriting = new javax.swing.JLabel();
         phoneNumberLabel = new javax.swing.JLabel();
         phoneNumberLabelWriting = new javax.swing.JLabel();
@@ -156,9 +156,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         userInformationLabel.setForeground(new java.awt.Color(0, 0, 0));
         userInformationLabel.setText("User Information");
 
-        passwordLabel.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
-        passwordLabel.setForeground(new java.awt.Color(0, 0, 0));
-        passwordLabel.setText("Password:");
+        nameLabel.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        nameLabel.setText("Full name:");
 
         jLabel5.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -167,9 +167,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         userNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         userNameLabel.setText("Username:");
 
-        passwordLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        passwordLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
-        passwordLabelWriting.setText("*************");
+        nameLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
+        nameLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
+        nameLabelWriting.setText("Name");
 
         userNameLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         userNameLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
@@ -200,7 +200,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(phoneNumberLabel)
                     .addComponent(emailLabel)
-                    .addComponent(passwordLabel)
+                    .addComponent(nameLabel)
                     .addComponent(userNameLabel))
                 .addGap(56, 56, 56)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +211,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                     .addGroup(userInformationPanelLayout.createSequentialGroup()
                         .addComponent(userNameLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(passwordLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(emailLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(userInformationPanelLayout.createSequentialGroup()
@@ -235,8 +235,8 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                             .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)))
                 .addGap(79, 79, 79)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -329,9 +329,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton lonasBtn;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel nameLabelWriting;
     private javax.swing.JPanel navBarPannel;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel passwordLabelWriting;
     private javax.swing.JLabel phoneNumberLabel;
     private javax.swing.JLabel phoneNumberLabelWriting;
     private javax.swing.JButton transactionsBtn;

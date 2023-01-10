@@ -246,7 +246,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="phoneNumberLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="nameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="userNameLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
@@ -260,7 +260,7 @@
                           <Component id="userNameLabelWriting" min="-2" pref="256" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="passwordLabelWriting" alignment="0" max="32767" attributes="0"/>
+                      <Component id="nameLabelWriting" alignment="0" max="32767" attributes="0"/>
                       <Component id="emailLabelWriting" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -290,8 +290,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="passwordLabel" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="passwordLabelWriting" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                              <Component id="nameLabel" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
+                              <Component id="nameLabelWriting" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       </Group>
@@ -323,7 +323,7 @@
             <Property name="text" type="java.lang.String" value="User Information"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="passwordLabel">
+        <Component class="javax.swing.JLabel" name="nameLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="42" style="1"/>
@@ -331,7 +331,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Password:"/>
+            <Property name="text" type="java.lang.String" value="Full name:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -355,7 +355,7 @@
             <Property name="text" type="java.lang.String" value="Username:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="passwordLabelWriting">
+        <Component class="javax.swing.JLabel" name="nameLabelWriting">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Gadugi" size="32" style="0"/>
@@ -363,7 +363,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="*************"/>
+            <Property name="text" type="java.lang.String" value="Name"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="userNameLabelWriting">
