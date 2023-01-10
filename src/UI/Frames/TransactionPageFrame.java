@@ -39,19 +39,19 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         userNameNavbar = new javax.swing.JLabel();
         viewUserProfileBtn = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        transactionsHistoryPanel = new javax.swing.JPanel();
+        transactionsHistoryLabel = new javax.swing.JLabel();
         TransactionsHistoryList = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        transactionHistoryList = new javax.swing.JList<>();
+        plannedPaymentsPanel = new javax.swing.JPanel();
+        plannedPaymentsTitle = new javax.swing.JLabel();
+        plannedPaymentsLabel = new javax.swing.JLabel();
+        currentBalancePanel = new javax.swing.JPanel();
+        currentBalanceTitle = new javax.swing.JLabel();
+        currentBalanceLabel = new javax.swing.JLabel();
+        motnlyLimitPanel = new javax.swing.JPanel();
+        montlyLimitTitle = new javax.swing.JLabel();
+        montlyLimitLabel = new javax.swing.JLabel();
         makeATransactionBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -160,147 +160,147 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1826, 639));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1826, 639));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1826, 639));
+        transactionsHistoryPanel.setBackground(new java.awt.Color(201, 201, 201));
+        transactionsHistoryPanel.setMaximumSize(new java.awt.Dimension(1826, 639));
+        transactionsHistoryPanel.setMinimumSize(new java.awt.Dimension(1826, 639));
+        transactionsHistoryPanel.setPreferredSize(new java.awt.Dimension(1826, 639));
 
-        jLabel3.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Transactions history");
+        transactionsHistoryLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        transactionsHistoryLabel.setForeground(new java.awt.Color(0, 0, 0));
+        transactionsHistoryLabel.setText("Transactions history");
 
         TransactionsHistoryList.setMinimumSize(new java.awt.Dimension(1676, 484));
         TransactionsHistoryList.setPreferredSize(new java.awt.Dimension(1676, 484));
 
-        jList1.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
-        jList1.setPreferredSize(new java.awt.Dimension(1826, 553));
-        TransactionsHistoryList.setViewportView(jList1);
+        transactionHistoryList.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
+        transactionHistoryList.setPreferredSize(new java.awt.Dimension(1826, 553));
+        TransactionsHistoryList.setViewportView(transactionHistoryList);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout transactionsHistoryPanelLayout = new javax.swing.GroupLayout(transactionsHistoryPanel);
+        transactionsHistoryPanel.setLayout(transactionsHistoryPanelLayout);
+        transactionsHistoryPanelLayout.setHorizontalGroup(
+            transactionsHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
+                .addGroup(transactionsHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
                         .addGap(643, 643, 643)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(transactionsHistoryLabel))
+                    .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        transactionsHistoryPanelLayout.setVerticalGroup(
+            transactionsHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsHistoryPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transactionsHistoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(168, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsPanel.setBackground(new java.awt.Color(201, 201, 201));
+        plannedPaymentsPanel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel4.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Planned Payments");
+        plannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        plannedPaymentsTitle.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsTitle.setText("Planned Payments");
 
-        jLabel5.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        plannedPaymentsLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        plannedPaymentsLabel.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout plannedPaymentsPanelLayout = new javax.swing.GroupLayout(plannedPaymentsPanel);
+        plannedPaymentsPanel.setLayout(plannedPaymentsPanelLayout);
+        plannedPaymentsPanelLayout.setHorizontalGroup(
+            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
+                .addGroup(plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(plannedPaymentsTitle))
+                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        plannedPaymentsPanelLayout.setVerticalGroup(
+            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel4.setForeground(new java.awt.Color(0, 0, 0));
+        currentBalancePanel.setBackground(new java.awt.Color(201, 201, 201));
+        currentBalancePanel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel8.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Current balance");
+        currentBalanceTitle.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        currentBalanceTitle.setForeground(new java.awt.Color(0, 0, 0));
+        currentBalanceTitle.setText("Current balance");
 
-        jLabel9.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        currentBalanceLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        currentBalanceLabel.setForeground(new java.awt.Color(0, 0, 0));
+        currentBalanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout currentBalancePanelLayout = new javax.swing.GroupLayout(currentBalancePanel);
+        currentBalancePanel.setLayout(currentBalancePanelLayout);
+        currentBalancePanelLayout.setHorizontalGroup(
+            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addGap(138, 138, 138)
-                .addComponent(jLabel8)
+                .addComponent(currentBalanceTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalancePanelLayout.createSequentialGroup()
                 .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        currentBalancePanelLayout.setVerticalGroup(
+            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel5.setForeground(new java.awt.Color(0, 0, 0));
+        motnlyLimitPanel.setBackground(new java.awt.Color(201, 201, 201));
+        motnlyLimitPanel.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel10.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Montly limit");
+        montlyLimitTitle.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        montlyLimitTitle.setForeground(new java.awt.Color(0, 0, 0));
+        montlyLimitTitle.setText("Montly limit");
 
-        jLabel11.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        montlyLimitLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        montlyLimitLabel.setForeground(new java.awt.Color(0, 0, 0));
+        montlyLimitLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout motnlyLimitPanelLayout = new javax.swing.GroupLayout(motnlyLimitPanel);
+        motnlyLimitPanel.setLayout(motnlyLimitPanelLayout);
+        motnlyLimitPanelLayout.setHorizontalGroup(
+            motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
+                .addGroup(motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(montlyLimitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
-                        .addComponent(jLabel10)))
+                        .addComponent(montlyLimitTitle)))
                 .addContainerGap(101, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        motnlyLimitPanelLayout.setVerticalGroup(
+            motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(montlyLimitTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(montlyLimitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -324,16 +324,16 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1783, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1783, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(makeATransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(motnlyLimitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)))
                 .addGap(42, 42, 42))
         );
@@ -345,15 +345,15 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(motnlyLimitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(makeATransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -417,23 +417,23 @@ public class TransactionPageFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TransactionsHistoryList;
     private javax.swing.JButton contactUsBtn;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JLabel currentBalanceLabel;
+    private javax.swing.JPanel currentBalancePanel;
+    private javax.swing.JLabel currentBalanceTitle;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton lonasBtn;
     private javax.swing.JButton makeATransactionBtn;
+    private javax.swing.JLabel montlyLimitLabel;
+    private javax.swing.JLabel montlyLimitTitle;
+    private javax.swing.JPanel motnlyLimitPanel;
     private javax.swing.JPanel navBarPannel;
+    private javax.swing.JLabel plannedPaymentsLabel;
+    private javax.swing.JPanel plannedPaymentsPanel;
+    private javax.swing.JLabel plannedPaymentsTitle;
+    private javax.swing.JList<String> transactionHistoryList;
     private javax.swing.JButton transactionsBtn;
+    private javax.swing.JLabel transactionsHistoryLabel;
+    private javax.swing.JPanel transactionsHistoryPanel;
     private javax.swing.JLabel userNameNavbar;
     private javax.swing.JLabel viewUserProfileBtn;
     // End of variables declaration//GEN-END:variables
