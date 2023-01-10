@@ -40,13 +40,13 @@ public class MainPageFrame extends javax.swing.JFrame {
         logOutBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        accountsList = new javax.swing.JList<>();
+        accountsLabel = new javax.swing.JLabel();
+        currentBalanceLabel = new javax.swing.JPanel();
         CurrentBalanceTitle = new javax.swing.JLabel();
         CurrenBalanceValue = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        PlannedPaymentsTitle = new javax.swing.JLabel();
+        plannedPaymentsList = new javax.swing.JPanel();
+        plannedPaymentsTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
 
@@ -154,13 +154,13 @@ public class MainPageFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(201, 201, 201));
 
-        jList1.setFont(new java.awt.Font("Gadugi", 0, 36)); // NOI18N
-        jList1.setPreferredSize(new java.awt.Dimension(720, 583));
-        jScrollPane1.setViewportView(jList1);
+        accountsList.setFont(new java.awt.Font("Gadugi", 0, 36)); // NOI18N
+        accountsList.setPreferredSize(new java.awt.Dimension(720, 583));
+        jScrollPane1.setViewportView(accountsList);
 
-        jLabel3.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Accounts");
+        accountsLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        accountsLabel.setForeground(new java.awt.Color(0, 0, 0));
+        accountsLabel.setText("Accounts");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,7 +168,7 @@ public class MainPageFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(308, 308, 308)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accountsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(84, Short.MAX_VALUE)
@@ -179,14 +179,14 @@ public class MainPageFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(accountsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
+        currentBalanceLabel.setBackground(new java.awt.Color(201, 201, 201));
+        currentBalanceLabel.setForeground(new java.awt.Color(0, 0, 0));
 
         CurrentBalanceTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
         CurrentBalanceTitle.setForeground(new java.awt.Color(0, 0, 0));
@@ -197,56 +197,55 @@ public class MainPageFrame extends javax.swing.JFrame {
         CurrenBalanceValue.setFont(new java.awt.Font("Gadugi", 1, 113)); // NOI18N
         CurrenBalanceValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(CurrenBalanceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout currentBalanceLabelLayout = new javax.swing.GroupLayout(currentBalanceLabel);
+        currentBalanceLabel.setLayout(currentBalanceLabelLayout);
+        currentBalanceLabelLayout.setHorizontalGroup(
+            currentBalanceLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalanceLabelLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(CurrenBalanceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalanceLabelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+        currentBalanceLabelLayout.setVerticalGroup(
+            currentBalanceLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalanceLabelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addGap(82, 82, 82)
                 .addComponent(CurrenBalanceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(201, 201, 201));
-        jPanel3.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsList.setBackground(new java.awt.Color(201, 201, 201));
+        plannedPaymentsList.setForeground(new java.awt.Color(0, 0, 0));
 
-        PlannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        PlannedPaymentsTitle.setForeground(new java.awt.Color(0, 0, 0));
-        PlannedPaymentsTitle.setText("Planned payments");
+        plannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        plannedPaymentsTitle.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsTitle.setText("Planned payments");
 
         jList2.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout plannedPaymentsListLayout = new javax.swing.GroupLayout(plannedPaymentsList);
+        plannedPaymentsList.setLayout(plannedPaymentsListLayout);
+        plannedPaymentsListLayout.setHorizontalGroup(
+            plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsListLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(PlannedPaymentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        plannedPaymentsListLayout.setVerticalGroup(
+            plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsListLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(PlannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
@@ -259,11 +258,11 @@ public class MainPageFrame extends javax.swing.JFrame {
             .addComponent(navBarPannel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1931, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plannedPaymentsList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -273,8 +272,8 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(currentBalanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plannedPaymentsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
@@ -335,19 +334,19 @@ public class MainPageFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CurrenBalanceValue;
     private javax.swing.JLabel CurrentBalanceTitle;
-    private javax.swing.JLabel PlannedPaymentsTitle;
+    private javax.swing.JLabel accountsLabel;
+    private javax.swing.JList<String> accountsList;
     private javax.swing.JButton contactUsBtn;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JPanel currentBalanceLabel;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton lonasBtn;
     private javax.swing.JPanel navBarPannel;
+    private javax.swing.JPanel plannedPaymentsList;
+    private javax.swing.JLabel plannedPaymentsTitle;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userNameNavBar;
     private javax.swing.JLabel viewUserProfileBtn;
