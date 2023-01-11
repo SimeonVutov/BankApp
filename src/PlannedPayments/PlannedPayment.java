@@ -41,11 +41,11 @@ public class PlannedPayment implements Serializable {
         return _id;
     }
     
-    public PlannedPayment(LocalDate _paymentDate, String bankAccountIban,BigDecimal _money, String _name) {
-        _paymentDate = _paymentDate;
+    public PlannedPayment(LocalDate paymentDate, String bankAccountIban,BigDecimal money, String name) {
+        _paymentDate = paymentDate;
         _bankAccountIban = bankAccountIban;
-        _money = _money;
-        _name = _name;
+        _money = money;
+        _name = name;
         _id = UUID.randomUUID();
     }
     
