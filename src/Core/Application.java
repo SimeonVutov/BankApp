@@ -12,7 +12,12 @@ import bankapp.BankAccount;
 import java.util.LinkedList;
 import Database.DataSource;
 import Database.InvalidUserCredentialsException;
+import Database.ItemAlreadyExistsException;
 import TransactionSystem.TransactionManager;
+import Users.Person;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.UUID;
 
 /**
  *
@@ -25,29 +30,25 @@ public class Application {
     private List<PlannedPayment> _plannedPayments;
     
     public Application() {
-        _user = null;
-        _bankAccounts = new LinkedList<>();
-        _transactions = new LinkedList<>();
-        _plannedPayments = new LinkedList<>();
+        setDefaultUserInformation();
         
         refreshUserInformation();
     }
     
     public void logIn(String username, char[] password) throws InvalidUserCredentialsException {
-        try {
-            User user = DataSource.DATA_SOURCE.getUserByCredentials(username, password);
-            _user = user;
-            refreshUserInformation();
-        } catch (InvalidUserCredentialsException e) {
-            throw e;
-        }
+        User user = DataSource.DATA_SOURCE.getUserByCredentials(username, password);
+        _user = user;
+        refreshUserInformation();
+    }
+    
+    public void signUp(Person person, String username, char[] password, String email) throws ItemAlreadyExistsException, InvalidUserCredentialsException {
+        User user = new User(person, username, password, email);
+        DataSource.DATA_SOURCE.addUser(user);
+        logIn(username, password);
     }
     
     public void logOut() {
-        _user = null;
-        _bankAccounts = new LinkedList<>();
-        _transactions = new LinkedList<>();
-        _plannedPayments = new LinkedList<>();
+        setDefaultUserInformation();
     }
     
     public void refreshUserInformation() {
@@ -68,6 +69,13 @@ public class Application {
         }
     }
     
+    private void setDefaultUserInformation() {
+        _user = null;
+        _bankAccounts = new LinkedList<>();
+        _transactions = new LinkedList<>();
+        _plannedPayments = new LinkedList<>();
+    }
+    
     public User getUser() {
         return _user;
     }
@@ -86,11 +94,54 @@ public class Application {
         return null;
     }
     
-    public List<Transaction> getTransactionForBankAccount(String iban) {
+    public List<Transaction> getTransactionsForBankAccount(String iban) {
         return TransactionManager.TRANSACTION_MANAGER.getTransactionsByBankAccountIban(iban);
     }
     
     public List<Transaction> getAllTransactions() {
         return _transactions;
+    }
+    
+    public void createBankAccount(String name) throws ItemAlreadyExistsException {
+        BankAccount newBankAccount = new BankAccount(name, _user.getUserId());
+        DataSource.DATA_SOURCE.addBankAccount(newBankAccount);
+        _bankAccounts.add(newBankAccount);
+    }
+    
+    public void removeBankAccount(String iban) {
+        DataSource.DATA_SOURCE.removeBankAccount(iban);
+        for(var bankAccount : _bankAccounts) {
+            if(bankAccount.getIban().equals(iban)) {
+                _bankAccounts.remove(iban);
+                
+                //only one bankAccount with this iban is possible
+                break;
+            }
+        }
+    }
+    
+    public void createTransaction(String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
+        TransactionManager.TRANSACTION_MANAGER.createTransaction(
+                BigDecimal.ONE, fromBankAccountIban, toBankAccountIban
+        );
+    }
+    
+    public void createPlannedPayment(LocalDate paymentDate, String bankAccountIban, BigDecimal money, String name) throws ItemAlreadyExistsException {
+        PlannedPayment newPlannedPayment = new PlannedPayment(paymentDate, bankAccountIban, money, name);
+        DataSource.DATA_SOURCE.addPlannedPayment(newPlannedPayment);
+        _plannedPayments.add(newPlannedPayment);
+    }
+    
+    public void removePlannedPayment(UUID id) {
+        DataSource.DATA_SOURCE.removePlannedPayment(id);
+        
+        for(var plannedPayment : _plannedPayments) {
+            if(plannedPayment.getId().equals(id)) {
+                _plannedPayments.remove(plannedPayment);
+                
+                //only one planned payment with this id is possible
+                break;
+            }
+        }
     }
 }
