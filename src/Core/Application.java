@@ -83,7 +83,7 @@ public class Application {
             }
         }
         
-        throw null;
+        return null;
     }
     
     public List<Transaction> getTransactionForBankAccount(String iban) {
