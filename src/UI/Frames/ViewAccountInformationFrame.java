@@ -14,7 +14,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
     /**
      * Creates new form ViewAccountInformationFrame
      */
-    public ViewAccountInformationFrame() {
+    public ViewAccountInformationFrame(Application applciation) {
         initComponents();
         
         //UI settings
