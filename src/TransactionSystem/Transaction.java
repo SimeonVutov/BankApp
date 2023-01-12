@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package TransactionSystem;
-import bankapp.BankAccount;
+import BankAccount.BankAccount;
 import Database.DataSource;
 import java.math.BigDecimal;
 import java.time.LocalDate;

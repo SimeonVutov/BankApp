@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package bankapp;
+package BankAccount;
 
 import java.math.BigDecimal;
 

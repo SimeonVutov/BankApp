@@ -8,7 +8,7 @@ import java.util.List;
 import PlannedPayments.PlannedPayment;
 import TransactionSystem.Transaction;
 import Users.User;
-import bankapp.BankAccount;
+import BankAccount.BankAccount;
 import java.util.LinkedList;
 import Database.DataSource;
 import Database.InvalidUserCredentialsException;
