@@ -2,19 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Elements;
+package UI.Frames;
+import UI.UI_Variables;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class ContatctUsFrame extends javax.swing.JFrame {
+public class ContactUsFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ContatctUsFrame
      */
-    public ContatctUsFrame() {
+    public ContactUsFrame(Application application) {
         initComponents();
+        
+        //UI settings
+        setSize(1920, 935);
+        setBackground(UI_Variables.BACKGROUND_COLOR);
+        
+        //Setting information
+        
+        setVisible(true);
     }
 
     /**
@@ -28,7 +37,7 @@ public class ContatctUsFrame extends javax.swing.JFrame {
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        lonasBtn = new javax.swing.JButton();
+        loansBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
         userNameNavBar = new javax.swing.JLabel();
         viewUserProfileBtn = new javax.swing.JLabel();
@@ -58,14 +67,14 @@ public class ContatctUsFrame extends javax.swing.JFrame {
             }
         });
 
-        lonasBtn.setBackground(new java.awt.Color(255, 115, 115));
-        lonasBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        lonasBtn.setForeground(new java.awt.Color(0, 0, 0));
-        lonasBtn.setText("Loans");
-        lonasBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        lonasBtn.addActionListener(new java.awt.event.ActionListener() {
+        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
+        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
+        loansBtn.setText("Loans");
+        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        loansBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lonasBtnActionPerformed(evt);
+                loansBtnActionPerformed(evt);
             }
         });
 
@@ -100,7 +109,7 @@ public class ContatctUsFrame extends javax.swing.JFrame {
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lonasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1057, Short.MAX_VALUE)
@@ -115,7 +124,7 @@ public class ContatctUsFrame extends javax.swing.JFrame {
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lonasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loansBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -219,48 +228,13 @@ public class ContatctUsFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
-    private void lonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lonasBtnActionPerformed
+    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lonasBtnActionPerformed
+    }//GEN-LAST:event_loansBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contactUsBtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ContatctUsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ContatctUsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ContatctUsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ContatctUsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ContatctUsFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactUsBtn;
@@ -272,7 +246,7 @@ public class ContatctUsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel contactUsMessageLine6;
     private javax.swing.JLabel contactUsMessageLine7;
     private javax.swing.JPanel contactUsPanel;
-    private javax.swing.JButton lonasBtn;
+    private javax.swing.JButton loansBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userNameNavBar;

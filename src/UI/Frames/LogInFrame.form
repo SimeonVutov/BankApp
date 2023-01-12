@@ -166,9 +166,6 @@
                   <Dimension value="[524, 52]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="userNameTextFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="logInBtn">
               <Properties>
@@ -186,9 +183,6 @@
                   <Dimension value="[215, 85]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logInBtnActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="singUpBtn">
               <Properties>
@@ -206,9 +200,6 @@
                   <Dimension value="[204, 85]"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="singUpBtnActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="haveAnAccountBtn">
               <Properties>
