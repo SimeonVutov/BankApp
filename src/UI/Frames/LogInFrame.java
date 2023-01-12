@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package UI.Elements;
+package UI.Frames;
 import UI.UI_Variables;
 /**
  *
  * @author Bubo & Yana
  */
 public class LogInFrame extends javax.swing.JFrame {
-
     /**
      * Creates new form LogInFrame
      */
@@ -171,7 +170,6 @@ public class LogInFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;

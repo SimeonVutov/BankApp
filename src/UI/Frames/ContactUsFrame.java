@@ -9,12 +9,12 @@ import UI.UI_Variables;
  *
  * @author Bubo & Yana
  */
-public class ContatctUsFrame extends javax.swing.JFrame {
+public class ContactUsFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ContatctUsFrame
      */
-    public ContatctUsFrame(Application application) {
+    public ContactUsFrame(Application application) {
         initComponents();
         
         //UI settings
@@ -235,7 +235,6 @@ public class ContatctUsFrame extends javax.swing.JFrame {
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contactUsBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactUsBtn;

@@ -9,12 +9,12 @@ import UI.UI_Variables;
  *
  * @author Bubo & Yana
  */
-public class SingUpFrame extends javax.swing.JFrame {
+public class SignUpFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form SingUpFrame
      */
-    public SingUpFrame(Application application) {
+    public SignUpFrame(Application application) {
         initComponents();
         
         //UI Settings
