@@ -4,9 +4,9 @@
  */
 package Core;
 import UI.Frames.MainPageFrame;
-import UI.Frames.ContatctUsFrame;
+import UI.Frames.ContactUsFrame;
 import UI.Frames.LogInFrame;
-import UI.Frames.SingUpFrame;
+import UI.Frames.SignUpFrame;
 import UI.Frames.ViewUserProfielFrame;
 import javax.swing.JFrame;
 
@@ -24,7 +24,7 @@ public enum FrameType {
     SIGN_UP_FRAME {
         @Override
         public Class<? extends JFrame> getFrameClass() {
-            return SingUpFrame.class;
+            return SignUpFrame.class;
         }
     },
     MAIN_FRAME {
@@ -42,7 +42,7 @@ public enum FrameType {
     CONTACT_US_FRAME {
         @Override
         public Class<? extends JFrame> getFrameClass() {
-            return ContatctUsFrame.class;
+            return ContactUsFrame.class;
         }
     };
     

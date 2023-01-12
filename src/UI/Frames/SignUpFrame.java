@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
+import Core.Application;
+import Core.FramesController;
 import UI.UI_Variables;
 
 /**
@@ -10,12 +12,16 @@ import UI.UI_Variables;
  * @author Bubo & Yana
  */
 public class SignUpFrame extends javax.swing.JFrame {
-
+    private Application _app;
+    private FramesController _framesController;
+    
     /**
      * Creates new form SingUpFrame
      */
-    public SignUpFrame(Application application) {
+    public SignUpFrame(Application application, FramesController framesController) {
         initComponents();
+        _app = application;
+        _framesController = framesController;
         
         //UI Settings
         setSize(1920, 935);

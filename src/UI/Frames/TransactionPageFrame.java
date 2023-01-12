@@ -4,6 +4,8 @@
  */
 package UI.Frames;
 
+import Core.Application;
+import Core.FramesController;
 import UI.UI_Variables;
 
 /**
@@ -11,12 +13,16 @@ import UI.UI_Variables;
  * @author Bubo & Yana
  */
 public class TransactionPageFrame extends javax.swing.JFrame {
-
+    private Application _app;
+    private FramesController _framesController;
+    
     /**
      * Creates new form TransactionPageFrame
      */
-    public TransactionPageFrame(Application application) {
+    public TransactionPageFrame(Application application, FramesController framesController) {
         initComponents();
+        _app = application;
+        _framesController = framesController;
         
         //UI settings
         setSize(1920, 935);

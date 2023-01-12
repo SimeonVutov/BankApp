@@ -3,16 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
+import Core.Application;
+import Core.FramesController;
 import UI.UI_Variables;
 /**
  *
  * @author Bubo & Yana
  */
 public class LogInFrame extends javax.swing.JFrame {
+    private Application _app;
+    private FramesController _framesController;
+    
     /**
      * Creates new form LogInFrame
      */
-    public LogInFrame(Application application) {
+    public LogInFrame(Application application, FramesController framesController) {
         initComponents();
         
         //UI settings

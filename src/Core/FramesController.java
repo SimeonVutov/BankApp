@@ -23,9 +23,9 @@ public class FramesController {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
 
         try {
-            Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor();
+            Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
         
-            frameConstructor.newInstance();
+            frameConstructor.newInstance(_app, this);
         }
         catch(NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
