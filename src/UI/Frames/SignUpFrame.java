@@ -4,8 +4,16 @@
  */
 package UI.Frames;
 import Core.Application;
+import Core.FrameType;
 import Core.FramesController;
+import Database.InvalidUserCredentialsException;
+import Database.ItemAlreadyExistsException;
 import UI.UI_Variables;
+import Users.Person;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +22,14 @@ import UI.UI_Variables;
 public class SignUpFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
+    
+    private String _firstName;
+    private String _secondName;
+    private String _lastName;
+    private String _email;
+    private char[] _password;
+    private String _username;
+    private  String _phoneNumber;
     
     /**
      * Creates new form SingUpFrame
@@ -89,6 +105,11 @@ public class SignUpFrame extends javax.swing.JFrame {
         singUpBtn.setText("Sign Up");
         singUpBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
         singUpBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        singUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                singUpBtnActionPerformed(evt);
+            }
+        });
 
         passwordLabel.setBackground(new java.awt.Color(0, 0, 0));
         passwordLabel.setFont(new java.awt.Font("Gadugi", 0, 28)); // NOI18N
@@ -152,6 +173,11 @@ public class SignUpFrame extends javax.swing.JFrame {
         logInBtn.setText("Log In");
         logInBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
         logInBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        logInBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInBtnActionPerformed(evt);
+            }
+        });
 
         titleLabel.setFont(new java.awt.Font("Gadugi", 0, 48)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -205,7 +231,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(titleLabel)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -287,6 +313,87 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void singUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUpBtnActionPerformed
+        // TODO add your handling code here:
+        _firstName = firstNameTextField.getText();
+        _secondName = secondNameTextField.getText();
+        _lastName = lastNameTextField.getText();
+        _email = emailTextField.getText();
+        _password = passwordField.getPassword();
+        _username = usernameTextField.getText();
+        _phoneNumber = phoneNumberTextField.getText();
+        
+        List<String> errors = validateInput();
+        
+        if(errors.size() == 0) {
+            try {
+                _app.signUp(new Person(_firstName, _secondName, _lastName),
+                        _username, _password, _email, _phoneNumber);
+                try {
+                    _framesController.openFrame(FrameType.MAIN_FRAME);
+                    dispose();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            } catch (ItemAlreadyExistsException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", 0);
+            } catch (InvalidUserCredentialsException e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", 0);
+            }
+        }
+        else {
+            String errorMessage = "";
+            
+            for(var error : errors) {
+                errorMessage = errorMessage.concat(error + '\n');
+            }
+            
+            JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
+        }
+    }//GEN-LAST:event_singUpBtnActionPerformed
+
+    private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
+        try {
+            // TODO add your handling code here:
+            _framesController.openFrame(FrameType.LOGIN_FRAME);
+            dispose();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_logInBtnActionPerformed
+
+    public List<String> validateInput() {
+        
+        List<String> errors = new LinkedList<>();
+        
+        if(_firstName.isBlank()) {
+            errors.add("First name field cannot be empty");
+        }
+        if(_secondName.isBlank()) {
+            errors.add("Second name field cannot be empty");
+        }
+        if(_lastName.isBlank()) {
+            errors.add("Last name field cannot be empty");
+        }
+        if(!_email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+            errors.add("Invalid email");
+        }
+        if(_password.length == 0) {
+            errors.add("Password field cannot be empty");
+        }
+        if(!Arrays.equals(_password, confirmPasswordField.getPassword())) {
+            errors.add("You should confirm your password");
+        }
+        if(_username.isBlank()) {
+            errors.add("Username field cannot be empty");
+        }
+        if(!_phoneNumber.matches("^[0-9]+$")) {
+            errors.add("Phone field should cantain only numbers");
+        }
+        
+        return errors;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JPasswordField confirmPasswordField;
