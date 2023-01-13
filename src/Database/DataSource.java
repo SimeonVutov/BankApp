@@ -59,11 +59,7 @@ public class DataSource {
             throw new ItemAlreadyExistsException("User with this id already exists.");
         }
         else {
-            try {
-                _users.put(user.getUserId(), user);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            _users.put(user.getUserId(), user);
             _usersFileController.save(_users);
         }
     }
