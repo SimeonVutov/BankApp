@@ -32,7 +32,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private  String _phoneNumber;
     
     /**
-     * Creates new form SingUpFrame
+     * Creates new form SignUpFrame
      */
     public SignUpFrame(Application application, FramesController framesController) {
         initComponents();
@@ -62,7 +62,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         secondNameTextField = new javax.swing.JTextField();
         usernameTextField = new javax.swing.JTextField();
         firstNameTextField = new javax.swing.JTextField();
-        singUpBtn = new javax.swing.JButton();
+        signUpBtn = new javax.swing.JButton();
         passwordLabel = new javax.swing.JLabel();
         lastNameLabel = new javax.swing.JLabel();
         firstNameLabel = new javax.swing.JLabel();
@@ -99,13 +99,13 @@ public class SignUpFrame extends javax.swing.JFrame {
         firstNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         firstNameTextField.setPreferredSize(new java.awt.Dimension(524, 52));
 
-        singUpBtn.setBackground(new java.awt.Color(255, 115, 115));
-        singUpBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        singUpBtn.setForeground(new java.awt.Color(0, 0, 0));
-        singUpBtn.setText("Sign Up");
-        singUpBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        singUpBtn.setPreferredSize(new java.awt.Dimension(213, 84));
-        singUpBtn.addActionListener(new java.awt.event.ActionListener() {
+        signUpBtn.setBackground(new java.awt.Color(255, 115, 115));
+        signUpBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(0, 0, 0));
+        signUpBtn.setText("Sign Up");
+        signUpBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        signUpBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signUpBtnActionPerformed(evt);
             }
@@ -221,7 +221,7 @@ public class SignUpFrame extends javax.swing.JFrame {
                         .addComponent(logInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(131, 131, 131))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(singUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(303, 303, 303))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(301, 301, 301)
@@ -269,7 +269,7 @@ public class SignUpFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(phoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(79, 79, 79)
-                .addComponent(singUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(haveAnAccountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +413,7 @@ public class SignUpFrame extends javax.swing.JFrame {
     private javax.swing.JTextField phoneNumberTextField;
     private javax.swing.JLabel secondNameLabel;
     private javax.swing.JTextField secondNameTextField;
-    private javax.swing.JButton singUpBtn;
+    private javax.swing.JButton signUpBtn;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
