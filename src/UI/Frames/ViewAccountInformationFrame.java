@@ -158,11 +158,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
         transactionHistoryTitleLabel.setForeground(new java.awt.Color(0, 0, 0));
         transactionHistoryTitleLabel.setText("Transaction History");
 
-        removeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        removeBtn.setBackground(new java.awt.Color(234, 34, 34));
         removeBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         removeBtn.setForeground(new java.awt.Color(0, 0, 0));
         removeBtn.setText("Remove");
-        removeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        removeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
 
         editBtn.setBackground(new java.awt.Color(255, 255, 255));
         editBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
