@@ -41,8 +41,8 @@ public class Application {
         refreshUserInformation();
     }
     
-    public void signUp(Person person, String username, char[] password, String email) throws ItemAlreadyExistsException, InvalidUserCredentialsException {
-        User user = new User(person, username, password, email);
+    public void signUp(Person person, String username, char[] password, String email, String phoneNumber) throws ItemAlreadyExistsException, InvalidUserCredentialsException {
+        User user = new User(person, username, password, email, phoneNumber);
         DataSource.DATA_SOURCE.addUser(user);
         logIn(username, password);
     }
