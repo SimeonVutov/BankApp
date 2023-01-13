@@ -19,10 +19,14 @@ public class FramesController {
         _app = app;
     }
     
-    public void openFrame(FrameType frameType) throws Exception {
+    public void openFrame(FrameType frameType) {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
-        Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
         
-        frameConstructor.newInstance(_app, this);
+        try {
+            Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
+            frameConstructor.newInstance(_app, this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
