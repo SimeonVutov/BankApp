@@ -8,8 +8,8 @@ import Core.FrameType;
 import Core.FramesController;
 import Database.InvalidUserCredentialsException;
 import UI.UI_Variables;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 /**
  *
@@ -19,6 +19,8 @@ public class LogInFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
     
+    private String _username;
+    private char[] _password;
     /**
      * Creates new form LogInFrame
      */
@@ -196,23 +198,31 @@ public class LogInFrame extends javax.swing.JFrame {
 
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
-        String username = userNameTextField.getText();
-        char[] password = passwordField.getPassword();
+        _username = userNameTextField.getText();
+        _password = passwordField.getPassword();
         
-        if(isInputValid(username, password)) {
+        List<String> errors = validateInput();
+        
+        if(errors.size() == 0) {
             try {
-                _app.logIn(username, password);
+                _app.logIn(_username, _password);
                 try {
                     _framesController.openFrame(FrameType.MAIN_FRAME);
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Problem opening main page.");
                 }
             } catch (InvalidUserCredentialsException ex) {
-                JOptionPane.showMessageDialog(this, "Username or password is incorrect!");
+                JOptionPane.showMessageDialog(this, "Username or password is incorrect!", "Error", 0);
             }
         }
         else {
-            JOptionPane.showMessageDialog(this, "Username or password cannot be empty!");
+            String errorMessage = "";
+            
+            for(var error : errors) {
+                errorMessage = errorMessage.concat(error + '\n');
+            }
+            
+            JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
         }
     }//GEN-LAST:event_logInBtnActionPerformed
 
@@ -226,8 +236,17 @@ public class LogInFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
-    private boolean isInputValid(String username, char[] password) {
-        return username.length() != 0 && password.length != 0;
+    private List<String> validateInput() {
+        List<String> errors = new LinkedList<>();
+        
+        if(_username.isBlank()) {
+            errors.add("Username field cannot be empty");
+        }
+        if(_password.length == 0) {
+            errors.add("Password field cannot be empty");
+        }
+        
+        return errors;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
