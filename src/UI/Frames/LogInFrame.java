@@ -207,6 +207,7 @@ public class LogInFrame extends javax.swing.JFrame {
                 _app.logIn(_username, _password);
                 try {
                     _framesController.openFrame(FrameType.MAIN_FRAME);
+                    dispose();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Problem opening main page.");
                 }
