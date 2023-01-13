@@ -59,8 +59,8 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         phoneNumberLabelWriting = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         emailLabelWriting = new javax.swing.JLabel();
+        deleteBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
-        editBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -207,19 +207,19 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         emailLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
         emailLabelWriting.setText("someone@gmail.com");
 
-        editBtn.setBackground(new java.awt.Color(234, 34, 34));
+        deleteBtn.setBackground(new java.awt.Color(234, 34, 34));
+        deleteBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        deleteBtn.setForeground(new java.awt.Color(0, 0, 0));
+        deleteBtn.setText("Delete");
+        deleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
+        deleteBtn.setPreferredSize(new java.awt.Dimension(65, 140));
+
+        editBtn.setBackground(new java.awt.Color(255, 255, 255));
         editBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
-        editBtn.setText("Delete");
-        editBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
+        editBtn.setText("Edit");
+        editBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
         editBtn.setPreferredSize(new java.awt.Dimension(65, 140));
-
-        editBtn1.setBackground(new java.awt.Color(255, 255, 255));
-        editBtn1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        editBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        editBtn1.setText("Edit");
-        editBtn1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
-        editBtn1.setPreferredSize(new java.awt.Dimension(65, 140));
 
         javax.swing.GroupLayout userInformationPanelLayout = new javax.swing.GroupLayout(userInformationPanel);
         userInformationPanel.setLayout(userInformationPanelLayout);
@@ -232,7 +232,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                     .addComponent(emailLabel)
                     .addComponent(nameLabel)
                     .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(editBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(userNameLabel)))
                 .addGap(56, 56, 56)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,7 +248,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(userInformationPanelLayout.createSequentialGroup()
                 .addGap(294, 294, 294)
-                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(196, 196, 196)
                 .addComponent(userInformationLabel)
                 .addContainerGap(750, Short.MAX_VALUE))
@@ -259,8 +259,8 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userInformationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userInformationPanelLayout.createSequentialGroup()
                         .addGap(149, 149, 149)
@@ -326,8 +326,8 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactUsBtn;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JButton editBtn1;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel emailLabelWriting;
     private javax.swing.JLabel jLabel5;

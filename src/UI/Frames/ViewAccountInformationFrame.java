@@ -202,8 +202,8 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(39, 39, 39)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(404, Short.MAX_VALUE)))
         );
 

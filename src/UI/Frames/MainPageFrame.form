@@ -247,9 +247,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="accoutEditBtn" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="accountDeleteBtn" min="-2" pref="95" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
@@ -267,8 +267,8 @@
                   <Component id="accountsLabel" min="-2" pref="87" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton3" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButton1" alignment="3" max="32767" attributes="0"/>
+                      <Component id="accoutEditBtn" alignment="3" max="32767" attributes="0"/>
+                      <Component id="accountDeleteBtn" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="595" max="-2" attributes="0"/>
@@ -314,7 +314,7 @@
             <Property name="text" type="java.lang.String" value="Accounts"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="accoutEditBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -338,7 +338,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="accountDeleteBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="22" green="22" red="ea" type="rgb"/>
@@ -362,7 +362,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="accountDeleteBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -448,9 +448,9 @@
                       <Component id="jScrollPane2" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="plannedPaymentsEditBtn" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton4" min="-2" pref="95" max="-2" attributes="0"/>
+                          <Component id="plannedPaymentsDeleteBtn" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -465,8 +465,8 @@
                   <Component id="plannedPaymentsTitle" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton2" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButton4" alignment="3" max="32767" attributes="0"/>
+                      <Component id="plannedPaymentsEditBtn" alignment="3" max="32767" attributes="0"/>
+                      <Component id="plannedPaymentsDeleteBtn" alignment="3" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="580" max="-2" attributes="0"/>
@@ -509,7 +509,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="plannedPaymentsEditBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -533,7 +533,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
+        <Component class="javax.swing.JButton" name="plannedPaymentsDeleteBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="22" green="22" red="ea" type="rgb"/>
@@ -557,7 +557,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="plannedPaymentsDeleteBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
