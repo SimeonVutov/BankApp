@@ -74,7 +74,6 @@ public class LogInFrame extends javax.swing.JFrame {
         logInTitleLabel.setPreferredSize(new java.awt.Dimension(565, 75));
 
         userNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
-        userNameTextField.setToolTipText("");
         userNameTextField.setPreferredSize(new java.awt.Dimension(524, 52));
 
         logInBtn.setBackground(new java.awt.Color(255, 115, 115));
