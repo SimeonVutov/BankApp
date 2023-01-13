@@ -107,7 +107,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         singUpBtn.setPreferredSize(new java.awt.Dimension(213, 84));
         singUpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                singUpBtnActionPerformed(evt);
+                signUpBtnActionPerformed(evt);
             }
         });
 
@@ -313,7 +313,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void singUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singUpBtnActionPerformed
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
         _firstName = firstNameTextField.getText();
         _secondName = secondNameTextField.getText();
@@ -350,7 +350,7 @@ public class SignUpFrame extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
         }
-    }//GEN-LAST:event_singUpBtnActionPerformed
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         try {
