@@ -19,16 +19,10 @@ public class FramesController {
         _app = app;
     }
     
-    public void OpenFrame(FrameType frameType) {
+    public void openFrame(FrameType frameType) throws Exception {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
-
-        try {
-            Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
+        Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
         
-            frameConstructor.newInstance(_app, this);
-        }
-        catch(NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        frameConstructor.newInstance(_app, this);
     }
 }

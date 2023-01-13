@@ -32,8 +32,8 @@ public class FileController<T> {
                 Files.createDirectories(path.getParent());
                 Files.createFile(path);
                 System.out.println("Directory created: " + _filePath);
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

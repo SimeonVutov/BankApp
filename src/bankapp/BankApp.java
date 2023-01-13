@@ -6,6 +6,7 @@ package bankapp;
 import Core.Application;
 import Core.FramesController;
 import Core.FrameType;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,10 @@ public class BankApp {
         Application app = new Application();
         FramesController framesController = new FramesController(app);
         
-        framesController.OpenFrame(FrameType.LOGIN_FRAME);
+        try {
+            framesController.openFrame(FrameType.LOGIN_FRAME);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error starting app");
+        }
     }
 }
