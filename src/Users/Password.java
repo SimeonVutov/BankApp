@@ -47,10 +47,9 @@ public class Password implements Serializable {
         byte[] testHash = hashPassword(password);
         
         if(testHash != null) {
-            hash = testHash;
-            
             // Clear the password from memory
             Arrays.fill(password, Character.MIN_VALUE);
+            
             return Arrays.equals(hash, testHash);
         }
         
