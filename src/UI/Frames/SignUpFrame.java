@@ -329,12 +329,9 @@ public class SignUpFrame extends javax.swing.JFrame {
             try {
                 _app.signUp(new Person(_firstName, _secondName, _lastName),
                         _username, _password, _email, _phoneNumber);
-                try {
-                    _framesController.openFrame(FrameType.MAIN_FRAME);
-                    dispose();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+                
+                _framesController.openFrame(FrameType.MAIN_FRAME);
+                dispose();
             } catch (ItemAlreadyExistsException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Error", 0);
             } catch (InvalidUserCredentialsException e) {
@@ -353,13 +350,9 @@ public class SignUpFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
-        try {
-            // TODO add your handling code here:
-            _framesController.openFrame(FrameType.LOGIN_FRAME);
-            dispose();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        dispose();
     }//GEN-LAST:event_logInBtnActionPerformed
 
     public List<String> validateInput() {

@@ -205,12 +205,9 @@ public class LogInFrame extends javax.swing.JFrame {
         if(errors.size() == 0) {
             try {
                 _app.logIn(_username, _password);
-                try {
-                    _framesController.openFrame(FrameType.MAIN_FRAME);
-                    dispose();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(this, "Problem opening main page.");
-                }
+                
+                _framesController.openFrame(FrameType.MAIN_FRAME);
+                dispose();
             } catch (InvalidUserCredentialsException ex) {
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect!", "Error", 0);
             }
@@ -227,13 +224,9 @@ public class LogInFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logInBtnActionPerformed
 
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
-        try {
-            // TODO add your handling code here:
-            _framesController.openFrame(FrameType.SIGN_UP_FRAME);
-            dispose();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error opening sign up frame");
-        }
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.SIGN_UP_FRAME);
+        dispose();
     }//GEN-LAST:event_signUpBtnActionPerformed
 
     private List<String> validateInput() {
