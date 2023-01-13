@@ -17,7 +17,6 @@ public class Person implements Serializable {
     private String _firstName;
     private String _secondName;
     private String _lastName;
-    private LocalDate _birthDate;
 
     public String getFirstName() {
         return _firstName;
@@ -42,19 +41,10 @@ public class Person implements Serializable {
     public void setLastName(String _lastName) {
         _lastName = _lastName;
     }
-
-    public LocalDate getBirthDate() {
-        return _birthDate;
-    }
-
-    public void setBirthDate(LocalDate _birthDate) {
-        _birthDate = _birthDate;
-    }
     
-    public Person(String firstName, String secondName, String lastName, LocalDate birthDate) {
+    public Person(String firstName, String secondName, String lastName) {
         _firstName = firstName;
         _secondName = secondName;
         _lastName = lastName;
-        _birthDate = birthDate;
     }
 }
