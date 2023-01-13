@@ -17,6 +17,7 @@ public class User implements Serializable {
     private String _username;
     private Password _password;
     private String _email;
+    private String _phoneNumber;
     private final UUID _userId;
 
     public Person getPerson() {
@@ -43,15 +44,20 @@ public class User implements Serializable {
         return _password;
     }
 
+    public String getPhoneNumber() {
+        return _phoneNumber;
+    }
+    
     public UUID getUserId() {
         return _userId;
     }
     
-    public User(Person person, String username, char[] password, String email) {
+    public User(Person person, String username, char[] password, String email, String phoneNumber) {
         _person = person;
         _username = username;
         _password = new Password(password);
         _email = email;
+        _phoneNumber = phoneNumber;
         _userId = UUID.randomUUID();
     }
 }
