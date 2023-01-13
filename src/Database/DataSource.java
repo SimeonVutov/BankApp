@@ -8,7 +8,7 @@ package Database;
 import java.util.HashMap;
 import java.util.UUID;
 import Users.User;
-import bankapp.BankAccount;
+import BankAccount.BankAccount;
 import TransactionSystem.Transaction;
 import PlannedPayments.PlannedPayment;
 import java.nio.file.Path;
