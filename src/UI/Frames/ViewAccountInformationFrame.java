@@ -56,7 +56,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        loansBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -94,17 +93,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
             }
         });
 
-        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
-        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
-        loansBtn.setText("Loans");
-        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        loansBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loansBtnActionPerformed(evt);
-            }
-        });
-
         contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
         contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -135,11 +123,9 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(186, 186, 186)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1057, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1055, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -151,7 +137,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loansBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -318,6 +303,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         removeBtn.setForeground(new java.awt.Color(0, 0, 0));
         removeBtn.setText("Remove");
         removeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -369,10 +359,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
-    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loansBtnActionPerformed
-
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
@@ -383,6 +369,13 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(_bankAccount);
         editBankAccountFrame.getDataChangedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        // TODO add your handling code here:
+        _app.removeBankAccount(_bankAccount.getIban());
+        _framesController.openFrame(FrameType.MAIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_removeBtnActionPerformed
 
     private void loadData() {
         ibanLabel.setText(_bankAccount.getIban());
@@ -416,7 +409,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton loansBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton removeBtn;
     private javax.swing.JList<Transaction> transactionHistoryList;
