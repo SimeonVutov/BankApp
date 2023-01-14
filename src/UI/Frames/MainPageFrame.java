@@ -68,7 +68,6 @@ public class MainPageFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         accountsList = new javax.swing.JList<>();
         accountsLabel = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         accountsEditBtn = new javax.swing.JButton();
         accountsDeleteBtn = new javax.swing.JButton();
         currentBalancePanel = new javax.swing.JPanel();
@@ -184,12 +183,6 @@ public class MainPageFrame extends javax.swing.JFrame {
         accountsLabel.setForeground(new java.awt.Color(0, 0, 0));
         accountsLabel.setText("Accounts");
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Edit");
-        jButton3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
-
         accountsEditBtn.setBackground(new java.awt.Color(255, 255, 255));
         accountsEditBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         accountsEditBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -215,14 +208,9 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addComponent(accountsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(97, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,14 +224,9 @@ public class MainPageFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(accountsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         currentBalancePanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -426,7 +409,6 @@ public class MainPageFrame extends javax.swing.JFrame {
     private javax.swing.JButton contactUsBtn;
     private javax.swing.JLabel currentBalanceLabel;
     private javax.swing.JPanel currentBalancePanel;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
