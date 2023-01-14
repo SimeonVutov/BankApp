@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
+import BankAccount.BankAccount;
 import Core.Application;
 import Core.FramesController;
-import UI.UI_Variables;
-
+import UI.UI_Variables;;
+import javax.swing.DefaultListModel;
+import PlannedPayments.PlannedPayment;
+import java.math.BigDecimal;
+import java.util.List;
 /**
  *
  * @author Bubo & Yana
@@ -14,6 +18,9 @@ import UI.UI_Variables;
 public class MainPageFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
+    private DefaultListModel<PlannedPayment> _plannedPaymentsDefaultListModel;
+    private DefaultListModel<BankAccount> _bankAccountsDefaultListModel;
+    
     /**
      * Creates new form MainPageFrame
      */
@@ -22,12 +29,17 @@ public class MainPageFrame extends javax.swing.JFrame {
         _app = application;
         _framesController = framesController;
         
+        _plannedPaymentsDefaultListModel = new DefaultListModel<>();
+        plannedPaymentsList.setModel(_plannedPaymentsDefaultListModel);
+        _bankAccountsDefaultListModel= new DefaultListModel<>();
+        accountsList.setModel(_bankAccountsDefaultListModel);
+        
         //UI settings
         setSize(1920, 935);
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
-        
+        loadData();
         
         setVisible(true);
     }
@@ -52,13 +64,13 @@ public class MainPageFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         accountsList = new javax.swing.JList<>();
         accountsLabel = new javax.swing.JLabel();
-        currentBalanceLabel = new javax.swing.JPanel();
+        currentBalancePanel = new javax.swing.JPanel();
         CurrentBalanceTitle = new javax.swing.JLabel();
-        CurrenBalanceValue = new javax.swing.JLabel();
-        plannedPaymentsList = new javax.swing.JPanel();
+        currentBalanceLabel = new javax.swing.JLabel();
+        plannedPaymentsPanel = new javax.swing.JPanel();
         plannedPaymentsTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        plannedPaymentsList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BankApp - MAin Page");
@@ -195,8 +207,8 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        currentBalanceLabel.setBackground(new java.awt.Color(201, 201, 201));
-        currentBalanceLabel.setForeground(new java.awt.Color(0, 0, 0));
+        currentBalancePanel.setBackground(new java.awt.Color(201, 201, 201));
+        currentBalancePanel.setForeground(new java.awt.Color(0, 0, 0));
 
         CurrentBalanceTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
         CurrentBalanceTitle.setForeground(new java.awt.Color(0, 0, 0));
@@ -204,61 +216,61 @@ public class MainPageFrame extends javax.swing.JFrame {
         CurrentBalanceTitle.setText("Current balance");
         CurrentBalanceTitle.setToolTipText("");
 
-        CurrenBalanceValue.setFont(new java.awt.Font("Gadugi", 1, 113)); // NOI18N
-        CurrenBalanceValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        currentBalanceLabel.setFont(new java.awt.Font("Gadugi", 1, 113)); // NOI18N
+        currentBalanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout currentBalanceLabelLayout = new javax.swing.GroupLayout(currentBalanceLabel);
-        currentBalanceLabel.setLayout(currentBalanceLabelLayout);
-        currentBalanceLabelLayout.setHorizontalGroup(
-            currentBalanceLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(currentBalanceLabelLayout.createSequentialGroup()
+        javax.swing.GroupLayout currentBalancePanelLayout = new javax.swing.GroupLayout(currentBalancePanel);
+        currentBalancePanel.setLayout(currentBalancePanelLayout);
+        currentBalancePanelLayout.setHorizontalGroup(
+            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addComponent(CurrenBalanceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalanceLabelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalancePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
-        currentBalanceLabelLayout.setVerticalGroup(
-            currentBalanceLabelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(currentBalanceLabelLayout.createSequentialGroup()
+        currentBalancePanelLayout.setVerticalGroup(
+            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
-                .addComponent(CurrenBalanceValue, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
-        plannedPaymentsList.setBackground(new java.awt.Color(201, 201, 201));
-        plannedPaymentsList.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsPanel.setBackground(new java.awt.Color(201, 201, 201));
+        plannedPaymentsPanel.setForeground(new java.awt.Color(0, 0, 0));
 
         plannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
         plannedPaymentsTitle.setForeground(new java.awt.Color(0, 0, 0));
         plannedPaymentsTitle.setText("Planned payments");
 
-        jList2.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        plannedPaymentsList.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
+        jScrollPane2.setViewportView(plannedPaymentsList);
 
-        javax.swing.GroupLayout plannedPaymentsListLayout = new javax.swing.GroupLayout(plannedPaymentsList);
-        plannedPaymentsList.setLayout(plannedPaymentsListLayout);
-        plannedPaymentsListLayout.setHorizontalGroup(
-            plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plannedPaymentsListLayout.createSequentialGroup()
+        javax.swing.GroupLayout plannedPaymentsPanelLayout = new javax.swing.GroupLayout(plannedPaymentsPanel);
+        plannedPaymentsPanel.setLayout(plannedPaymentsPanelLayout);
+        plannedPaymentsPanelLayout.setHorizontalGroup(
+            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
-        plannedPaymentsListLayout.setVerticalGroup(
-            plannedPaymentsListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plannedPaymentsListLayout.createSequentialGroup()
+        plannedPaymentsPanelLayout.setVerticalGroup(
+            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,11 +280,11 @@ public class MainPageFrame extends javax.swing.JFrame {
             .addComponent(navBarPannel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1931, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plannedPaymentsList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -282,8 +294,8 @@ public class MainPageFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(currentBalanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plannedPaymentsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(currentBalancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
@@ -294,10 +306,6 @@ public class MainPageFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
-    private void lonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lonasBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lonasBtnActionPerformed
-
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contactUsBtnActionPerformed
@@ -306,21 +314,49 @@ public class MainPageFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    private void lonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lonasBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lonasBtnActionPerformed
+
+    private void loadData() {
+        userNameNavBar.setText(_app.getUser().getUsername());
+        currentBalanceLabel.setText(calculateCurrentBalance().toString());
+        
+        for(var plannedPayment : _app.getAllPlannedPayments()){
+            _plannedPaymentsDefaultListModel.addElement(plannedPayment);
+        }
+        
+        for(var bankAccount: _app.getAllBankAccounts()){
+            _bankAccountsDefaultListModel.addElement(bankAccount);
+        }
+    }
+    
+    private BigDecimal calculateCurrentBalance() {
+        BigDecimal currentBalance = BigDecimal.ZERO;
+        List<BankAccount> list = _app.getAllBankAccounts();
+        
+        for(var bankAccount : list) {
+            currentBalance = currentBalance.add(bankAccount.getBalance());
+        }
+        
+        return currentBalance;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CurrenBalanceValue;
     private javax.swing.JLabel CurrentBalanceTitle;
     private javax.swing.JLabel accountsLabel;
-    private javax.swing.JList<String> accountsList;
+    private javax.swing.JList<BankAccount> accountsList;
     private javax.swing.JButton contactUsBtn;
-    private javax.swing.JPanel currentBalanceLabel;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JLabel currentBalanceLabel;
+    private javax.swing.JPanel currentBalancePanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton lonasBtn;
     private javax.swing.JPanel navBarPannel;
-    private javax.swing.JPanel plannedPaymentsList;
+    private javax.swing.JList<PlannedPayment> plannedPaymentsList;
+    private javax.swing.JPanel plannedPaymentsPanel;
     private javax.swing.JLabel plannedPaymentsTitle;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userNameNavBar;
