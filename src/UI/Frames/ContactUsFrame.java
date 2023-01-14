@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
-import BankAccount.BankAccount;
 import Core.Application;
 import Core.FramesController;
 import UI.UI_Variables;
@@ -16,7 +15,6 @@ public class ContactUsFrame extends javax.swing.JFrame {
     
     private Application _app;
     private FramesController _framesController;
-    private BankAccount _bankAccount;
     /**
      * Creates new form ContatctUsFrame
      */
@@ -227,7 +225,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     private void loadData() {
-        userNameNavBar.setText(_bankAccount.getName());
+        userNameNavBar.setText(_app.getUser().getUsername());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
