@@ -4,14 +4,18 @@
  */
 package UI.Frames;
 import Core.Application;
+import Core.FrameType;
 import Core.FramesController;
+import UI.Frames.EditFrames.DataChangedListener;
+import UI.Frames.EditFrames.EditUserFrame;
 import UI.UI_Variables;
+import Users.User;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class ViewUserProfielFrame extends javax.swing.JFrame {
+public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChangedListener{
     private Application _app;
     private FramesController _framesController;
     
@@ -28,6 +32,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
+        loadData();
         
         setVisible(true);
     }
@@ -43,22 +48,22 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        lonasBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
-        userNameNavBar = new javax.swing.JLabel();
-        viewUserProfileBtn = new javax.swing.JLabel();
+        usernameNavBar = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         userInformationPanel = new javax.swing.JPanel();
         userInformationLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        userNameLabel = new javax.swing.JLabel();
-        nameLabelWriting = new javax.swing.JLabel();
-        userNameLabelWriting = new javax.swing.JLabel();
+        usernameLabelTitle = new javax.swing.JLabel();
+        fullNameLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        phoneNumberLabelTitle = new javax.swing.JLabel();
         phoneNumberLabel = new javax.swing.JLabel();
-        phoneNumberLabelWriting = new javax.swing.JLabel();
+        emailLabelTitle = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
-        emailLabelWriting = new javax.swing.JLabel();
+        editBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -80,17 +85,6 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
             }
         });
 
-        lonasBtn.setBackground(new java.awt.Color(255, 115, 115));
-        lonasBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        lonasBtn.setForeground(new java.awt.Color(0, 0, 0));
-        lonasBtn.setText("Loans");
-        lonasBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        lonasBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lonasBtnActionPerformed(evt);
-            }
-        });
-
         contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
         contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,15 +98,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
             }
         });
 
-        userNameNavBar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        userNameNavBar.setForeground(new java.awt.Color(0, 0, 0));
-        userNameNavBar.setText("User Name");
-
-        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
-        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
-        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
-        viewUserProfileBtn.setText("View user profile");
-        viewUserProfileBtn.setAlignmentY(0.0F);
+        usernameNavBar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        usernameNavBar.setForeground(new java.awt.Color(0, 0, 0));
+        usernameNavBar.setText("User Name");
 
         logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
         logOutBtn.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
@@ -134,15 +122,11 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lonasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userNameNavBar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(34, 34, 34)
+                .addComponent(usernameNavBar)
                 .addGap(98, 98, 98))
         );
         navBarPannelLayout.setVerticalGroup(
@@ -151,14 +135,11 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lonasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(userNameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)
+                        .addComponent(usernameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -178,61 +159,92 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
 
-        userNameLabel.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
-        userNameLabel.setForeground(new java.awt.Color(0, 0, 0));
-        userNameLabel.setText("Username:");
+        usernameLabelTitle.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        usernameLabelTitle.setForeground(new java.awt.Color(0, 0, 0));
+        usernameLabelTitle.setText("Username:");
 
-        nameLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        nameLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
-        nameLabelWriting.setText("Name");
+        fullNameLabel.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
+        fullNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        fullNameLabel.setText("Name");
 
-        userNameLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        userNameLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
-        userNameLabelWriting.setText("Username");
+        usernameLabel.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        usernameLabel.setText("Username");
 
-        phoneNumberLabel.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        phoneNumberLabelTitle.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        phoneNumberLabelTitle.setForeground(new java.awt.Color(0, 0, 0));
+        phoneNumberLabelTitle.setText("Phone number:");
+
+        phoneNumberLabel.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         phoneNumberLabel.setForeground(new java.awt.Color(0, 0, 0));
-        phoneNumberLabel.setText("Phone number:");
+        phoneNumberLabel.setText("08234852938745");
 
-        phoneNumberLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        phoneNumberLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
-        phoneNumberLabelWriting.setText("08234852938745");
+        emailLabelTitle.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        emailLabelTitle.setForeground(new java.awt.Color(0, 0, 0));
+        emailLabelTitle.setText("Email:");
 
-        emailLabel.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
+        emailLabel.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         emailLabel.setForeground(new java.awt.Color(0, 0, 0));
-        emailLabel.setText("Email:");
+        emailLabel.setText("someone@gmail.com");
 
-        emailLabelWriting.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        emailLabelWriting.setForeground(new java.awt.Color(0, 0, 0));
-        emailLabelWriting.setText("someone@gmail.com");
+        editBtn.setBackground(new java.awt.Color(255, 255, 255));
+        editBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        editBtn.setForeground(new java.awt.Color(0, 0, 0));
+        editBtn.setText("Edit");
+        editBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        editBtn.setPreferredSize(new java.awt.Dimension(65, 140));
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        deleteBtn.setBackground(new java.awt.Color(234, 34, 34));
+        deleteBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        deleteBtn.setForeground(new java.awt.Color(0, 0, 0));
+        deleteBtn.setText("Delete");
+        deleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
+        deleteBtn.setPreferredSize(new java.awt.Dimension(65, 140));
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout userInformationPanelLayout = new javax.swing.GroupLayout(userInformationPanel);
         userInformationPanel.setLayout(userInformationPanelLayout);
         userInformationPanelLayout.setHorizontalGroup(
             userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInformationPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(phoneNumberLabel)
-                    .addComponent(emailLabel)
-                    .addComponent(nameLabel)
-                    .addComponent(userNameLabel))
-                .addGap(56, 56, 56)
-                .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addGap(262, 262, 262)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(phoneNumberLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addComponent(userNameLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(nameLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emailLabelWriting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(userInformationPanelLayout.createSequentialGroup()
                 .addGap(630, 630, 630)
                 .addComponent(userInformationLabel)
                 .addContainerGap(750, Short.MAX_VALUE))
+            .addGroup(userInformationPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(userInformationPanelLayout.createSequentialGroup()
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(userInformationPanelLayout.createSequentialGroup()
+                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(phoneNumberLabelTitle)
+                            .addComponent(emailLabelTitle)
+                            .addComponent(nameLabel)
+                            .addComponent(usernameLabelTitle))
+                        .addGap(56, 56, 56)
+                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(userInformationPanelLayout.createSequentialGroup()
+                                .addGap(262, 262, 262)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(phoneNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(userInformationPanelLayout.createSequentialGroup()
+                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(fullNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         userInformationPanelLayout.setVerticalGroup(
             userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,23 +256,27 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
                         .addGap(149, 149, 149)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userInformationPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userNameLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(usernameLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(69, 69, 69)
                         .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nameLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fullNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)))
                 .addGap(79, 79, 79)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(103, 103, 103)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneNumberLabelWriting, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phoneNumberLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(218, 218, 218))
         );
 
@@ -288,38 +304,73 @@ public class ViewUserProfielFrame extends javax.swing.JFrame {
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        
+        dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
-
-    private void lonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lonasBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lonasBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
+        _app.logOut();
+        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        
+        dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        EditUserFrame editUserFrame = new EditUserFrame(_app.getUser());
+        editUserFrame.getDataChangedEvent().addListener(this);
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        _app.removeUser(_app.getUser().getUserId());
+        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        
+        dispose();
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void loadData() {
+        User user = _app.getUser();
+        
+        usernameNavBar.setText(_app.getUser().getUsername());
+        usernameLabel.setText(user.getUsername());
+        fullNameLabel.setText(user.getPerson().toString());
+        emailLabel.setText(user.getEmail());
+        phoneNumberLabel.setText(user.getPhoneNumber());
+    }
+    
+    @Override
+    public void onDataChangedEvent() {
+        loadData();
+        _app.save();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactUsBtn;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton editBtn;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JLabel emailLabelWriting;
+    private javax.swing.JLabel emailLabelTitle;
+    private javax.swing.JLabel fullNameLabel;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton logOutBtn;
-    private javax.swing.JButton lonasBtn;
     private javax.swing.JLabel nameLabel;
-    private javax.swing.JLabel nameLabelWriting;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JLabel phoneNumberLabel;
-    private javax.swing.JLabel phoneNumberLabelWriting;
+    private javax.swing.JLabel phoneNumberLabelTitle;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userInformationLabel;
     private javax.swing.JPanel userInformationPanel;
-    private javax.swing.JLabel userNameLabel;
-    private javax.swing.JLabel userNameLabelWriting;
-    private javax.swing.JLabel userNameNavBar;
-    private javax.swing.JLabel viewUserProfileBtn;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel usernameLabelTitle;
+    private javax.swing.JLabel usernameNavBar;
     // End of variables declaration//GEN-END:variables
 }

@@ -106,6 +106,10 @@ public class Application {
         return _plannedPayments;
     }
     
+    public void removeUser(UUID userId) {
+        DataSource.DATA_SOURCE.removeUser(userId);
+    }
+    
     public void createBankAccount(String name) throws ItemAlreadyExistsException {
         BankAccount newBankAccount = new BankAccount(name, _user.getUserId());
         DataSource.DATA_SOURCE.addBankAccount(newBankAccount);
