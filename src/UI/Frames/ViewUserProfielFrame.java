@@ -51,6 +51,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
         contactUsBtn = new javax.swing.JButton();
         usernameNavBar = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         userInformationPanel = new javax.swing.JPanel();
         userInformationLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
@@ -100,10 +101,11 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
 
         usernameNavBar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         usernameNavBar.setForeground(new java.awt.Color(0, 0, 0));
+        usernameNavBar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         usernameNavBar.setText("User Name");
 
         logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
-        logOutBtn.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+        logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
         logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
         logOutBtn.setText("Log Out");
         logOutBtn.setToolTipText("");
@@ -113,6 +115,12 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
                 logOutBtnActionPerformed(evt);
             }
         });
+
+        jButton1.setBackground(new java.awt.Color(255, 115, 115));
+        jButton1.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("View user profile");
+        jButton1.setBorder(null);
 
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
@@ -125,8 +133,10 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(usernameNavBar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(usernameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98))
         );
         navBarPannelLayout.setVerticalGroup(
@@ -135,11 +145,15 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(usernameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addComponent(usernameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -190,9 +204,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
         editBtn.setBackground(new java.awt.Color(255, 255, 255));
         editBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         editBtn.setForeground(new java.awt.Color(0, 0, 0));
-        editBtn.setText("Edit");
+        editBtn.setText("Edit user");
         editBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
-        editBtn.setPreferredSize(new java.awt.Dimension(65, 140));
+        editBtn.setPreferredSize(new java.awt.Dimension(213, 84));
         editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtnActionPerformed(evt);
@@ -202,9 +216,9 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
         deleteBtn.setBackground(new java.awt.Color(234, 34, 34));
         deleteBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         deleteBtn.setForeground(new java.awt.Color(0, 0, 0));
-        deleteBtn.setText("Delete");
+        deleteBtn.setText("Delete user");
         deleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
-        deleteBtn.setPreferredSize(new java.awt.Dimension(65, 140));
+        deleteBtn.setPreferredSize(new java.awt.Dimension(213, 84));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
@@ -216,51 +230,46 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
         userInformationPanelLayout.setHorizontalGroup(
             userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInformationPanelLayout.createSequentialGroup()
-                .addGap(630, 630, 630)
-                .addComponent(userInformationLabel)
-                .addContainerGap(750, Short.MAX_VALUE))
-            .addGroup(userInformationPanelLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phoneNumberLabelTitle)
+                    .addComponent(emailLabelTitle)
+                    .addComponent(nameLabel)
+                    .addComponent(usernameLabelTitle))
+                .addGap(56, 56, 56)
+                .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(262, 262, 262)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(phoneNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(userInformationPanelLayout.createSequentialGroup()
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(phoneNumberLabelTitle)
-                            .addComponent(emailLabelTitle)
-                            .addComponent(nameLabel)
-                            .addComponent(usernameLabelTitle))
-                        .addGap(56, 56, 56)
-                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(userInformationPanelLayout.createSequentialGroup()
-                                .addGap(262, 262, 262)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(phoneNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(userInformationPanelLayout.createSequentialGroup()
-                                .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(fullNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(fullNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 1362, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(userInformationPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
+            .addGroup(userInformationPanelLayout.createSequentialGroup()
+                .addGap(679, 679, 679)
+                .addComponent(userInformationLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         userInformationPanelLayout.setVerticalGroup(
             userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(userInformationPanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(userInformationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addGap(35, 35, 35)
+                        .addComponent(userInformationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userInformationPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,7 +286,11 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
                 .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phoneNumberLabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(phoneNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(218, 218, 218))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userInformationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -295,8 +308,8 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navBarPannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
-                .addComponent(userInformationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(userInformationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,6 +373,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
     private javax.swing.JLabel emailLabel;
     private javax.swing.JLabel emailLabelTitle;
     private javax.swing.JLabel fullNameLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JLabel nameLabel;
