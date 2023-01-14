@@ -29,4 +29,15 @@ public class FramesController {
             e.printStackTrace();
         }
     }
+    
+    public void openFrame(FrameType frameType, Object data) {
+        Class<? extends JFrame> frameClass = frameType.getFrameClass();
+        
+        try {
+            Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class, Object.class);
+            frameConstructor.newInstance(_app, this, data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
