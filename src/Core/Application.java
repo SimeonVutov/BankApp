@@ -31,8 +31,6 @@ public class Application {
     
     public Application() {
         setDefaultUserInformation();
-        
-        refreshUserInformation();
     }
     
     public void logIn(String username, char[] password) throws InvalidUserCredentialsException {
@@ -42,9 +40,11 @@ public class Application {
     }
     
     public void signUp(Person person, String username, char[] password, String email, String phoneNumber) throws ItemAlreadyExistsException, InvalidUserCredentialsException {
+        char[] pass = password.clone();
         User user = new User(person, username, password, email, phoneNumber);
         DataSource.DATA_SOURCE.addUser(user);
-        logIn(username, password);
+        System.out.println(pass.length);
+        logIn(username, pass);
     }
     
     public void logOut() {
@@ -147,5 +147,9 @@ public class Application {
                 break;
             }
         }
+    }
+    
+    public void save() {
+        DataSource.DATA_SOURCE.saveAllData();
     }
 }
