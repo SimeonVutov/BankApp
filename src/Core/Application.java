@@ -102,6 +102,10 @@ public class Application {
         return _transactions;
     }
     
+    public List<PlannedPayment> getAllPlannedPayments() {
+        return _plannedPayments;
+    }
+    
     public void createBankAccount(String name) throws ItemAlreadyExistsException {
         BankAccount newBankAccount = new BankAccount(name, _user.getUserId());
         DataSource.DATA_SOURCE.addBankAccount(newBankAccount);
