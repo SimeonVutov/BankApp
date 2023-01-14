@@ -4,8 +4,13 @@
  */
 package UI.Frames;
 import Core.Application;
+import Core.FrameType;
 import Core.FramesController;
+import Database.InvalidUserCredentialsException;
 import UI.UI_Variables;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Bubo & Yana
@@ -14,11 +19,15 @@ public class LogInFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
     
+    private String _username;
+    private char[] _password;
     /**
      * Creates new form LogInFrame
      */
     public LogInFrame(Application application, FramesController framesController) {
         initComponents();
+        _app = application;
+        _framesController = framesController;
         
         //UI settings
         setSize(1920, 935);
@@ -42,7 +51,7 @@ public class LogInFrame extends javax.swing.JFrame {
         logInTitleLabel = new javax.swing.JLabel();
         userNameTextField = new javax.swing.JTextField();
         logInBtn = new javax.swing.JButton();
-        singUpBtn = new javax.swing.JButton();
+        signUpBtn = new javax.swing.JButton();
         haveAnAccountBtn = new javax.swing.JLabel();
         logInUserNameLabel = new javax.swing.JLabel();
         logInPasswordLabel = new javax.swing.JLabel();
@@ -72,12 +81,22 @@ public class LogInFrame extends javax.swing.JFrame {
         logInBtn.setForeground(new java.awt.Color(0, 0, 0));
         logInBtn.setText("Log In");
         logInBtn.setPreferredSize(new java.awt.Dimension(215, 85));
+        logInBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInBtnActionPerformed(evt);
+            }
+        });
 
-        singUpBtn.setBackground(new java.awt.Color(255, 255, 255));
-        singUpBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
-        singUpBtn.setForeground(new java.awt.Color(0, 0, 0));
-        singUpBtn.setText("Sing Up");
-        singUpBtn.setPreferredSize(new java.awt.Dimension(204, 85));
+        signUpBtn.setBackground(new java.awt.Color(255, 255, 255));
+        signUpBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
+        signUpBtn.setForeground(new java.awt.Color(0, 0, 0));
+        signUpBtn.setText("Sign Up");
+        signUpBtn.setPreferredSize(new java.awt.Dimension(204, 85));
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
+            }
+        });
 
         haveAnAccountBtn.setFont(new java.awt.Font("Gadugi", 0, 32)); // NOI18N
         haveAnAccountBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,7 +123,7 @@ public class LogInFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logInPanelLayout.createSequentialGroup()
                         .addComponent(haveAnAccountBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(singUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(111, 111, 111))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, logInPanelLayout.createSequentialGroup()
                         .addGroup(logInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,7 +159,7 @@ public class LogInFrame extends javax.swing.JFrame {
                 .addComponent(logInBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(logInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(singUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(haveAnAccountBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(62, 62, 62))
         );
@@ -176,6 +195,53 @@ public class LogInFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
+        // TODO add your handling code here:
+        _username = userNameTextField.getText();
+        _password = passwordField.getPassword();
+        
+        List<String> errors = validateInput();
+        
+        if(errors.size() == 0) {
+            try {
+                _app.logIn(_username, _password);
+                
+                _framesController.openFrame(FrameType.MAIN_FRAME);
+                dispose();
+            } catch (InvalidUserCredentialsException ex) {
+                JOptionPane.showMessageDialog(this, "Username or password is incorrect!", "Error", 0);
+            }
+        }
+        else {
+            String errorMessage = "";
+            
+            for(var error : errors) {
+                errorMessage = errorMessage.concat(error + '\n');
+            }
+            
+            JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
+        }
+    }//GEN-LAST:event_logInBtnActionPerformed
+
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.SIGN_UP_FRAME);
+        dispose();
+    }//GEN-LAST:event_signUpBtnActionPerformed
+
+    private List<String> validateInput() {
+        List<String> errors = new LinkedList<>();
+        
+        if(_username.isBlank()) {
+            errors.add("Username field cannot be empty");
+        }
+        if(_password.length == 0) {
+            errors.add("Password field cannot be empty");
+        }
+        
+        return errors;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JLabel haveAnAccountBtn;
@@ -185,7 +251,7 @@ public class LogInFrame extends javax.swing.JFrame {
     private javax.swing.JLabel logInTitleLabel;
     private javax.swing.JLabel logInUserNameLabel;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JButton singUpBtn;
+    private javax.swing.JButton signUpBtn;
     private javax.swing.JTextField userNameTextField;
     // End of variables declaration//GEN-END:variables
     }

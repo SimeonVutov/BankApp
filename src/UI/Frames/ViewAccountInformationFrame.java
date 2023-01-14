@@ -3,31 +3,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
+import UI.Frames.EditFrames.EditBankAccountFrame;
+import UI.Frames.EditFrames.DataChangedListener;
 import Core.Application;
 import Core.FramesController;
 import UI.UI_Variables;
+import BankAccount.BankAccount;
+import Core.FrameType;
+import TransactionSystem.Transaction;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class ViewAccountInformationFrame extends javax.swing.JFrame {
+public class ViewAccountInformationFrame extends javax.swing.JFrame implements DataChangedListener {
     private Application _app;
     private FramesController _framesController;
+    private BankAccount _bankAccount;
+    private DefaultListModel<Transaction> _transactionsDefaultListModel;
     
     /**
      * Creates new form ViewAccountInformationFrame
      */
-    public ViewAccountInformationFrame(Application application, FramesController framesController) {
+    public ViewAccountInformationFrame(Application application, FramesController framesController, Object iban) {
         initComponents();
         _app = application;
         _framesController = framesController;
+        
+        _bankAccount = _app.getBankAccountByIban((String) iban);
+        _transactionsDefaultListModel = new DefaultListModel<>();
+        transactionHistoryList.setModel(_transactionsDefaultListModel);
         
         //UI settings
         setSize(1920, 935);
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
+        usernameLabel.setText(_app.getUser().getUsername());
+        loadData();
         
         setVisible(true);
     }
@@ -43,16 +57,13 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        loansBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        contactUsBtn = new javax.swing.JButton();
+        usernameLabel = new javax.swing.JLabel();
+        viewUserProfileBtn = new javax.swing.JButton();
         transactionHistoryPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transactionHistoryList = new javax.swing.JList<>();
         transactionHistoryTitleLabel = new javax.swing.JLabel();
-        removeBtn = new javax.swing.JButton();
-        editBtn = new javax.swing.JButton();
         currentBalancePanel = new javax.swing.JPanel();
         cudentBalanceTitleLabel = new javax.swing.JLabel();
         currentBalanceLabel = new javax.swing.JLabel();
@@ -62,6 +73,9 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
         accoutNamePanel = new javax.swing.JPanel();
         accountNameTitleLabel = new javax.swing.JLabel();
         acouuntNameLabel = new javax.swing.JLabel();
+        accountNameLabel = new javax.swing.JLabel();
+        editBtn = new javax.swing.JButton();
+        removeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,39 +94,34 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
             }
         });
 
-        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
-        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
-        loansBtn.setText("Loans");
-        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        loansBtn.addActionListener(new java.awt.event.ActionListener() {
+        contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
+        contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
+        contactUsBtn.setText("Contact Us");
+        contactUsBtn.setToolTipText("");
+        contactUsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        contactUsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        contactUsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loansBtnActionPerformed(evt);
+                contactUsBtnActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 115, 115));
-        jButton1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Contact Us");
-        jButton1.setToolTipText("");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setPreferredSize(new java.awt.Dimension(185, 99));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        usernameLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        usernameLabel.setText("User Name");
+
+        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
+        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
+        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewUserProfileBtn.setText("View user profile");
+        viewUserProfileBtn.setBorder(null);
+        viewUserProfileBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewUserProfileBtnActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("User Name");
-
-        jLabel2.setBackground(new java.awt.Color(255, 115, 115));
-        jLabel2.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("View user profile");
-        jLabel2.setAlignmentY(0.0F);
 
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
@@ -122,13 +131,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1057, Short.MAX_VALUE)
+                .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(98, 98, 98))
         );
         navBarPannelLayout.setVerticalGroup(
@@ -137,13 +144,12 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loansBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -179,24 +185,15 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1715, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(221, 746, Short.MAX_VALUE)
                 .addComponent(transactionHistoryTitleLabel)
                 .addGap(611, 611, 611))
-            .addGroup(transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
-                    .addGap(39, 39, 39)
-                    .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1619, Short.MAX_VALUE)))
         );
         transactionHistoryPanelLayout.setVerticalGroup(
             transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(transactionHistoryTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(transactionHistoryTitleLabel)
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
@@ -223,7 +220,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
             .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addComponent(cudentBalanceTitleLabel)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
             .addGroup(currentBalancePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(currentBalanceLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -281,46 +278,81 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
 
         acouuntNameLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
 
+        accountNameLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        accountNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout accoutNamePanelLayout = new javax.swing.GroupLayout(accoutNamePanel);
         accoutNamePanel.setLayout(accoutNamePanelLayout);
         accoutNamePanelLayout.setHorizontalGroup(
             accoutNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(accoutNamePanelLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(accountNameTitleLabel)
-                .addContainerGap(203, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, accoutNamePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(acouuntNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(accountNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(acouuntNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(accoutNamePanelLayout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(accountNameTitleLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         accoutNamePanelLayout.setVerticalGroup(
             accoutNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accoutNamePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(accountNameTitleLabel)
-                .addGap(33, 33, 33)
-                .addComponent(acouuntNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(accoutNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(acouuntNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
+
+        editBtn.setBackground(new java.awt.Color(255, 255, 255));
+        editBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        editBtn.setForeground(new java.awt.Color(0, 0, 0));
+        editBtn.setText("Edit");
+        editBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        removeBtn.setBackground(new java.awt.Color(255, 255, 255));
+        removeBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        removeBtn.setForeground(new java.awt.Color(0, 0, 0));
+        removeBtn.setText("Remove");
+        removeBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        removeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(navBarPannel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ibanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
-                .addComponent(accoutNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(transactionHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(removeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ibanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(accoutNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,7 +363,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
                     .addComponent(accoutNamePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ibanPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(editBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(removeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(transactionHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -341,21 +377,55 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
-    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
+    private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_loansBtnActionPerformed
+        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+    }//GEN-LAST:event_contactUsBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(_bankAccount);
+        editBankAccountFrame.getDataChangedEvent().addListener(this);
+    }//GEN-LAST:event_editBtnActionPerformed
 
+    private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
+        // TODO add your handling code here:
+        _app.removeBankAccount(_bankAccount.getIban());
+        _framesController.openFrame(FrameType.MAIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_removeBtnActionPerformed
+
+    private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        dispose();
+    }//GEN-LAST:event_viewUserProfileBtnActionPerformed
+
+    private void loadData() {
+        ibanLabel.setText(_bankAccount.getIban());
+        accountNameLabel.setText(_bankAccount.getName());
+        currentBalanceLabel.setText(_bankAccount.getBalance().toString());
+        
+        for(var transaction : _app.getTransactionsForBankAccount(_bankAccount.getIban())) {
+            _transactionsDefaultListModel.addElement(transaction);
+        }
+    }
+    
+    @Override
+    public void onDataChangedEvent() {
+        loadData();
+        _app.save();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accountNameLabel;
     private javax.swing.JLabel accountNameTitleLabel;
     private javax.swing.JPanel accoutNamePanel;
     private javax.swing.JLabel acouuntNameLabel;
+    private javax.swing.JButton contactUsBtn;
     private javax.swing.JLabel cudentBalanceTitleLabel;
     private javax.swing.JLabel currentBalanceLabel;
     private javax.swing.JPanel currentBalancePanel;
@@ -363,16 +433,15 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel ibanLabel;
     private javax.swing.JPanel ibanPanel;
     private javax.swing.JLabel ibanTitleLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton loansBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton removeBtn;
-    private javax.swing.JList<String> transactionHistoryList;
+    private javax.swing.JList<Transaction> transactionHistoryList;
     private javax.swing.JPanel transactionHistoryPanel;
     private javax.swing.JLabel transactionHistoryTitleLabel;
     private javax.swing.JButton transactionsBtn;
+    private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton viewUserProfileBtn;
     // End of variables declaration//GEN-END:variables
+
 }

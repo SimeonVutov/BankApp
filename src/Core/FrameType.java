@@ -7,6 +7,8 @@ import UI.Frames.MainPageFrame;
 import UI.Frames.ContactUsFrame;
 import UI.Frames.LogInFrame;
 import UI.Frames.SignUpFrame;
+import UI.Frames.TransactionPageFrame;
+import UI.Frames.ViewAccountInformationFrame;
 import UI.Frames.ViewUserProfielFrame;
 import javax.swing.JFrame;
 
@@ -37,6 +39,18 @@ public enum FrameType {
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return ViewUserProfielFrame.class;
+        }
+    },
+    VIEW_ACCOUNT_FRAME {
+        @Override
+        public Class<? extends JFrame> getFrameClass() {
+            return ViewAccountInformationFrame.class;
+        }
+    },
+    TRANSACTION_FRAME {
+        @Override
+        public Class<? extends JFrame> getFrameClass() {
+            return TransactionPageFrame.class;
         }
     },
     CONTACT_US_FRAME {

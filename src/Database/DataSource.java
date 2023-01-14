@@ -8,7 +8,7 @@ package Database;
 import java.util.HashMap;
 import java.util.UUID;
 import Users.User;
-import bankapp.BankAccount;
+import BankAccount.BankAccount;
 import TransactionSystem.Transaction;
 import PlannedPayments.PlannedPayment;
 import java.nio.file.Path;
@@ -59,11 +59,7 @@ public class DataSource {
             throw new ItemAlreadyExistsException("User with this id already exists.");
         }
         else {
-            try {
-                _users.put(user.getUserId(), user);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            _users.put(user.getUserId(), user);
             _usersFileController.save(_users);
         }
     }
