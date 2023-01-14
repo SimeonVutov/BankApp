@@ -6,7 +6,6 @@ package UI.Frames.EditFrames;
 
 import Users.Person;
 import Users.User;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
