@@ -59,7 +59,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         transactionsBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        viewUserProfileBtn = new javax.swing.JButton();
         transactionHistoryPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         transactionHistoryList = new javax.swing.JList<>();
@@ -112,14 +112,14 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
         usernameLabel.setText("User Name");
 
-        jButton1.setBackground(new java.awt.Color(255, 115, 115));
-        jButton1.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("View user profile");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
+        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
+        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewUserProfileBtn.setText("View user profile");
+        viewUserProfileBtn.setBorder(null);
+        viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewUserProfileBtnActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(98, 98, 98))
         );
         navBarPannelLayout.setVerticalGroup(
@@ -149,7 +149,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
                         .addGap(18, 18, 18)
                         .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(viewUserProfileBtn)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -381,11 +381,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         dispose();
     }//GEN-LAST:event_removeBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
     private void loadData() {
         ibanLabel.setText(_bankAccount.getIban());
@@ -416,7 +416,6 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     private javax.swing.JLabel ibanLabel;
     private javax.swing.JPanel ibanPanel;
     private javax.swing.JLabel ibanTitleLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton removeBtn;
@@ -425,6 +424,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     private javax.swing.JLabel transactionHistoryTitleLabel;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JButton viewUserProfileBtn;
     // End of variables declaration//GEN-END:variables
 
 }
