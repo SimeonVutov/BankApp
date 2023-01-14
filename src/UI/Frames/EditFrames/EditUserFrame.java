@@ -80,14 +80,25 @@ public class EditUserFrame extends EditFrame {
         usernameLabel = new javax.swing.JLabel();
         passwordLabel1 = new javax.swing.JLabel();
         phoneNumberLabel1 = new javax.swing.JLabel();
+        titleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
         setPreferredSize(new java.awt.Dimension(822, 890));
 
+        firstNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         firstNameTextField.setPreferredSize(new java.awt.Dimension(310, 45));
 
+        secondNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         secondNameTextField.setPreferredSize(new java.awt.Dimension(310, 45));
+
+        emailTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+
+        lastNameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+
+        usernameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+
+        phoneNumberTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         changePasswordCheckBox.setText("Change Password");
         changePasswordCheckBox.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +108,7 @@ public class EditUserFrame extends EditFrame {
         });
 
         passwordTextField.setEditable(false);
+        passwordTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         passwordTextField.setText("password");
 
         saveBtn.setBackground(new java.awt.Color(255, 115, 115));
@@ -124,25 +136,36 @@ public class EditUserFrame extends EditFrame {
         });
 
         emailLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(0, 0, 0));
         emailLabel.setText("Email:");
 
         firstNameLabel1.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        firstNameLabel1.setForeground(new java.awt.Color(0, 0, 0));
         firstNameLabel1.setText("First Name:");
 
         secondNameLabel1.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        secondNameLabel1.setForeground(new java.awt.Color(0, 0, 0));
         secondNameLabel1.setText("Second Name:");
 
         lastNameLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        lastNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         lastNameLabel.setText("Last Name:");
 
         usernameLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(0, 0, 0));
         usernameLabel.setText(" Username:");
 
         passwordLabel1.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        passwordLabel1.setForeground(new java.awt.Color(0, 0, 0));
         passwordLabel1.setText("Password:");
 
         phoneNumberLabel1.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
+        phoneNumberLabel1.setForeground(new java.awt.Color(0, 0, 0));
         phoneNumberLabel1.setText("Phone number:");
+
+        titleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        titleLabel.setForeground(new java.awt.Color(0, 0, 0));
+        titleLabel.setText("Edit user information");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,9 +185,9 @@ public class EditUserFrame extends EditFrame {
                             .addComponent(secondNameLabel1)
                             .addComponent(lastNameLabel)
                             .addComponent(usernameLabel)
-                            .addComponent(emailLabel)
                             .addComponent(passwordLabel1)
-                            .addComponent(phoneNumberLabel1))
+                            .addComponent(phoneNumberLabel1)
+                            .addComponent(emailLabel))
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,49 +199,55 @@ public class EditUserFrame extends EditFrame {
                             .addComponent(phoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(131, 131, 131))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(titleLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
+                .addGap(44, 44, 44)
+                .addComponent(titleLabel)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(secondNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lastNameLabel))
-                        .addGap(18, 18, 18)
+                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstNameLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(secondNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lastNameLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameLabel))
                         .addGap(27, 27, 27)
                         .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(passwordLabel1))
+                    .addComponent(passwordLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(changePasswordCheckBox)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(phoneNumberLabel1))
-                    .addComponent(phoneNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(phoneNumberLabel1))
+                            .addComponent(phoneNumberTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(emailLabel))
-                .addGap(90, 90, 90)
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -320,6 +349,7 @@ public class EditUserFrame extends EditFrame {
     private javax.swing.JButton saveBtn;
     private javax.swing.JLabel secondNameLabel1;
     private javax.swing.JTextField secondNameTextField;
+    private javax.swing.JLabel titleLabel;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
