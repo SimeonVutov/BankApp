@@ -5,7 +5,6 @@
 package UI.Frames.EditFrames;
 
 import BankAccount.BankAccount;
-import Core.Application;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,16 +14,14 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class EditBankAccountFrame extends EditFrame {
-    private Application _app;
     private BankAccount _bankAccount;
     private String _bankAccountName;
     
     /**
      * Creates new form EditBankAccountFrame
      */
-    public EditBankAccountFrame(Application app, BankAccount bankAccount) {
+    public EditBankAccountFrame(BankAccount bankAccount) {
         initComponents();
-        _app = app;
         _bankAccount = bankAccount;
         _bankAccountName = _bankAccount.getName();
         bankAccountNameTextField.setText(_bankAccountName);
@@ -62,9 +59,7 @@ public class EditBankAccountFrame extends EditFrame {
             }
         });
 
-        bankAccountNameTextField.setText("jTextField1");
-
-        bankAccountNameLabel.setText("jLabel1");
+        bankAccountNameLabel.setText("BankAccountName");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
