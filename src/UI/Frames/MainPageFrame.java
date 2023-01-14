@@ -19,7 +19,6 @@ public class MainPageFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
     private DefaultListModel<PlannedPayment> _plannedPaymentsDefaultListModel;
-    private BankAccount _bankAccount;
     private DefaultListModel<BankAccount> _bankAccountsDefaultListModel;
     
     /**
@@ -320,11 +319,13 @@ public class MainPageFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lonasBtnActionPerformed
 
     private void loadData() {
-        userNameNavBar.setText(_bankAccount.getName());
+        userNameNavBar.setText(_app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
+        
         for(var plannedPayment : _app.getAllPlannedPayments()){
             _plannedPaymentsDefaultListModel.addElement(plannedPayment);
         }
+        
         for(var bankAccount: _app.getAllBankAccounts()){
             _bankAccountsDefaultListModel.addElement(bankAccount);
         }
