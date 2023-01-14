@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI.Frames;
+import BankAccount.BankAccount;
 import Core.Application;
 import Core.FramesController;
 import UI.UI_Variables;
@@ -15,6 +16,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
     
     private Application _app;
     private FramesController _framesController;
+    private BankAccount _bankAccount;
     /**
      * Creates new form ContatctUsFrame
      */
@@ -28,6 +30,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting information
+        loadData();
         
         setVisible(true);
     }
@@ -43,7 +46,6 @@ public class ContactUsFrame extends javax.swing.JFrame {
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        loansBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
         userNameNavBar = new javax.swing.JLabel();
         viewUserProfileBtn = new javax.swing.JLabel();
@@ -70,17 +72,6 @@ public class ContactUsFrame extends javax.swing.JFrame {
         transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transactionsBtnActionPerformed(evt);
-            }
-        });
-
-        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
-        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
-        loansBtn.setText("Loans");
-        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        loansBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loansBtnActionPerformed(evt);
             }
         });
 
@@ -112,13 +103,11 @@ public class ContactUsFrame extends javax.swing.JFrame {
         navBarPannelLayout.setHorizontalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
+                .addGap(168, 168, 168)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1057, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(userNameNavBar, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -130,7 +119,6 @@ public class ContactUsFrame extends javax.swing.JFrame {
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loansBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -216,7 +204,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(contactUsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,14 +222,14 @@ public class ContactUsFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
-    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loansBtnActionPerformed
-
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    private void loadData() {
+        userNameNavBar.setText(_bankAccount.getName());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactUsBtn;
     private javax.swing.JLabel contactUsMessageLine1;
@@ -252,7 +240,6 @@ public class ContactUsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel contactUsMessageLine6;
     private javax.swing.JLabel contactUsMessageLine7;
     private javax.swing.JPanel contactUsPanel;
-    private javax.swing.JButton loansBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userNameNavBar;
