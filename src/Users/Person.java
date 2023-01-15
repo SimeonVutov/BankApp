@@ -47,4 +47,9 @@ public class Person implements Serializable {
         _secondName = secondName;
         _lastName = lastName;
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s %s %s", _firstName, _secondName, _lastName);
+    }
 }

@@ -23,21 +23,25 @@ public class User implements Serializable {
     public Person getPerson() {
         return _person;
     }
+    
+    public void setPerson(Person person) {
+        _person = person;
+    }
 
     public String getUsername() {
         return _username;
     }
 
-    public void setUsername(String _username) {
-        _username = _username;
+    public void setUsername(String username) {
+        _username = username;
     }
 
     public String getEmail() {
         return _email;
     }
 
-    public void setEmail(String _email) {
-        _email = _email;
+    public void setEmail(String email) {
+        _email = email;
     }
     
     public Password getPassword() {
@@ -46,6 +50,10 @@ public class User implements Serializable {
 
     public String getPhoneNumber() {
         return _phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        _phoneNumber = phoneNumber;
     }
     
     public UUID getUserId() {
