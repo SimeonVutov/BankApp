@@ -158,6 +158,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
 
         transactionHistoryList.setFont(new java.awt.Font("Gadugi", 0, 28)); // NOI18N
         transactionHistoryList.setForeground(new java.awt.Color(255, 255, 255));
+        transactionHistoryList.setMaximumSize(new java.awt.Dimension(1710, 340));
         jScrollPane1.setViewportView(transactionHistoryList);
 
         transactionHistoryTitleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
@@ -169,21 +170,21 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         transactionHistoryPanelLayout.setHorizontalGroup(
             transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1715, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
                 .addGap(221, 746, Short.MAX_VALUE)
                 .addComponent(transactionHistoryTitleLabel)
                 .addGap(611, 611, 611))
+            .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         transactionHistoryPanelLayout.setVerticalGroup(
             transactionHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(transactionHistoryPanelLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(transactionHistoryTitleLabel)
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -288,7 +289,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
                 .addGroup(accoutNamePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(acouuntNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(accountNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         editBtn.setBackground(new java.awt.Color(255, 255, 255));
