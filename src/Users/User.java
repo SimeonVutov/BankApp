@@ -1,0 +1,71 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+package Users;
+
+import java.io.Serializable;
+import java.util.UUID;
+
+/**
+ *
+ * @author Simeon_32
+ */
+public class User implements Serializable {
+    private Person _person;
+    private String _username;
+    private Password _password;
+    private String _email;
+    private String _phoneNumber;
+    private final UUID _userId;
+
+    public Person getPerson() {
+        return _person;
+    }
+    
+    public void setPerson(Person person) {
+        _person = person;
+    }
+
+    public String getUsername() {
+        return _username;
+    }
+
+    public void setUsername(String username) {
+        _username = username;
+    }
+
+    public String getEmail() {
+        return _email;
+    }
+
+    public void setEmail(String email) {
+        _email = email;
+    }
+    
+    public Password getPassword() {
+        return _password;
+    }
+
+    public String getPhoneNumber() {
+        return _phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        _phoneNumber = phoneNumber;
+    }
+    
+    public UUID getUserId() {
+        return _userId;
+    }
+    
+    public User(Person person, String username, char[] password, String email, String phoneNumber) {
+        _person = person;
+        _username = username;
+        _password = new Password(password);
+        _email = email;
+        _phoneNumber = phoneNumber;
+        _userId = UUID.randomUUID();
+    }
+}
