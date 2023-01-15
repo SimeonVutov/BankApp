@@ -63,4 +63,9 @@ public class BankAccount implements Serializable {
         
         _balance = _balance.subtract(amountOfMoney);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s%n%s", _name, _iban);
+    }
 }

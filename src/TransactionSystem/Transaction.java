@@ -121,4 +121,38 @@ public class Transaction implements Serializable {
             }
         }
     }
+    
+    @Override
+    public String toString() {
+        if(_type == TransactionType.Deposit) {
+            return String.format("%s %s %s%n%s %S",
+                    _type,
+                    _toBankAccountIban,
+                    _money,
+                    _transactionDate.toString(),
+                    _status
+            );
+        }
+        else if(_type == TransactionType.Withdraw) {
+            return String.format("%s %s %s%n%s %S",
+                    _type,
+                    _fromBankAccountIban,
+                    _money,
+                    _transactionDate.toString(),
+                    _status
+            );
+        }
+        else if(_type == TransactionType.Transfer) {
+            return String.format("%s %s->%s %s%n%s %S",
+                    _type,
+                    _fromBankAccountIban,
+                    _toBankAccountIban,
+                    _money,
+                    _transactionDate.toString(),
+                    _status
+            );
+        }
+        
+        return "";
+    }
 }

@@ -56,4 +56,9 @@ public class PlannedPayment implements Serializable {
     public void Pay() throws IllegalArgumentException, ItemAlreadyExistsException {
         TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(_money, _bankAccountIban, null);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s - %s%n%s", _name, _paymentDate.toString(), _money.toString());
+    }
 }
