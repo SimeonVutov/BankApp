@@ -15,14 +15,14 @@ import Users.User;
  *
  * @author Bubo & Yana
  */
-public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChangedListener{
+public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChangedListener{
     private Application _app;
     private FramesController _framesController;
     
     /**
      * Creates new form ViewUserProfielFrame
      */
-    public ViewUserProfielFrame(Application application, FramesController framesController) {
+    public ViewUserProfileFrame(Application application, FramesController framesController) {
         initComponents();
         _app = application;
         _framesController = framesController;
@@ -69,7 +69,6 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1920, 935));
-        setPreferredSize(new java.awt.Dimension(1920, 935));
 
         navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
         navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
@@ -240,7 +239,7 @@ public class ViewUserProfielFrame extends javax.swing.JFrame implements DataChan
                         .addGap(262, 262, 262)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(userInformationPanelLayout.createSequentialGroup()
-                        .addComponent(phoneNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                        .addComponent(phoneNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE)
                         .addGap(78, 78, 78)
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105)
