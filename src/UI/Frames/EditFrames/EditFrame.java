@@ -4,6 +4,7 @@
  */
 package UI.Frames.EditFrames;
 
+import Core.DataChangedEvent;
 import javax.swing.JFrame;
 
 /**

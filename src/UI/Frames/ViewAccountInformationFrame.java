@@ -4,7 +4,7 @@
  */
 package UI.Frames;
 import UI.Frames.EditFrames.EditBankAccountFrame;
-import UI.Frames.EditFrames.DataChangedListener;
+import Core.DataChangedListener;
 import Core.Application;
 import Core.FramesController;
 import UI.UI_Variables;
@@ -361,11 +361,13 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed

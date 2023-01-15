@@ -6,6 +6,7 @@ package TransactionSystem;
 
 import Database.ItemAlreadyExistsException;
 import Database.DataSource;
+import Core.DataChangedEvent;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -20,6 +21,10 @@ public class TransactionManager {
     private List<Transaction> _transactions;
     private TransactionProcessor _transactionProcessor;
     
+    public DataChangedEvent getDataChangedEvent() {
+        return _transactionProcessor.getDataChangedEvent();
+    }
+    
     private TransactionManager(List<Transaction> transactions) {
         _transactions = transactions;
         _transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
@@ -31,11 +36,13 @@ public class TransactionManager {
         _transactionProcessor.Start();
     }
     
-    public void createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
+    public Transaction createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
         Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
         DataSource.DATA_SOURCE.addTransaction(newTransaction);
         _transactions.add(newTransaction);
         _transactionProcessor.AddTransactionToQueue(newTransaction);
+        
+        return newTransaction;
     }
     
     public List<Transaction> getTransactionsByBankAccountIban(String iban) {
