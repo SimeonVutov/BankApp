@@ -61,10 +61,11 @@ public class CreateTransferTransactionFrame extends CreateFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
-        setPreferredSize(new java.awt.Dimension(822, 890));
 
+        otherIbanTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         otherIbanTextField.setText("BG00000000");
 
+        bankAccountsList.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         jScrollPane1.setViewportView(bankAccountsList);
 
         bankAccountsLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -92,7 +93,9 @@ public class CreateTransferTransactionFrame extends CreateFrame {
 
         otherIbanLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         otherIbanLabel.setForeground(new java.awt.Color(0, 0, 0));
-        otherIbanLabel.setText("Other iban:");
+        otherIbanLabel.setText("IBAN of the receiver:");
+
+        amountOfMoneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         amountOfMoneyLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         amountOfMoneyLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -112,7 +115,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
                     .addComponent(otherIbanLabel)
                     .addComponent(amountOfMoneyLabel)
                     .addComponent(bankAccountsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(otherIbanTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(amountOfMoneyTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,7 +146,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(otherIbanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(otherIbanLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(amountOfMoneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(amountOfMoneyLabel))

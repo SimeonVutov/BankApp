@@ -61,11 +61,14 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         bankAccountsLabel.setForeground(new java.awt.Color(0, 0, 0));
         bankAccountsLabel.setText("Bank Accounts:");
 
+        bankAccountsList.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         jScrollPane1.setViewportView(bankAccountsList);
 
         moneyLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(0, 0, 0));
         moneyLabel.setText("Amouth of money:");
+
+        moneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         cancelBtn.setBackground(new java.awt.Color(255, 255, 255));
         cancelBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -95,21 +98,18 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(114, 114, 114)
                         .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(moneyLabel)
-                                .addGap(45, 45, 45)
-                                .addComponent(moneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(moneyLabel)
+                        .addGap(45, 45, 45)
+                        .addComponent(moneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)

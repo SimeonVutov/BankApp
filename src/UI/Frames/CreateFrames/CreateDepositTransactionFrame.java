@@ -59,11 +59,14 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         setBackground(new java.awt.Color(201, 201, 201));
         setPreferredSize(new java.awt.Dimension(822, 890));
 
+        bankAccountsList.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         jScrollPane1.setViewportView(bankAccountsList);
 
         bankAccountsLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
         bankAccountsLabel.setForeground(new java.awt.Color(0, 0, 0));
         bankAccountsLabel.setText("Bank Accounts:");
+
+        moneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         moneyLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -105,7 +108,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
                         .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 27, Short.MAX_VALUE)
+                        .addGap(0, 33, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(moneyLabel)
