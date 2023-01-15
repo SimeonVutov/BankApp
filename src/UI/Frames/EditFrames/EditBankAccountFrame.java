@@ -42,6 +42,7 @@ public class EditBankAccountFrame extends EditFrame {
         cancelBtn = new javax.swing.JButton();
         bankAccountNameTextField = new javax.swing.JTextField();
         bankAccountNameLabel = new javax.swing.JLabel();
+        editAcountTitleLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
@@ -71,7 +72,12 @@ public class EditBankAccountFrame extends EditFrame {
         });
 
         bankAccountNameLabel.setFont(new java.awt.Font("Gadugi", 1, 28)); // NOI18N
-        bankAccountNameLabel.setText("BankAccountName");
+        bankAccountNameLabel.setForeground(new java.awt.Color(0, 0, 0));
+        bankAccountNameLabel.setText("Bank Account Name:");
+
+        editAcountTitleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        editAcountTitleLabel.setForeground(new java.awt.Color(0, 0, 0));
+        editAcountTitleLabel.setText("Edit bank account information");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,18 +93,24 @@ public class EditBankAccountFrame extends EditFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addComponent(bankAccountNameLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(51, 51, 51)
                         .addComponent(bankAccountNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 144, Short.MAX_VALUE)
+                .addComponent(editAcountTitleLabel)
+                .addGap(125, 125, 125))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(281, 281, 281)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(53, 53, 53)
+                .addComponent(editAcountTitleLabel)
+                .addGap(213, 213, 213)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bankAccountNameLabel)
                     .addComponent(bankAccountNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,6 +162,7 @@ public class EditBankAccountFrame extends EditFrame {
     private javax.swing.JLabel bankAccountNameLabel;
     private javax.swing.JTextField bankAccountNameTextField;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JLabel editAcountTitleLabel;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables
 }
