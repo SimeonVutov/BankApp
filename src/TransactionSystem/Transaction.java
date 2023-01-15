@@ -83,6 +83,7 @@ public class Transaction implements Serializable {
                 
                 if(toBankAccount != null) {
                     toBankAccount.AddMoney(_money);
+                    _status = TransactionStatus.Succeded;
                 }
                 else {
                     _status = TransactionStatus.Failded;
@@ -93,6 +94,7 @@ public class Transaction implements Serializable {
                 
                 if(fromBankAccount != null) {
                     fromBankAccount.RemoveMoney(_money);
+                    _status = TransactionStatus.Succeded;
                 }
                 else {
                     _status = TransactionStatus.Failded;
@@ -106,6 +108,7 @@ public class Transaction implements Serializable {
                     fromBankAccount.RemoveMoney(_money);
                     transferMoneyRemoved = true;
                     toBankAccount.AddMoney(_money);
+                    _status = TransactionStatus.Succeded;
                 }
                 else {
                     _status = TransactionStatus.Failded;
@@ -125,7 +128,7 @@ public class Transaction implements Serializable {
     @Override
     public String toString() {
         if(_type == TransactionType.Deposit) {
-            return String.format("%s %s %s %s %S",
+            return String.format("%s %s Amount: %s Date: %s Status: %S",
                     _type,
                     _toBankAccountIban,
                     _money,
@@ -134,7 +137,7 @@ public class Transaction implements Serializable {
             );
         }
         else if(_type == TransactionType.Withdraw) {
-            return String.format("%s %s %s %s %S",
+            return String.format("%s %s Amount: %s Date: %s Status: %S",
                     _type,
                     _fromBankAccountIban,
                     _money,
@@ -143,7 +146,7 @@ public class Transaction implements Serializable {
             );
         }
         else if(_type == TransactionType.Transfer) {
-            return String.format("%s %s->%s %s %s %S",
+            return String.format("%s %s->%s Amount: %s Date: %s Status: %S",
                     _type,
                     _fromBankAccountIban,
                     _toBankAccountIban,
