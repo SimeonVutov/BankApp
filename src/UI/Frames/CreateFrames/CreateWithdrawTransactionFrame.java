@@ -66,7 +66,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
 
         moneyLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         moneyLabel.setForeground(new java.awt.Color(0, 0, 0));
-        moneyLabel.setText("Amouth of money:");
+        moneyLabel.setText("Amount of money:");
 
         moneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
