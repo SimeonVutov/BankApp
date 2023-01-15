@@ -4,6 +4,7 @@
  */
 package UI.Frames;
 import Core.Application;
+import Core.FrameType;
 import Core.FramesController;
 import UI.UI_Variables;
 
@@ -45,8 +46,10 @@ public class ContactUsFrame extends javax.swing.JFrame {
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
-        userNameNavBar = new javax.swing.JLabel();
-        viewUserProfileBtn = new javax.swing.JLabel();
+        usernameNavbar = new javax.swing.JLabel();
+        viewUserProfileBtn1 = new javax.swing.JButton();
+        logOutBtn = new javax.swing.JButton();
+        mainPageBtn = new javax.swing.JButton();
         contactUsPanel = new javax.swing.JPanel();
         contactUsMessageLine7 = new javax.swing.JLabel();
         contactUsMessageLine1 = new javax.swing.JLabel();
@@ -86,45 +89,86 @@ public class ContactUsFrame extends javax.swing.JFrame {
             }
         });
 
-        userNameNavBar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        userNameNavBar.setForeground(new java.awt.Color(0, 0, 0));
-        userNameNavBar.setText("User Name");
+        usernameNavbar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        usernameNavbar.setForeground(new java.awt.Color(0, 0, 0));
+        usernameNavbar.setText("User Name");
 
-        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
-        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
-        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
-        viewUserProfileBtn.setText("View user profile");
-        viewUserProfileBtn.setAlignmentY(0.0F);
+        viewUserProfileBtn1.setBackground(new java.awt.Color(255, 115, 115));
+        viewUserProfileBtn1.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        viewUserProfileBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        viewUserProfileBtn1.setText("View user profile");
+        viewUserProfileBtn1.setBorder(null);
+        viewUserProfileBtn1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        viewUserProfileBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewUserProfileBtn1ActionPerformed(evt);
+            }
+        });
+
+        logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
+        logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
+        logOutBtn.setText("Log Out");
+        logOutBtn.setToolTipText("");
+        logOutBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
+
+        mainPageBtn.setBackground(new java.awt.Color(255, 115, 115));
+        mainPageBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        mainPageBtn.setForeground(new java.awt.Color(0, 0, 0));
+        mainPageBtn.setText("Main Page");
+        mainPageBtn.setAlignmentY(0.0F);
+        mainPageBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        mainPageBtn.setFocusPainted(false);
+        mainPageBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        mainPageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPageBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
         navBarPannelLayout.setHorizontalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(168, 168, 168)
+                .addGap(128, 128, 128)
+                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userNameNavBar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(98, 98, 98))
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewUserProfileBtn1)
+                    .addComponent(usernameNavbar))
+                .addGap(18, 18, 18)
+                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         navBarPannelLayout.setVerticalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(userNameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(navBarPannelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navBarPannelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(navBarPannelLayout.createSequentialGroup()
+                        .addComponent(usernameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewUserProfileBtn1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contactUsPanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -132,19 +176,19 @@ public class ContactUsFrame extends javax.swing.JFrame {
 
         contactUsMessageLine7.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine7.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine7.setText("organization. For more info for that check out monibank.terrorism.com.");
+        contactUsMessageLine7.setText("For more info for check out info.bank.app.com");
 
         contactUsMessageLine1.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine1.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine1.setText("This is Monibank support. If you need any HELP getting scammed for more");
+        contactUsMessageLine1.setText("This is BankApp support. If you need any HELP");
 
         contactUsMessageLine2.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine2.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine2.setText("money from us you can contact us here: ");
+        contactUsMessageLine2.setText("you can contact us here: ");
 
         contactUsMessageLine3.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine3.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine3.setText("Email: support@totallyNotAScam.com");
+        contactUsMessageLine3.setText("Email: support@bank.app.com");
 
         contactUsMessageLine4.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine4.setForeground(new java.awt.Color(0, 0, 0));
@@ -152,18 +196,18 @@ public class ContactUsFrame extends javax.swing.JFrame {
 
         contactUsMessageLine5.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine5.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine5.setText("Discord: SbiriScams#0000");
+        contactUsMessageLine5.setText("Discord: BankApp#0000");
 
         contactUsMessageLine6.setFont(new java.awt.Font("Gadugi", 1, 42)); // NOI18N
         contactUsMessageLine6.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsMessageLine6.setText("Thanks for using Monibank and please consider joining our terrorist");
+        contactUsMessageLine6.setText("Thanks for using BankApp and please consider joining");
 
         javax.swing.GroupLayout contactUsPanelLayout = new javax.swing.GroupLayout(contactUsPanel);
         contactUsPanel.setLayout(contactUsPanelLayout);
         contactUsPanelLayout.setHorizontalGroup(
             contactUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contactUsPanelLayout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
+                .addContainerGap(454, Short.MAX_VALUE)
                 .addGroup(contactUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactUsMessageLine7)
                     .addComponent(contactUsMessageLine6)
@@ -172,26 +216,26 @@ public class ContactUsFrame extends javax.swing.JFrame {
                     .addComponent(contactUsMessageLine3)
                     .addComponent(contactUsMessageLine2)
                     .addComponent(contactUsMessageLine1))
-                .addGap(175, 175, 175))
+                .addGap(309, 309, 309))
         );
         contactUsPanelLayout.setVerticalGroup(
             contactUsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contactUsPanelLayout.createSequentialGroup()
-                .addGap(79, 79, 79)
+            .addGroup(contactUsPanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
                 .addComponent(contactUsMessageLine1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(contactUsMessageLine2)
-                .addGap(111, 111, 111)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(contactUsMessageLine3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(contactUsMessageLine4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(contactUsMessageLine5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addComponent(contactUsMessageLine6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(contactUsMessageLine7)
-                .addGap(80, 80, 80))
+                .addGap(85, 85, 85))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,17 +244,17 @@ public class ContactUsFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(41, 41, 41)
                 .addComponent(contactUsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navBarPannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(contactUsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(contactUsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
@@ -218,14 +262,37 @@ public class ContactUsFrame extends javax.swing.JFrame {
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    private void viewUserProfileBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtn1ActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        dispose();
+    }//GEN-LAST:event_viewUserProfileBtn1ActionPerformed
+
+    private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
+        // TODO add your handling code here:
+        _app.logOut();
+        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_logOutBtnActionPerformed
+
+    private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.MAIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_mainPageBtnActionPerformed
+
     private void loadData() {
-        userNameNavBar.setText(_app.getUser().getUsername());
+        usernameNavbar.setText(_app.getUser().getUsername());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -238,9 +305,11 @@ public class ContactUsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel contactUsMessageLine6;
     private javax.swing.JLabel contactUsMessageLine7;
     private javax.swing.JPanel contactUsPanel;
+    private javax.swing.JButton logOutBtn;
+    private javax.swing.JButton mainPageBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton transactionsBtn;
-    private javax.swing.JLabel userNameNavBar;
-    private javax.swing.JLabel viewUserProfileBtn;
+    private javax.swing.JLabel usernameNavbar;
+    private javax.swing.JButton viewUserProfileBtn1;
     // End of variables declaration//GEN-END:variables
 }

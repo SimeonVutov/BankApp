@@ -60,7 +60,7 @@ public class CreatePlannedPaymentFrame extends EditFrame {
         createBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
 
         createPlannedPaymentTitleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
@@ -224,6 +224,7 @@ public class CreatePlannedPaymentFrame extends EditFrame {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private List<String> validateInput() {

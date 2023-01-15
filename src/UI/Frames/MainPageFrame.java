@@ -65,6 +65,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         userNameNavbar = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         viewUserProfileBtn = new javax.swing.JButton();
+        mainPageBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         plannedPaymentsTitle = new javax.swing.JLabel();
         plannedPaymentsCreateBtn = new javax.swing.JButton();
@@ -145,15 +146,31 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             }
         });
 
+        mainPageBtn.setBackground(new java.awt.Color(255, 115, 115));
+        mainPageBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        mainPageBtn.setForeground(new java.awt.Color(0, 0, 0));
+        mainPageBtn.setText("Main Page");
+        mainPageBtn.setAlignmentY(0.0F);
+        mainPageBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        mainPageBtn.setFocusPainted(false);
+        mainPageBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        mainPageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPageBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
         navBarPannelLayout.setHorizontalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(125, 125, 125)
+                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewUserProfileBtn)
@@ -167,7 +184,8 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
@@ -358,7 +376,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, 2067, Short.MAX_VALUE)
+            .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,7 +384,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,6 +464,12 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         }
     }//GEN-LAST:event_plannedPaymentsDeleteBtnActionPerformed
 
+    private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.MAIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_mainPageBtnActionPerformed
+
     private void loadData() {
         userNameNavbar.setText(_app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
@@ -491,6 +515,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton logOutBtn;
+    private javax.swing.JButton mainPageBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JButton plannedPaymentsCreateBtn;
     private javax.swing.JButton plannedPaymentsDeleteBtn;

@@ -11,7 +11,6 @@ import Core.FramesController;
 import PlannedPayments.PlannedPayment;
 import TransactionSystem.Transaction;
 import UI.UI_Variables;
-import javax.swing.JOptionPane;
 import UI.Frames.CreateFrames.CreateDepositTransactionFrame;
 import UI.Frames.CreateFrames.CreateTransferTransactionFrame;
 import UI.Frames.CreateFrames.CreateWithdrawTransactionFrame;
@@ -69,6 +68,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         userNameNavbar = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         viewUserProfileBtn = new javax.swing.JButton();
+        mainPageBtn = new javax.swing.JButton();
         transactionsHistoryPanel = new javax.swing.JPanel();
         transactionsHistoryLabel = new javax.swing.JLabel();
         TransactionsHistoryList = new javax.swing.JScrollPane();
@@ -146,12 +146,28 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
             }
         });
 
+        mainPageBtn.setBackground(new java.awt.Color(255, 115, 115));
+        mainPageBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        mainPageBtn.setForeground(new java.awt.Color(0, 0, 0));
+        mainPageBtn.setText("Main Page");
+        mainPageBtn.setAlignmentY(0.0F);
+        mainPageBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        mainPageBtn.setFocusPainted(false);
+        mainPageBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        mainPageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPageBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
         navBarPannelLayout.setHorizontalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
+                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +185,8 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
                         .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(navBarPannelLayout.createSequentialGroup()
@@ -196,8 +213,8 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         TransactionsHistoryList.setMinimumSize(new java.awt.Dimension(1676, 484));
         TransactionsHistoryList.setPreferredSize(new java.awt.Dimension(1676, 484));
 
-        transactionHistoryList.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
-        transactionHistoryList.setPreferredSize(new java.awt.Dimension(1650, 230));
+        transactionHistoryList.setFont(new java.awt.Font("Gadugi", 1, 32)); // NOI18N
+        transactionHistoryList.setPreferredSize(new java.awt.Dimension(1650, 10000));
         TransactionsHistoryList.setViewportView(transactionHistoryList);
 
         javax.swing.GroupLayout transactionsHistoryPanelLayout = new javax.swing.GroupLayout(transactionsHistoryPanel);
@@ -418,11 +435,21 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
         createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
+
+    private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.MAIN_FRAME);
+        dispose();
+    }//GEN-LAST:event_mainPageBtnActionPerformed
     
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
+        
         _transactionsListModel.clear();
-        _transactionsListModel.addAll(_app.getAllTransactions());
+        List<Transaction> list = _app.getAllTransactions();
+        for(int i = list.size() - 1; i >= 0; i--) {
+            _transactionsListModel.addElement(list.get(i));
+        }
         
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
     }
@@ -467,6 +494,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     private javax.swing.JPanel currentBalancePanel;
     private javax.swing.JLabel currentBalanceTitle;
     private javax.swing.JButton logOutBtn;
+    private javax.swing.JButton mainPageBtn;
     private javax.swing.JButton makeDepositTransactionBtn;
     private javax.swing.JButton makeTransferTransactionBtn;
     private javax.swing.JButton makeWithdrawTransactionBtn;
