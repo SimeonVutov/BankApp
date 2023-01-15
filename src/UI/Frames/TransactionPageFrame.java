@@ -4,17 +4,32 @@
  */
 package UI.Frames;
 
+import BankAccount.BankAccount;
 import Core.Application;
+import Core.FrameType;
 import Core.FramesController;
+import PlannedPayments.PlannedPayment;
+import TransactionSystem.Transaction;
 import UI.UI_Variables;
+import javax.swing.JOptionPane;
+import UI.Frames.CreateFrames.CreateDepositTransactionFrame;
+import UI.Frames.CreateFrames.CreateTransferTransactionFrame;
+import UI.Frames.CreateFrames.CreateWithdrawTransactionFrame;
+import Core.DataCreatedListener;
+import Core.DataChangedListener;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import TransactionSystem.TransactionManager;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class TransactionPageFrame extends javax.swing.JFrame {
+public class TransactionPageFrame extends javax.swing.JFrame implements DataChangedListener, DataCreatedListener {
     private Application _app;
     private FramesController _framesController;
+    DefaultListModel<Transaction> _transactionsListModel;
     
     /**
      * Creates new form TransactionPageFrame
@@ -24,12 +39,17 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         _app = application;
         _framesController = framesController;
         
+        _transactionsListModel = new DefaultListModel<>();
+        transactionHistoryList.setModel(_transactionsListModel);
+        TransactionManager.TRANSACTION_MANAGER.getDataChangedEvent().addListener(this);
+        
         //UI settings
         setSize(1920, 935);
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting information
-        
+        loadData();
+        userNameNavbar.setText(_app.getUser().getUsername());
         
         setVisible(true);
     }
@@ -45,11 +65,10 @@ public class TransactionPageFrame extends javax.swing.JFrame {
 
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
-        lonasBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
         userNameNavbar = new javax.swing.JLabel();
-        viewUserProfileBtn = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
+        viewUserProfileBtn = new javax.swing.JButton();
         transactionsHistoryPanel = new javax.swing.JPanel();
         transactionsHistoryLabel = new javax.swing.JLabel();
         TransactionsHistoryList = new javax.swing.JScrollPane();
@@ -60,10 +79,9 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         currentBalancePanel = new javax.swing.JPanel();
         currentBalanceTitle = new javax.swing.JLabel();
         currentBalanceLabel = new javax.swing.JLabel();
-        motnlyLimitPanel = new javax.swing.JPanel();
-        montlyLimitTitle = new javax.swing.JLabel();
-        montlyLimitLabel = new javax.swing.JLabel();
-        makeATransactionBtn = new javax.swing.JButton();
+        makeTransferTransactionBtn = new javax.swing.JButton();
+        makeDepositTransactionBtn = new javax.swing.JButton();
+        makeWithdrawTransactionBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -86,18 +104,6 @@ public class TransactionPageFrame extends javax.swing.JFrame {
             }
         });
 
-        lonasBtn.setBackground(new java.awt.Color(255, 115, 115));
-        lonasBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        lonasBtn.setForeground(new java.awt.Color(0, 0, 0));
-        lonasBtn.setText("Loans");
-        lonasBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        lonasBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        lonasBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lonasBtnActionPerformed(evt);
-            }
-        });
-
         contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
         contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
@@ -116,14 +122,8 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         userNameNavbar.setForeground(new java.awt.Color(0, 0, 0));
         userNameNavbar.setText("User Name");
 
-        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
-        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
-        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
-        viewUserProfileBtn.setText("View user profile");
-        viewUserProfileBtn.setAlignmentY(0.0F);
-
         logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
-        logOutBtn.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+        logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
         logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
         logOutBtn.setText("Log Out");
         logOutBtn.setToolTipText("");
@@ -131,6 +131,18 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         logOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutBtnActionPerformed(evt);
+            }
+        });
+
+        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
+        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewUserProfileBtn.setText("View user profile");
+        viewUserProfileBtn.setBorder(null);
+        viewUserProfileBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewUserProfileBtnActionPerformed(evt);
             }
         });
 
@@ -142,16 +154,14 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lonasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewUserProfileBtn)
+                    .addComponent(userNameNavbar))
+                .addGap(18, 18, 18)
                 .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(userNameNavbar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(98, 98, 98))
+                .addContainerGap())
         );
         navBarPannelLayout.setVerticalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,14 +169,17 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lonasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)
+                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewUserProfileBtn)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -174,7 +187,7 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         transactionsHistoryPanel.setBackground(new java.awt.Color(201, 201, 201));
         transactionsHistoryPanel.setMaximumSize(new java.awt.Dimension(1826, 639));
         transactionsHistoryPanel.setMinimumSize(new java.awt.Dimension(1826, 639));
-        transactionsHistoryPanel.setPreferredSize(new java.awt.Dimension(1826, 639));
+        transactionsHistoryPanel.setPreferredSize(new java.awt.Dimension(1820, 570));
 
         transactionsHistoryLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
         transactionsHistoryLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -184,7 +197,7 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         TransactionsHistoryList.setPreferredSize(new java.awt.Dimension(1676, 484));
 
         transactionHistoryList.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
-        transactionHistoryList.setPreferredSize(new java.awt.Dimension(1826, 553));
+        transactionHistoryList.setPreferredSize(new java.awt.Dimension(1650, 230));
         TransactionsHistoryList.setViewportView(transactionHistoryList);
 
         javax.swing.GroupLayout transactionsHistoryPanelLayout = new javax.swing.GroupLayout(transactionsHistoryPanel);
@@ -194,12 +207,12 @@ public class TransactionPageFrame extends javax.swing.JFrame {
             .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
                 .addGroup(transactionsHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
-                        .addGap(643, 643, 643)
-                        .addComponent(transactionsHistoryLabel))
-                    .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 1730, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(transactionsHistoryPanelLayout.createSequentialGroup()
+                        .addGap(680, 680, 680)
+                        .addComponent(transactionsHistoryLabel)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         transactionsHistoryPanelLayout.setVerticalGroup(
             transactionsHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +220,8 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(transactionsHistoryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addComponent(TransactionsHistoryList, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         plannedPaymentsPanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -227,23 +240,22 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         plannedPaymentsPanelLayout.setHorizontalGroup(
             plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                .addGroup(plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(plannedPaymentsTitle))
-                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(138, 138, 138)
+                .addComponent(plannedPaymentsTitle)
+                .addContainerGap(131, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, plannedPaymentsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
         plannedPaymentsPanelLayout.setVerticalGroup(
             plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(plannedPaymentsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         currentBalancePanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -262,67 +274,58 @@ public class TransactionPageFrame extends javax.swing.JFrame {
         currentBalancePanelLayout.setHorizontalGroup(
             currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(currentBalancePanelLayout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(currentBalanceTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalancePanelLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91))
+                .addGroup(currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(currentBalancePanelLayout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(currentBalanceTitle))
+                    .addGroup(currentBalancePanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         currentBalancePanelLayout.setVerticalGroup(
             currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(currentBalancePanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(currentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
         );
 
-        motnlyLimitPanel.setBackground(new java.awt.Color(201, 201, 201));
-        motnlyLimitPanel.setForeground(new java.awt.Color(0, 0, 0));
-
-        montlyLimitTitle.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
-        montlyLimitTitle.setForeground(new java.awt.Color(0, 0, 0));
-        montlyLimitTitle.setText("Montly limit");
-
-        montlyLimitLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        montlyLimitLabel.setForeground(new java.awt.Color(0, 0, 0));
-        montlyLimitLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout motnlyLimitPanelLayout = new javax.swing.GroupLayout(motnlyLimitPanel);
-        motnlyLimitPanel.setLayout(motnlyLimitPanelLayout);
-        motnlyLimitPanelLayout.setHorizontalGroup(
-            motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
-                .addGroup(motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(montlyLimitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(montlyLimitTitle)))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        motnlyLimitPanelLayout.setVerticalGroup(
-            motnlyLimitPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(motnlyLimitPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(montlyLimitTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(montlyLimitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
-        );
-
-        makeATransactionBtn.setBackground(new java.awt.Color(255, 115, 115));
-        makeATransactionBtn.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
-        makeATransactionBtn.setForeground(new java.awt.Color(0, 0, 0));
-        makeATransactionBtn.setText("Make a transaction");
-        makeATransactionBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        makeATransactionBtn.addActionListener(new java.awt.event.ActionListener() {
+        makeTransferTransactionBtn.setBackground(new java.awt.Color(255, 115, 115));
+        makeTransferTransactionBtn.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        makeTransferTransactionBtn.setForeground(new java.awt.Color(0, 0, 0));
+        makeTransferTransactionBtn.setText("Make a transfer");
+        makeTransferTransactionBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        makeTransferTransactionBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        makeTransferTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeATransactionBtnActionPerformed(evt);
+                makeTransferTransactionBtnActionPerformed(evt);
+            }
+        });
+
+        makeDepositTransactionBtn.setBackground(new java.awt.Color(255, 115, 115));
+        makeDepositTransactionBtn.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        makeDepositTransactionBtn.setForeground(new java.awt.Color(0, 0, 0));
+        makeDepositTransactionBtn.setText("Make a deposit");
+        makeDepositTransactionBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        makeDepositTransactionBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        makeDepositTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeDepositTransactionBtnActionPerformed(evt);
+            }
+        });
+
+        makeWithdrawTransactionBtn.setBackground(new java.awt.Color(255, 115, 115));
+        makeWithdrawTransactionBtn.setFont(new java.awt.Font("Gadugi", 1, 24)); // NOI18N
+        makeWithdrawTransactionBtn.setForeground(new java.awt.Color(0, 0, 0));
+        makeWithdrawTransactionBtn.setText("Make a withdraw");
+        makeWithdrawTransactionBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        makeWithdrawTransactionBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        makeWithdrawTransactionBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                makeWithdrawTransactionBtnActionPerformed(evt);
             }
         });
 
@@ -332,21 +335,21 @@ public class TransactionPageFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1783, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(makeATransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addComponent(motnlyLimitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)))
-                .addGap(42, 42, 42))
+                .addGap(81, 81, 81)
+                .addComponent(makeDepositTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(makeWithdrawTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(makeTransferTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -354,17 +357,20 @@ public class TransactionPageFrame extends javax.swing.JFrame {
                 .addComponent(navBarPannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(motnlyLimitPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(makeATransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(makeDepositTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(makeWithdrawTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(makeTransferTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(103, 103, 103)))
+                .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -372,24 +378,88 @@ public class TransactionPageFrame extends javax.swing.JFrame {
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
-
-    private void lonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lonasBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lonasBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
+        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
-
-    private void makeATransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeATransactionBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_makeATransactionBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
+        _app.logOut();
+        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
+        createDepositTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
+
+    private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
+        createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
+
+    private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        dispose();
+    }//GEN-LAST:event_viewUserProfileBtnActionPerformed
+
+    private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
+        createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
+    
+    private void loadData() {
+        plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
+        _transactionsListModel.clear();
+        _transactionsListModel.addAll(_app.getAllTransactions());
+        
+        currentBalanceLabel.setText(calculateCurrentBalance().toString());
+    }
+    
+    private BigDecimal calculateCurrentBalance() {
+        BigDecimal currentBalance = BigDecimal.ZERO;
+        List<BankAccount> list = _app.getAllBankAccounts();
+        
+        for(var bankAccount : list) {
+            currentBalance = currentBalance.add(bankAccount.getBalance());
+        }
+        
+        return currentBalance;
+    }
+    
+    private BigDecimal calculatePlannedPayments() {
+        BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
+        List<PlannedPayment> list = _app.getAllPlannedPayments();
+        
+        for(var plannedPayment : list) {
+            plannedPaymentsValue = plannedPaymentsValue.add(plannedPayment.getMoney());
+        }
+        
+        return plannedPaymentsValue;
+    }
+    
+    @Override
+    public void onDataCreatedEvent() {
+        loadData();
+        _app.save();
+    }
+    @Override
+    public void onDataChangedEvent() {
+        loadData();
+        _app.save();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TransactionsHistoryList;
     private javax.swing.JButton contactUsBtn;
@@ -397,20 +467,18 @@ public class TransactionPageFrame extends javax.swing.JFrame {
     private javax.swing.JPanel currentBalancePanel;
     private javax.swing.JLabel currentBalanceTitle;
     private javax.swing.JButton logOutBtn;
-    private javax.swing.JButton lonasBtn;
-    private javax.swing.JButton makeATransactionBtn;
-    private javax.swing.JLabel montlyLimitLabel;
-    private javax.swing.JLabel montlyLimitTitle;
-    private javax.swing.JPanel motnlyLimitPanel;
+    private javax.swing.JButton makeDepositTransactionBtn;
+    private javax.swing.JButton makeTransferTransactionBtn;
+    private javax.swing.JButton makeWithdrawTransactionBtn;
     private javax.swing.JPanel navBarPannel;
     private javax.swing.JLabel plannedPaymentsLabel;
     private javax.swing.JPanel plannedPaymentsPanel;
     private javax.swing.JLabel plannedPaymentsTitle;
-    private javax.swing.JList<String> transactionHistoryList;
+    private javax.swing.JList<Transaction> transactionHistoryList;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel transactionsHistoryLabel;
     private javax.swing.JPanel transactionsHistoryPanel;
     private javax.swing.JLabel userNameNavbar;
-    private javax.swing.JLabel viewUserProfileBtn;
+    private javax.swing.JButton viewUserProfileBtn;
     // End of variables declaration//GEN-END:variables
 }
