@@ -112,15 +112,10 @@ public class Application {
         _bankAccounts.add(newBankAccount);
     }
     
-    public void removeBankAccount(String iban) {
-        DataSource.DATA_SOURCE.removeBankAccount(iban);
-        for(var bankAccount : _bankAccounts) {
-            if(bankAccount.getIban().equals(iban)) {
-                _bankAccounts.remove(iban);
-                
-                //only one bankAccount with this iban is possible
-                break;
-            }
+    public void removeBankAccount(BankAccount bankAccount) {
+        DataSource.DATA_SOURCE.removeBankAccount(bankAccount.getIban());
+        if(bankAccount.getIban().equals(bankAccount.getIban())) {
+            _bankAccounts.remove(bankAccount);
         }
     }
     

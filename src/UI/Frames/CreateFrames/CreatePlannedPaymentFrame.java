@@ -4,17 +4,38 @@
  */
 package UI.Frames.CreateFrames;
 
+import BankAccount.BankAccount;
+import Core.Application;
+import Database.ItemAlreadyExistsException;
+import UI.Frames.EditFrames.EditFrame;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Bubo & Yana
  */
-public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
-
+public class CreatePlannedPaymentFrame extends EditFrame {
+    private Application _app;
+    private BankAccount _selectedBankAccount = null;
+    private String _name;
+    private String _money;
+    private String _date;
     /**
      * Creates new form CreatePlannedPaymentFrame
      */
-    public CreatePlannedPaymentFrame() {
+    public CreatePlannedPaymentFrame(Application app) {
         initComponents();
+        _app = app;
+        DefaultListModel<BankAccount> defaultListModel = new DefaultListModel<>();
+        bankAccountsList.setModel(defaultListModel);
+        defaultListModel.addAll(_app.getAllBankAccounts());
+        
+        setVisible(true);
     }
 
     /**
@@ -33,10 +54,10 @@ public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
         bankAccountsLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        dateLabel = new javax.swing.JTextField();
+        dateTextField = new javax.swing.JTextField();
         nameTextField = new javax.swing.JTextField();
         amountOfMoneyTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,36 +86,22 @@ public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Amount of money:");
 
-        dateLabel.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
-        dateLabel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateLabelActionPerformed(evt);
-            }
-        });
+        dateTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+        dateTextField.setText("01.01.2025");
 
         nameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
-        nameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextFieldActionPerformed(evt);
-            }
-        });
 
         amountOfMoneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
-        amountOfMoneyTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountOfMoneyTextFieldActionPerformed(evt);
-            }
-        });
 
-        jButton1.setBackground(new java.awt.Color(255, 115, 115));
-        jButton1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("Save");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 30, 30)));
-        jButton1.setPreferredSize(new java.awt.Dimension(213, 84));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.setBackground(new java.awt.Color(255, 115, 115));
+        createBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(0, 0, 0));
+        createBtn.setText("Create");
+        createBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 30, 30)));
+        createBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
 
@@ -130,14 +137,14 @@ public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                            .addComponent(dateLabel)
+                            .addComponent(dateTextField)
                             .addComponent(nameTextField, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(amountOfMoneyTextField, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(146, 146, 146))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(166, 166, 166))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -163,10 +170,10 @@ public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(dateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(101, 101, 101)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(90, 90, 90))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,69 +186,73 @@ public class CreatePlannedPaymentFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dateLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateLabelActionPerformed
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_dateLabelActionPerformed
-
-    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextFieldActionPerformed
-
-    private void amountOfMoneyTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountOfMoneyTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_amountOfMoneyTextFieldActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        _selectedBankAccount = bankAccountsList.getSelectedValue();
+        _name = nameTextField.getText();
+        _money = amountOfMoneyTextField.getText();
+        _date = dateTextField.getText();
+        
+        List<String> errors = validateInput();
+        
+        if(errors.size() == 0) {
+            var dateStringArr = _date.split("[.]");
+            LocalDate date = LocalDate.of(
+                    Integer.parseInt(dateStringArr[2]),
+                    Integer.parseInt(dateStringArr[1]),
+                    Integer.parseInt(dateStringArr[0])
+            );
+            
+            try {
+                _app.createPlannedPayment(date, _selectedBankAccount.getIban(), new BigDecimal(_money), _name);
+                getDataChangedEvent().fireDataChangedEvent();
+                dispose();
+            } catch (ItemAlreadyExistsException ex) {
+                JOptionPane.showMessageDialog(this, "An error occured", "Error", 0);
+            }
+        }
+        else {
+            String errorMessage = "";
+            
+            for(var error : errors) {
+                errorMessage = errorMessage.concat(error + '\n');
+            }
+            
+            JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
+        }
+    }//GEN-LAST:event_createBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreatePlannedPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreatePlannedPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreatePlannedPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreatePlannedPaymentFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private List<String> validateInput() {
+        List<String> errors = new LinkedList<>();
+        
+        if(_selectedBankAccount == null) {
+            errors.add("Bank account was not selected");
         }
-        //</editor-fold>
+        if(_name.length() == 0) {
+            errors.add("Planned payment name field cannot be empty");
+        }
+        if(!_money.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+            errors.add("Invalid amount of money");
+        }
+        if(!_date.matches("^\\d{2}.\\d{2}.\\d{4}$")) {
+            errors.add("Invalid date");
+        }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreatePlannedPaymentFrame().setVisible(true);
-            }
-        });
+        return errors;
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountOfMoneyTextField;
     private javax.swing.JLabel bankAccountsLabel;
-    private javax.swing.JList<String> bankAccountsList;
+    private javax.swing.JList<BankAccount> bankAccountsList;
     private javax.swing.JButton cancelBtn;
+    private javax.swing.JButton createBtn;
     private javax.swing.JLabel createPlannedPaymentTitleLabel;
-    private javax.swing.JTextField dateLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField dateTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

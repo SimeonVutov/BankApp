@@ -44,7 +44,7 @@ public class EditBankAccountFrame extends EditFrame {
         bankAccountNameLabel = new javax.swing.JLabel();
         editAcountTitleLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
 
         saveBtn.setBackground(new java.awt.Color(255, 115, 115));
