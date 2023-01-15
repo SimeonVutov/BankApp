@@ -66,6 +66,6 @@ public class BankAccount implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("%s%n%s", _name, _iban);
+        return String.format("%s %s", _name, _iban);
     }
 }

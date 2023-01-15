@@ -59,6 +59,6 @@ public class PlannedPayment implements Serializable {
     
     @Override
     public String toString() {
-        return String.format("%s - %s%n%s", _name, _paymentDate.toString(), _money.toString());
+        return String.format("%s - %s %s", _name, _paymentDate.toString(), _money.toString());
     }
 }
