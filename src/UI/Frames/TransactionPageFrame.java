@@ -166,11 +166,11 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
+                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewUserProfileBtn)
@@ -444,8 +444,12 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
+        
         _transactionsListModel.clear();
-        _transactionsListModel.addAll(_app.getAllTransactions());
+        List<Transaction> list = _app.getAllTransactions();
+        for(int i = list.size() - 1; i >= 0; i--) {
+            _transactionsListModel.addElement(list.get(i));
+        }
         
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
     }
