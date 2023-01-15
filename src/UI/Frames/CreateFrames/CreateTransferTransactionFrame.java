@@ -59,7 +59,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         amountOfMoneyLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
 
         otherIbanTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
@@ -90,6 +90,11 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         cancelBtn.setText("Cancel");
         cancelBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
         cancelBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         otherIbanLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         otherIbanLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -188,6 +193,11 @@ public class CreateTransferTransactionFrame extends CreateFrame {
             JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
         }
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();

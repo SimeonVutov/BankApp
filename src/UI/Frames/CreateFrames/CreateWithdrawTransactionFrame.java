@@ -55,7 +55,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         createBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bankAccountsLabel.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
         bankAccountsLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -76,6 +76,11 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         cancelBtn.setText("Cancel");
         cancelBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(156, 156, 156)));
         cancelBtn.setPreferredSize(new java.awt.Dimension(213, 84));
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setBackground(new java.awt.Color(255, 115, 115));
         createBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -169,6 +174,11 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         }
 
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
      private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
