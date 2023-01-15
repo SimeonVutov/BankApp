@@ -34,17 +34,17 @@ public class MainPageFrame extends javax.swing.JFrame {
         _app = application;
         _framesController = framesController;
         
-        _plannedPaymentsDefaultListModel = new DefaultListModel<>();
-        plannedPaymentsList.setModel(_plannedPaymentsDefaultListModel);
-        _bankAccountsDefaultListModel= new DefaultListModel<>();
-        accountsList.setModel(_bankAccountsDefaultListModel);
+        //_plannedPaymentsDefaultListModel = new DefaultListModel<>();
+//        plannedPaymentsList.setModel(_plannedPaymentsDefaultListModel);
+        //_bankAccountsDefaultListModel= new DefaultListModel<>();
+//        accountsList.setModel(_bankAccountsDefaultListModel);
         
         //UI settings
-        setSize(1920, 935);
+        //setSize(1920, 935);
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
-        loadData();
+        //loadData();
         
         setVisible(true);
     }
@@ -61,29 +61,30 @@ public class MainPageFrame extends javax.swing.JFrame {
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
-        userNameNavBar = new javax.swing.JLabel();
+        userNameNavbar = new javax.swing.JLabel();
         logOutBtn = new javax.swing.JButton();
         viewUserProfileBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        accountsList = new javax.swing.JList<>();
-        accountsLabel = new javax.swing.JLabel();
-        accountsEditBtn = new javax.swing.JButton();
-        accountsDeleteBtn = new javax.swing.JButton();
-        accountsEditBtn1 = new javax.swing.JButton();
-        currentBalancePanel = new javax.swing.JPanel();
-        CurrentBalanceTitle = new javax.swing.JLabel();
-        currentBalanceLabel = new javax.swing.JLabel();
-        plannedPaymentsPanel = new javax.swing.JPanel();
         plannedPaymentsTitle = new javax.swing.JLabel();
+        plannedPaymentsEditBtn = new javax.swing.JButton();
+        plannedPaymentsDeleteBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         plannedPaymentsList = new javax.swing.JList<>();
-        plannedPaymentsDeleteBtn = new javax.swing.JButton();
-        plannedPaymentsAddBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        plannedPaymentsTitle2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList2 = new javax.swing.JList<>();
+        plannedPaymentsEditBtn1 = new javax.swing.JButton();
+        plannedPaymentsDeleteBtn1 = new javax.swing.JButton();
+        plannedPaymentsEditBtn2 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        plannedPaymentsTitle3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BankApp - MAin Page");
+        setTitle("BankApp - Main Page");
         setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1920, 935));
 
         navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
         navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
@@ -93,6 +94,8 @@ public class MainPageFrame extends javax.swing.JFrame {
         transactionsBtn.setForeground(new java.awt.Color(0, 0, 0));
         transactionsBtn.setText("Transactions");
         transactionsBtn.setAlignmentY(0.0F);
+        transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        transactionsBtn.setFocusPainted(false);
         transactionsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
         transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +108,7 @@ public class MainPageFrame extends javax.swing.JFrame {
         contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
         contactUsBtn.setText("Contact Us");
         contactUsBtn.setToolTipText("");
+        contactUsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
         contactUsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         contactUsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
         contactUsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,16 +117,16 @@ public class MainPageFrame extends javax.swing.JFrame {
             }
         });
 
-        userNameNavBar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        userNameNavBar.setForeground(new java.awt.Color(0, 0, 0));
-        userNameNavBar.setText("User Name");
+        userNameNavbar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        userNameNavbar.setForeground(new java.awt.Color(0, 0, 0));
+        userNameNavbar.setText("User Name");
 
         logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
         logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
         logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
         logOutBtn.setText("Log Out");
         logOutBtn.setToolTipText("");
-        logOutBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
+        logOutBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
         logOutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOutBtnActionPerformed(evt);
@@ -130,10 +134,11 @@ public class MainPageFrame extends javax.swing.JFrame {
         });
 
         viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
-        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 17)); // NOI18N
+        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
         viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
         viewUserProfileBtn.setText("View user profile");
         viewUserProfileBtn.setBorder(null);
+        viewUserProfileBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewUserProfileBtnActionPerformed(evt);
@@ -147,142 +152,49 @@ public class MainPageFrame extends javax.swing.JFrame {
             .addGroup(navBarPannelLayout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1252, 1252, 1252)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewUserProfileBtn)
+                    .addComponent(userNameNavbar))
+                .addGap(18, 18, 18)
                 .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(userNameNavBar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewUserProfileBtn, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
         navBarPannelLayout.setVerticalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(userNameNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(navBarPannelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navBarPannelLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(navBarPannelLayout.createSequentialGroup()
+                        .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewUserProfileBtn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(201, 201, 201));
+        jPanel1.setPreferredSize(new java.awt.Dimension(616, 758));
 
-        accountsList.setFont(new java.awt.Font("Gadugi", 0, 36)); // NOI18N
-        accountsList.setPreferredSize(new java.awt.Dimension(720, 583));
-        jScrollPane1.setViewportView(accountsList);
-
-        accountsLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        accountsLabel.setForeground(new java.awt.Color(0, 0, 0));
-        accountsLabel.setText("Accounts");
-
-        accountsEditBtn.setBackground(new java.awt.Color(255, 115, 115));
-        accountsEditBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        accountsEditBtn.setForeground(new java.awt.Color(0, 0, 0));
-        accountsEditBtn.setText("Add");
-        accountsEditBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(163, 30, 30), 1, true));
-
-        accountsDeleteBtn.setBackground(new java.awt.Color(234, 34, 34));
-        accountsDeleteBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        accountsDeleteBtn.setForeground(new java.awt.Color(0, 0, 0));
-        accountsDeleteBtn.setText("Delete");
-        accountsDeleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
-
-        accountsEditBtn1.setBackground(new java.awt.Color(255, 255, 255));
-        accountsEditBtn1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        accountsEditBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        accountsEditBtn1.setText("Edit");
-        accountsEditBtn1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(321, 321, 321)
-                        .addComponent(accountsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(accountsEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)
-                        .addComponent(accountsEditBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(105, 105, 105)
-                        .addComponent(accountsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 71, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(accountsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accountsEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(accountsEditBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(accountsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        currentBalancePanel.setBackground(new java.awt.Color(201, 201, 201));
-        currentBalancePanel.setForeground(new java.awt.Color(0, 0, 0));
-
-        CurrentBalanceTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        CurrentBalanceTitle.setForeground(new java.awt.Color(0, 0, 0));
-        CurrentBalanceTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CurrentBalanceTitle.setText("Current balance");
-        CurrentBalanceTitle.setToolTipText("");
-
-        currentBalanceLabel.setFont(new java.awt.Font("Gadugi", 1, 113)); // NOI18N
-        currentBalanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout currentBalancePanelLayout = new javax.swing.GroupLayout(currentBalancePanel);
-        currentBalancePanel.setLayout(currentBalancePanelLayout);
-        currentBalancePanelLayout.setHorizontalGroup(
-            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(currentBalancePanelLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, currentBalancePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
-        );
-        currentBalancePanelLayout.setVerticalGroup(
-            currentBalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(currentBalancePanelLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(CurrentBalanceTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addComponent(currentBalanceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
-        );
-
-        plannedPaymentsPanel.setBackground(new java.awt.Color(201, 201, 201));
-        plannedPaymentsPanel.setForeground(new java.awt.Color(0, 0, 0));
-
-        plannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        plannedPaymentsTitle.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         plannedPaymentsTitle.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         plannedPaymentsTitle.setText("Planned payments");
 
-        plannedPaymentsList.setFont(new java.awt.Font("Gadugi", 1, 36)); // NOI18N
-        jScrollPane2.setViewportView(plannedPaymentsList);
+        plannedPaymentsEditBtn.setBackground(new java.awt.Color(27, 191, 0));
+        plannedPaymentsEditBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        plannedPaymentsEditBtn.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsEditBtn.setText("Create");
+        plannedPaymentsEditBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
 
         plannedPaymentsDeleteBtn.setBackground(new java.awt.Color(234, 34, 34));
         plannedPaymentsDeleteBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -290,91 +202,175 @@ public class MainPageFrame extends javax.swing.JFrame {
         plannedPaymentsDeleteBtn.setText("Delete");
         plannedPaymentsDeleteBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
 
-        plannedPaymentsAddBtn.setBackground(new java.awt.Color(255, 255, 255));
-        plannedPaymentsAddBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        plannedPaymentsAddBtn.setForeground(new java.awt.Color(0, 0, 0));
-        plannedPaymentsAddBtn.setText("Add");
-        plannedPaymentsAddBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
-        plannedPaymentsAddBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                plannedPaymentsAddBtnActionPerformed(evt);
-            }
-        });
+        plannedPaymentsList.setFont(new java.awt.Font("Gadugi", 1, 20)); // NOI18N
+        jScrollPane2.setViewportView(plannedPaymentsList);
 
-        javax.swing.GroupLayout plannedPaymentsPanelLayout = new javax.swing.GroupLayout(plannedPaymentsPanel);
-        plannedPaymentsPanel.setLayout(plannedPaymentsPanelLayout);
-        plannedPaymentsPanelLayout.setHorizontalGroup(
-            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(plannedPaymentsAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(plannedPaymentsEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
-        plannedPaymentsPanelLayout.setVerticalGroup(
-            plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(plannedPaymentsPanelLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(plannedPaymentsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(plannedPaymentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(plannedPaymentsAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(plannedPaymentsEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(201, 201, 201));
+
+        plannedPaymentsTitle2.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
+        plannedPaymentsTitle2.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        plannedPaymentsTitle2.setText("Bank Accounts");
+
+        jList2.setFont(new java.awt.Font("Gadugi", 1, 20)); // NOI18N
+        jScrollPane3.setViewportView(jList2);
+
+        plannedPaymentsEditBtn1.setBackground(new java.awt.Color(255, 255, 255));
+        plannedPaymentsEditBtn1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        plannedPaymentsEditBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsEditBtn1.setText("Edit");
+        plannedPaymentsEditBtn1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
+
+        plannedPaymentsDeleteBtn1.setBackground(new java.awt.Color(234, 34, 34));
+        plannedPaymentsDeleteBtn1.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        plannedPaymentsDeleteBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsDeleteBtn1.setText("Delete");
+        plannedPaymentsDeleteBtn1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(165, 30, 30), 1, true));
+
+        plannedPaymentsEditBtn2.setBackground(new java.awt.Color(27, 191, 0));
+        plannedPaymentsEditBtn2.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        plannedPaymentsEditBtn2.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsEditBtn2.setText("Create");
+        plannedPaymentsEditBtn2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(156, 156, 156), 1, true));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(plannedPaymentsEditBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(plannedPaymentsEditBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(113, 113, 113)
+                        .addComponent(plannedPaymentsDeleteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(plannedPaymentsTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(plannedPaymentsTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(plannedPaymentsDeleteBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(plannedPaymentsEditBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(plannedPaymentsEditBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(201, 201, 201));
+
+        plannedPaymentsTitle3.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
+        plannedPaymentsTitle3.setForeground(new java.awt.Color(0, 0, 0));
+        plannedPaymentsTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        plannedPaymentsTitle3.setText("Current balance");
+
+        jLabel1.setFont(new java.awt.Font("Gadugi", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(plannedPaymentsTitle3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(plannedPaymentsTitle3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(163, 163, 163)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navBarPannel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2067, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, 2067, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(navBarPannel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(currentBalancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("BankApp - Main Page");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
-        dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
-        dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
@@ -390,13 +386,9 @@ public class MainPageFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
-    private void plannedPaymentsAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsAddBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_plannedPaymentsAddBtnActionPerformed
-
     private void loadData() {
-        userNameNavBar.setText(_app.getUser().getUsername());
-        currentBalanceLabel.setText(calculateCurrentBalance().toString());
+        userNameNavbar.setText(_app.getUser().getUsername());
+//        currentBalanceLabel.setText(calculateCurrentBalance().toString());
         
         for(var plannedPayment : _app.getAllPlannedPayments()){
             _plannedPaymentsDefaultListModel.addElement(plannedPayment);
@@ -419,27 +411,27 @@ public class MainPageFrame extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CurrentBalanceTitle;
-    private javax.swing.JButton accountsDeleteBtn;
-    private javax.swing.JButton accountsEditBtn;
-    private javax.swing.JButton accountsEditBtn1;
-    private javax.swing.JLabel accountsLabel;
-    private javax.swing.JList<BankAccount> accountsList;
     private javax.swing.JButton contactUsBtn;
-    private javax.swing.JLabel currentBalanceLabel;
-    private javax.swing.JPanel currentBalancePanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JPanel navBarPannel;
-    private javax.swing.JButton plannedPaymentsAddBtn;
     private javax.swing.JButton plannedPaymentsDeleteBtn;
+    private javax.swing.JButton plannedPaymentsDeleteBtn1;
+    private javax.swing.JButton plannedPaymentsEditBtn;
+    private javax.swing.JButton plannedPaymentsEditBtn1;
+    private javax.swing.JButton plannedPaymentsEditBtn2;
     private javax.swing.JList<PlannedPayment> plannedPaymentsList;
-    private javax.swing.JPanel plannedPaymentsPanel;
     private javax.swing.JLabel plannedPaymentsTitle;
+    private javax.swing.JLabel plannedPaymentsTitle2;
+    private javax.swing.JLabel plannedPaymentsTitle3;
     private javax.swing.JButton transactionsBtn;
-    private javax.swing.JLabel userNameNavBar;
+    private javax.swing.JLabel userNameNavbar;
     private javax.swing.JButton viewUserProfileBtn;
     // End of variables declaration//GEN-END:variables
 }
