@@ -124,10 +124,11 @@ public class Application {
         }
     }
     
-    public void createTransaction(String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
-        TransactionManager.TRANSACTION_MANAGER.createTransaction(
-                BigDecimal.ONE, fromBankAccountIban, toBankAccountIban
+    public void createTransaction(BigDecimal amountOfMoney, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
+        Transaction newTransaction = TransactionManager.TRANSACTION_MANAGER.createTransaction(
+            amountOfMoney, fromBankAccountIban, toBankAccountIban
         );
+        _transactions.add(newTransaction);
     }
     
     public void createPlannedPayment(LocalDate paymentDate, String bankAccountIban, BigDecimal money, String name) throws ItemAlreadyExistsException {

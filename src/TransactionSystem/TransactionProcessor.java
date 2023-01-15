@@ -5,6 +5,7 @@
 
 package TransactionSystem;
 
+import Core.DataChangedEvent;
 import java.time.Duration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -20,10 +21,16 @@ public class TransactionProcessor implements Runnable {
     private volatile boolean _running = true;
     private Thread thread;
     private Duration _processorWaitTime;
+    private DataChangedEvent _dataChangedEvent;
+    
+    public DataChangedEvent getDataChangedEvent() {
+        return _dataChangedEvent;
+    }
     
     public TransactionProcessor(Duration processorWaitTime) {
         _pendingTransactions = new LinkedBlockingQueue<Transaction>();
         _processorWaitTime = processorWaitTime;
+        _dataChangedEvent = new DataChangedEvent(this);
     }
 
     public void Start() {
@@ -65,6 +72,7 @@ public class TransactionProcessor implements Runnable {
                 transaction.Execute();
             } else {
                 try {
+                    _dataChangedEvent.fireDataChangedEvent();
                     Thread.sleep(_processorWaitTime);
                 } catch (InterruptedException e) {
                     // Interrupted, release the semaphore and exit the loop
