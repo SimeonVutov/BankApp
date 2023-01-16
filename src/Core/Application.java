@@ -18,6 +18,8 @@ import Users.Person;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -106,6 +108,18 @@ public class Application {
         return _plannedPayments;
     }
     
+    public List<PlannedPayment> getOverduePlannedPayments() {
+        List<PlannedPayment> plannedPayments = new LinkedList<>();
+        
+        for(var plannedPayment : _plannedPayments) {
+            if(plannedPayment.IsPaymentOverdue()) {
+                plannedPayments.add(plannedPayment);
+            }
+        }
+        
+        return plannedPayments;
+    }
+    
     public void removeUser(UUID userId) {
         DataSource.DATA_SOURCE.removeUser(userId);
     }
@@ -134,6 +148,17 @@ public class Application {
         PlannedPayment newPlannedPayment = new PlannedPayment(paymentDate, bankAccountIban, money, name);
         DataSource.DATA_SOURCE.addPlannedPayment(newPlannedPayment);
         _plannedPayments.add(newPlannedPayment);
+    }
+    
+    public void payPlannedPayment(PlannedPayment payment) {
+        try {
+            createTransaction(payment.getMoney(), payment.getBankAccountIban(), null);
+            removePlannedPayment(payment.getId());
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (ItemAlreadyExistsException e) {
+            e.printStackTrace();
+        }
     }
     
     public void removePlannedPayment(UUID id) {
