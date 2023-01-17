@@ -27,7 +27,7 @@ public class TransactionManager {
     
     private TransactionManager(List<Transaction> transactions) {
         _transactions = transactions;
-        _transactionProcessor = new TransactionProcessor(5);
+        _transactionProcessor = new TransactionProcessor(5000);
         for (Transaction transaction : transactions) {
             if(transaction.getStatus() == TransactionStatus.Pending) {
                 _transactionProcessor.AddTransactionToQueue(transaction);

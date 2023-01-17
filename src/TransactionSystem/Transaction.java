@@ -86,7 +86,7 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
             else if(_type == TransactionType.Withdraw) {
@@ -97,7 +97,7 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
             else if(_type == TransactionType.Transfer) {
@@ -111,11 +111,11 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
         } catch (Exception e) {
-            _status = TransactionStatus.Failded;
+            _status = TransactionStatus.Faild;
             
             //If in the transfer transaction the removal of money has passed, but the adding has failed
             //Return the removed money
