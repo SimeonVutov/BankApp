@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
+import TransactionSystem.Transaction;
 
 /**
  *
@@ -50,11 +51,11 @@ public class PlannedPayment implements Serializable {
     }
     
     public boolean IsPaymentOverdue() {
-        return _paymentDate.isAfter(LocalDate.now());
+        return _paymentDate.isBefore(LocalDate.now());
     }
     
-    public void Pay() throws IllegalArgumentException, ItemAlreadyExistsException {
-        TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(_money, _bankAccountIban, null);
+    public Transaction Pay() throws IllegalArgumentException, ItemAlreadyExistsException {
+        return TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(_money, _bankAccountIban, null);
     }
     
     @Override

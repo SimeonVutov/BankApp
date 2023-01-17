@@ -9,7 +9,18 @@ import Core.DataChangedListener;
 import Core.DataCreatedListener;
 import Core.FrameType;
 import Core.FramesController;
+import Database.ItemAlreadyExistsException;
 import UI.UI_Variables;;
+import javax.swing.JOptionPane;
+import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
+import UI.Frames.CreateFrames.CreateBankAccountFrame;
+import javax.swing.DefaultListModel;
+import PlannedPayments.PlannedPayment;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
 import UI.Frames.CreateFrames.CreateBankAccountFrame;
 import javax.swing.DefaultListModel;
@@ -44,10 +55,12 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         //UI settings
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
+        setVisible(true);
+        
+        processPlannedPayments(_app.getOverduePlannedPayments());
+        
         //Setting infromation
         loadData();
-        
-        setVisible(true);
     }
 
     /**
@@ -490,6 +503,18 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         
         return currentBalance;
     }
+    
+    private void processPlannedPayments(List<PlannedPayment> plannedPayments) {
+        if(plannedPayments.size() > 0) {
+            int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);
+            if(result == 0) {
+                for(var payment : plannedPayments) {
+                    _app.payPlannedPayment(payment);
+                }
+            }
+        }
+    }
+    
     @Override
     public void onDataChangedEvent() {
         loadData();
