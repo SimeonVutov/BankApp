@@ -458,7 +458,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
         
-        for(var bankAccount : list) {
+        for(BankAccount bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
         }
         
@@ -469,7 +469,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
         List<PlannedPayment> list = _app.getAllPlannedPayments();
         
-        for(var plannedPayment : list) {
+        for(PlannedPayment plannedPayment : list) {
             plannedPaymentsValue = plannedPaymentsValue.add(plannedPayment.getMoney());
         }
         

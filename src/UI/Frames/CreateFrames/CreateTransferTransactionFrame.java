@@ -32,7 +32,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         DefaultListModel<BankAccount> bankAccountsListModel = new DefaultListModel<>();
         bankAccountsList.setModel(bankAccountsListModel);
         
-        for(var bankAccount : app.getAllBankAccounts()) {
+        for(BankAccount bankAccount : app.getAllBankAccounts()) {
             bankAccountsListModel.addElement(bankAccount);
         }
         
@@ -186,7 +186,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             

@@ -29,7 +29,7 @@ public class DataChangedEvent extends EventObject{
     }
     
     public void fireDataChangedEvent() {
-        for(var listener : _listeners) {
+        for(DataChangedListener listener : _listeners) {
             listener.onDataChangedEvent();
         }
     }

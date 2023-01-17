@@ -119,7 +119,7 @@ public class DataSource {
     }
     
     public User getUserByCredentials(String username, char[] password) throws InvalidUserCredentialsException {
-        for(var user : _users.values()) {
+        for(User user : _users.values()) {
             if(user.getUsername().equals(username)) {
                 if(user.getPassword().verify(password)) {
                     return user;
@@ -137,7 +137,7 @@ public class DataSource {
     public List<BankAccount> getBankAccountsForUser(User user) {
         List<BankAccount> list = new LinkedList<>();
         
-        for(var bankAccount : _bankAccounts.values()) {
+        for(BankAccount bankAccount : _bankAccounts.values()) {
             if(bankAccount.getUserId().equals(user.getUserId())) {
                 list.add(bankAccount);
             }
@@ -157,7 +157,7 @@ public class DataSource {
     public List<PlannedPayment> getPlannedPaymentsByBankAccountIban(String iban) {
         List<PlannedPayment> list = new LinkedList<>();
         
-        for(var plannedPayment : _plannedPayments.values()) {
+        for(PlannedPayment plannedPayment : _plannedPayments.values()) {
             if(plannedPayment.getBankAccountIban().equals(iban)) {
                 list.add(plannedPayment);
             }

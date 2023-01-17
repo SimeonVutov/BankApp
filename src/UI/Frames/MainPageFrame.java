@@ -9,17 +9,7 @@ import Core.DataChangedListener;
 import Core.DataCreatedListener;
 import Core.FrameType;
 import Core.FramesController;
-import Database.ItemAlreadyExistsException;
 import UI.UI_Variables;;
-import javax.swing.JOptionPane;
-import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
-import UI.Frames.CreateFrames.CreateBankAccountFrame;
-import javax.swing.DefaultListModel;
-import PlannedPayments.PlannedPayment;
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
 import UI.Frames.CreateFrames.CreateBankAccountFrame;
@@ -497,7 +487,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
         
-        for(var bankAccount : list) {
+        for(BankAccount bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
         }
         
@@ -506,9 +496,9 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     
     private void processPlannedPayments(List<PlannedPayment> plannedPayments) {
         if(plannedPayments.size() > 0) {
-            int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);
+            int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 0, 1);
             if(result == 0) {
-                for(var payment : plannedPayments) {
+                for(PlannedPayment payment : plannedPayments) {
                     _app.payPlannedPayment(payment);
                 }
             }

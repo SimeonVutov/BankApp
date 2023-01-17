@@ -29,7 +29,7 @@ public class DataCreatedEvent extends EventObject {
     }
     
     public void fireDataCreatedEvent() {
-        for(var listener : _listeners) {
+        for(DataCreatedListener listener : _listeners) {
             listener.onDataCreatedEvent();
         }
     }

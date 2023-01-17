@@ -27,7 +27,7 @@ public class Password implements Serializable {
         salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
         
-        var hashedPass = hashPassword(password);
+        byte[] hashedPass = hashPassword(password);
         
         if(hashedPass != null) {
             hash = hashedPass;
@@ -61,7 +61,7 @@ public class Password implements Serializable {
         salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
 
-        var hashedPass = hashPassword(newPassword);
+        byte[] hashedPass = hashPassword(newPassword);
         
         if(hashedPass != null) {
             hash = hashedPass;

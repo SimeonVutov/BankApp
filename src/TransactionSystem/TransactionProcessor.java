@@ -20,14 +20,14 @@ public class TransactionProcessor implements Runnable {
     private Semaphore _semaphore = new Semaphore(1);
     private volatile boolean _running = true;
     private Thread thread;
-    private Duration _processorWaitTime;
+    private int _processorWaitTime;
     private DataChangedEvent _dataChangedEvent;
     
     public DataChangedEvent getDataChangedEvent() {
         return _dataChangedEvent;
     }
     
-    public TransactionProcessor(Duration processorWaitTime) {
+    public TransactionProcessor(int processorWaitTime) {
         _pendingTransactions = new LinkedBlockingQueue<Transaction>();
         _processorWaitTime = processorWaitTime;
         _dataChangedEvent = new DataChangedEvent(this);
