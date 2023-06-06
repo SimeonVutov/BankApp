@@ -47,7 +47,7 @@ public class TransactionProcessor implements Runnable {
         _semaphore.release();
     }
     
-    public void AddTransactionToQueue(Transaction transaction) {
+    public void addTransactionToQueue(Transaction transaction) {
         _pendingTransactions.add(transaction);
     }
 

@@ -30,7 +30,7 @@ public class TransactionManager {
         _transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
         for (Transaction transaction : transactions) {
             if(transaction.getStatus() == TransactionStatus.Pending) {
-                _transactionProcessor.AddTransactionToQueue(transaction);
+                _transactionProcessor.addTransactionToQueue(transaction);
             }
         }
         _transactionProcessor.Start();
@@ -40,7 +40,7 @@ public class TransactionManager {
         Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
         DataSource.DATA_SOURCE.addTransaction(newTransaction);
         _transactions.add(newTransaction);
-        _transactionProcessor.AddTransactionToQueue(newTransaction);
+        _transactionProcessor.addTransactionToQueue(newTransaction);
         
         return newTransaction;
     }

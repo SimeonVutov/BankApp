@@ -13,6 +13,7 @@ import TransactionSystem.Transaction;
 import PlannedPayments.PlannedPayment;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -135,7 +136,7 @@ public class DataSource {
     }
     
     public List<BankAccount> getBankAccountsForUser(User user) {
-        List<BankAccount> list = new LinkedList<>();
+        List<BankAccount> list = new ArrayList<>();
         
         for(var bankAccount : _bankAccounts.values()) {
             if(bankAccount.getUserId().equals(user.getUserId())) {
@@ -155,7 +156,7 @@ public class DataSource {
     }
     
     public List<PlannedPayment> getPlannedPaymentsByBankAccountIban(String iban) {
-        List<PlannedPayment> list = new LinkedList<>();
+        List<PlannedPayment> list = new ArrayList<>();
         
         for(var plannedPayment : _plannedPayments.values()) {
             if(plannedPayment.getBankAccountIban().equals(iban)) {
@@ -167,33 +168,33 @@ public class DataSource {
     }
     
     public void loadAllData() {
-        HashMap<UUID, User> usersHashMap = (HashMap<UUID, User>) _usersFileController.load();
-        if(usersHashMap != null) {
-            _users = usersHashMap;
+        HashMap<UUID, User> users = (HashMap<UUID, User>) _usersFileController.load();
+        if(users != null) {
+            _users = users;
         }
         else {
             _users = new HashMap<>();
         }
         
-        HashMap<String, BankAccount> bankAccountsHashMap = (HashMap<String, BankAccount>) _bankAccountsFileController.load();
-        if(bankAccountsHashMap != null) {
-            _bankAccounts = bankAccountsHashMap;
+        HashMap<String, BankAccount> bankAccounts = (HashMap<String, BankAccount>) _bankAccountsFileController.load();
+        if(bankAccounts != null) {
+            _bankAccounts = bankAccounts;
         }
         else {
             _bankAccounts = new HashMap<>();
         }
         
-        HashMap<UUID, Transaction> transactionsHashMap = (HashMap<UUID, Transaction>) _transactionsFileController.load();
-        if(transactionsHashMap != null) {
-            _transactions = transactionsHashMap;
+        HashMap<UUID, Transaction> transactions = (HashMap<UUID, Transaction>) _transactionsFileController.load();
+        if(transactions != null) {
+            _transactions = transactions;
         }
         else {
             _transactions = new HashMap<>();
         }
         
-        HashMap<UUID, PlannedPayment> plannedPaymentsHashMap = (HashMap<UUID, PlannedPayment>) _plannedPaymentsFileController.load();
-        if(plannedPaymentsHashMap != null) {
-            _plannedPayments = plannedPaymentsHashMap;
+        HashMap<UUID, PlannedPayment> plannedPayments = (HashMap<UUID, PlannedPayment>) _plannedPaymentsFileController.load();
+        if(plannedPayments != null) {
+            _plannedPayments = plannedPayments;
         }
         else {
             _plannedPayments = new HashMap<>();

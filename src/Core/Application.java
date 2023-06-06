@@ -17,9 +17,8 @@ import TransactionSystem.TransactionManager;
 import Users.Person;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,7 +44,6 @@ public class Application {
         char[] pass = password.clone();
         User user = new User(person, username, password, email, phoneNumber);
         DataSource.DATA_SOURCE.addUser(user);
-        System.out.println(pass.length);
         logIn(username, pass);
     }
     
@@ -73,9 +71,9 @@ public class Application {
     
     private void setDefaultUserInformation() {
         _user = null;
-        _bankAccounts = new LinkedList<>();
+        _bankAccounts = new ArrayList<>();
         _transactions = new LinkedList<>();
-        _plannedPayments = new LinkedList<>();
+        _plannedPayments = new ArrayList<>();
     }
     
     public User getUser() {
