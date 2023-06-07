@@ -69,6 +69,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         logOutBtn = new javax.swing.JButton();
         viewUserProfileBtn = new javax.swing.JButton();
         mainPageBtn = new javax.swing.JButton();
+        loansBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         plannedPaymentsTitle = new javax.swing.JLabel();
         plannedPaymentsCreateBtn = new javax.swing.JButton();
@@ -162,6 +163,20 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             }
         });
 
+        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
+        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
+        loansBtn.setText("Loans");
+        loansBtn.setToolTipText("");
+        loansBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        loansBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        loansBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
         navBarPannelLayout.setHorizontalGroup(
@@ -171,6 +186,8 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
                 .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,22 +201,24 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         navBarPannelLayout.setVerticalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewUserProfileBtn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(201, 201, 201));
@@ -269,7 +288,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
                     .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(201, 201, 201));
@@ -472,6 +491,12 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.LOANS_FRAME);
+        dispose();
+    }//GEN-LAST:event_loansBtnActionPerformed
+
     private void loadData() {
         userNameNavbar.setText(_app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
@@ -528,6 +553,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton loansBtn;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton mainPageBtn;
     private javax.swing.JPanel navBarPannel;
