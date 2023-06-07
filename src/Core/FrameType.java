@@ -5,6 +5,7 @@
 package Core;
 import UI.Frames.MainPageFrame;
 import UI.Frames.ContactUsFrame;
+import UI.Frames.LoansFrame;
 import UI.Frames.LogInFrame;
 import UI.Frames.SignUpFrame;
 import UI.Frames.TransactionPageFrame;
@@ -57,6 +58,12 @@ public enum FrameType {
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return ContactUsFrame.class;
+        }
+    },
+    LOANS_FRAME {
+        @Override
+        public Class<? extends JFrame> getFrameClass() {
+            return LoansFrame.class;
         }
     };
     
