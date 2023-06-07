@@ -107,7 +107,7 @@ public class Application {
     }
     
     public List<PlannedPayment> getOverduePlannedPayments() {
-        List<PlannedPayment> plannedPayments = new LinkedList<>();
+        List<PlannedPayment> plannedPayments = new ArrayList<>();
         
         for(var plannedPayment : _plannedPayments) {
             if(plannedPayment.IsPaymentOverdue()) {
