@@ -6,8 +6,6 @@ package UI.Frames;
 import Core.Application;
 import Core.FrameType;
 import Core.FramesController;
-import Core.DataChangedListener;
-import UI.Frames.EditFrames.EditUserFrame;
 import UI.UI_Variables;
 import Users.User;
 
@@ -15,8 +13,7 @@ import Users.User;
  *
  * @author Bubo & Yana
  */
-public class LoansFrame extends javax.swing.JFrame //implements DataChangedListener
-{
+public class LoansFrame extends javax.swing.JFrame {
     private Application _app;
     private FramesController _framesController;
     
