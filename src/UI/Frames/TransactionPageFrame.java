@@ -62,13 +62,6 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        navBarPannel = new javax.swing.JPanel();
-        transactionsBtn = new javax.swing.JButton();
-        contactUsBtn = new javax.swing.JButton();
-        userNameNavbar = new javax.swing.JLabel();
-        logOutBtn = new javax.swing.JButton();
-        viewUserProfileBtn = new javax.swing.JButton();
-        mainPageBtn = new javax.swing.JButton();
         transactionsHistoryPanel = new javax.swing.JPanel();
         transactionsHistoryLabel = new javax.swing.JLabel();
         TransactionsHistoryList = new javax.swing.JScrollPane();
@@ -82,124 +75,18 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         makeTransferTransactionBtn = new javax.swing.JButton();
         makeDepositTransactionBtn = new javax.swing.JButton();
         makeWithdrawTransactionBtn = new javax.swing.JButton();
+        navBarPannel = new javax.swing.JPanel();
+        transactionsBtn = new javax.swing.JButton();
+        contactUsBtn = new javax.swing.JButton();
+        userNameNavbar = new javax.swing.JLabel();
+        logOutBtn = new javax.swing.JButton();
+        viewUserProfileBtn = new javax.swing.JButton();
+        mainPageBtn = new javax.swing.JButton();
+        loansBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1920, 935));
-
-        navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
-        navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
-
-        transactionsBtn.setBackground(new java.awt.Color(255, 115, 115));
-        transactionsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        transactionsBtn.setForeground(new java.awt.Color(0, 0, 0));
-        transactionsBtn.setText("Transactions");
-        transactionsBtn.setAlignmentY(0.0F);
-        transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        transactionsBtn.setFocusPainted(false);
-        transactionsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                transactionsBtnActionPerformed(evt);
-            }
-        });
-
-        contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
-        contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
-        contactUsBtn.setText("Contact Us");
-        contactUsBtn.setToolTipText("");
-        contactUsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        contactUsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        contactUsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        contactUsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactUsBtnActionPerformed(evt);
-            }
-        });
-
-        userNameNavbar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        userNameNavbar.setForeground(new java.awt.Color(0, 0, 0));
-        userNameNavbar.setText("User Name");
-
-        logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
-        logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
-        logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
-        logOutBtn.setText("Log Out");
-        logOutBtn.setToolTipText("");
-        logOutBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
-        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOutBtnActionPerformed(evt);
-            }
-        });
-
-        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
-        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
-        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
-        viewUserProfileBtn.setText("View user profile");
-        viewUserProfileBtn.setBorder(null);
-        viewUserProfileBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewUserProfileBtnActionPerformed(evt);
-            }
-        });
-
-        mainPageBtn.setBackground(new java.awt.Color(255, 115, 115));
-        mainPageBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
-        mainPageBtn.setForeground(new java.awt.Color(0, 0, 0));
-        mainPageBtn.setText("Main Page");
-        mainPageBtn.setAlignmentY(0.0F);
-        mainPageBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
-        mainPageBtn.setFocusPainted(false);
-        mainPageBtn.setPreferredSize(new java.awt.Dimension(185, 99));
-        mainPageBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainPageBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
-        navBarPannel.setLayout(navBarPannelLayout);
-        navBarPannelLayout.setHorizontalGroup(
-            navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(viewUserProfileBtn)
-                    .addComponent(userNameNavbar))
-                .addGap(18, 18, 18)
-                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        navBarPannelLayout.setVerticalGroup(
-            navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(navBarPannelLayout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(navBarPannelLayout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(viewUserProfileBtn)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
 
         transactionsHistoryPanel.setBackground(new java.awt.Color(201, 201, 201));
         transactionsHistoryPanel.setMaximumSize(new java.awt.Dimension(1826, 639));
@@ -346,11 +233,141 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
             }
         });
 
+        navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
+        navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
+
+        transactionsBtn.setBackground(new java.awt.Color(255, 115, 115));
+        transactionsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        transactionsBtn.setForeground(new java.awt.Color(0, 0, 0));
+        transactionsBtn.setText("Transactions");
+        transactionsBtn.setAlignmentY(0.0F);
+        transactionsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        transactionsBtn.setFocusPainted(false);
+        transactionsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        transactionsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                transactionsBtnActionPerformed(evt);
+            }
+        });
+
+        contactUsBtn.setBackground(new java.awt.Color(255, 115, 115));
+        contactUsBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        contactUsBtn.setForeground(new java.awt.Color(0, 0, 0));
+        contactUsBtn.setText("Contact Us");
+        contactUsBtn.setToolTipText("");
+        contactUsBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        contactUsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        contactUsBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        contactUsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contactUsBtnActionPerformed(evt);
+            }
+        });
+
+        userNameNavbar.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        userNameNavbar.setForeground(new java.awt.Color(0, 0, 0));
+        userNameNavbar.setText("User Name");
+
+        logOutBtn.setBackground(new java.awt.Color(255, 255, 255));
+        logOutBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        logOutBtn.setForeground(new java.awt.Color(0, 0, 0));
+        logOutBtn.setText("Log Out");
+        logOutBtn.setToolTipText("");
+        logOutBtn.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(201, 201, 201), 1, true));
+        logOutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutBtnActionPerformed(evt);
+            }
+        });
+
+        viewUserProfileBtn.setBackground(new java.awt.Color(255, 115, 115));
+        viewUserProfileBtn.setFont(new java.awt.Font("Gadugi", 1, 16)); // NOI18N
+        viewUserProfileBtn.setForeground(new java.awt.Color(255, 255, 255));
+        viewUserProfileBtn.setText("View user profile");
+        viewUserProfileBtn.setBorder(null);
+        viewUserProfileBtn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        viewUserProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewUserProfileBtnActionPerformed(evt);
+            }
+        });
+
+        mainPageBtn.setBackground(new java.awt.Color(255, 115, 115));
+        mainPageBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        mainPageBtn.setForeground(new java.awt.Color(0, 0, 0));
+        mainPageBtn.setText("Main Page");
+        mainPageBtn.setAlignmentY(0.0F);
+        mainPageBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        mainPageBtn.setFocusPainted(false);
+        mainPageBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        mainPageBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainPageBtnActionPerformed(evt);
+            }
+        });
+
+        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
+        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
+        loansBtn.setText("Loans");
+        loansBtn.setToolTipText("");
+        loansBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        loansBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        loansBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
+        navBarPannel.setLayout(navBarPannelLayout);
+        navBarPannelLayout.setHorizontalGroup(
+            navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navBarPannelLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewUserProfileBtn)
+                    .addComponent(userNameNavbar))
+                .addGap(18, 18, 18)
+                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
+        navBarPannelLayout.setVerticalGroup(
+            navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navBarPannelLayout.createSequentialGroup()
+                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(navBarPannelLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewUserProfileBtn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(makeDepositTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,6 +384,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
                 .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(transactionsHistoryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1853, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addComponent(navBarPannel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +397,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
                             .addComponent(currentBalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(plannedPaymentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(makeDepositTransactionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,6 +410,24 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
+        createDepositTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
+
+    private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
+        createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
+
+    private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
+        // TODO add your handling code here:
+        CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
+        createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
+    }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
@@ -412,35 +448,23 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
-    private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
-        // TODO add your handling code here:
-        CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
-        createDepositTransactionFrame.getDataCreatedEvent().addListener(this);
-    }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
-
-    private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
-        // TODO add your handling code here:
-        CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
-        createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
-    }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
-
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
-    private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
-        // TODO add your handling code here:
-        CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
-        createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
-    }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
-
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
+
+    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
+        // TODO add your handling code here:
+        _framesController.openFrame(FrameType.LOANS_FRAME);
+        dispose();
+    }//GEN-LAST:event_loansBtnActionPerformed
     
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
@@ -493,6 +517,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     private javax.swing.JLabel currentBalanceLabel;
     private javax.swing.JPanel currentBalancePanel;
     private javax.swing.JLabel currentBalanceTitle;
+    private javax.swing.JButton loansBtn;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton mainPageBtn;
     private javax.swing.JButton makeDepositTransactionBtn;
