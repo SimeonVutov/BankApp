@@ -30,7 +30,7 @@ public class LoansFrame extends javax.swing.JFrame {
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
-//        loadData();
+        loadData();
         
         setVisible(true);
     }

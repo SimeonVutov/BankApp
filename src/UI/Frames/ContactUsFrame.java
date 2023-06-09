@@ -320,7 +320,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loansBtnActionPerformed
 
     private void loadData() {
-        userNameNavbar.setText("A");
+        userNameNavbar.setText(_app.getUser().getUsername());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
