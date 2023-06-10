@@ -5,6 +5,7 @@
 
 package PlannedPayments.Loans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
  *
  * @author Moni
  */
-public class LongTermLoanType extends LoanType {
+public class LongTermLoanType extends LoanType implements Serializable {
     public LongTermLoanType() {
         //The interest rate is set here
         //The loan limit is set here

@@ -70,13 +70,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="134" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="oneMonthLoanLabel1" min="-2" pref="306" max="-2" attributes="0"/>
-                      <Component id="oneMonthLoansInterestLabel" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="oneMonthLoanLabel1" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="openSTLFrame" min="-2" pref="342" max="-2" attributes="0"/>
+                      <Component id="oneMonthLoansInterestLabel" min="-2" pref="342" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace pref="122" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,7 +92,9 @@
                   <Component id="oneMonthLoanLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="oneMonthLoansInterestLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="openSTLFrame" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,6 +108,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="1 Month Loan"/>
           </Properties>
         </Component>
@@ -114,6 +122,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="5% montly interest"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="openSTLFrame">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Choose"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openSTLFrameActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -132,27 +148,29 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace pref="129" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="oneYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="oneYearLoanLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="openMTLFrame" alignment="1" min="-2" pref="342" max="-2" attributes="0"/>
+                      <Component id="oneYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="oneYearLoanLabel" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                   <Component id="oneYearLoanLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="oneYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="openMTLFrame" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -177,8 +195,17 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="1 Year Loan"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="openMTLFrame">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Choose"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openMTLFrameActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -196,16 +223,22 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="143" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="fiveYearsLoanLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="openLTLFrame" min="-2" pref="342" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="fiveYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="fiveYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="fiveYearsLoanLabel" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -213,11 +246,13 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="fiveYearsLoanLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="472" max="32767" attributes="0"/>
+                  <EmptySpace pref="402" max="32767" attributes="0"/>
                   <Component id="fiveYearLoansInterestLabel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="openLTLFrame" min="-2" pref="43" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -231,6 +266,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="5 Years Loan"/>
           </Properties>
         </Component>
@@ -244,6 +280,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="1% montly interest"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="openLTLFrame">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Choose"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openLTLFrameActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

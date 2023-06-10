@@ -6,6 +6,10 @@ package UI.Frames;
 import Core.Application;
 import Core.FrameType;
 import Core.FramesController;
+import PlannedPayments.Loans.LongTermLoanType;
+import PlannedPayments.Loans.MediumTermLoanType;
+import PlannedPayments.Loans.ShortTermLoanType;
+import UI.Frames.CreateFrames.CreateLoanFrame;
 import UI.UI_Variables;
 import Users.User;
 
@@ -47,12 +51,15 @@ public class LoansFrame extends javax.swing.JFrame {
         oneMonthLoansPanel = new javax.swing.JPanel();
         oneMonthLoanLabel1 = new javax.swing.JLabel();
         oneMonthLoansInterestLabel = new javax.swing.JLabel();
+        openSTLFrame = new javax.swing.JButton();
         oneYearLoanPanel = new javax.swing.JPanel();
         oneYearLoansInterestLabel = new javax.swing.JLabel();
         oneYearLoanLabel = new javax.swing.JLabel();
+        openMTLFrame = new javax.swing.JButton();
         fiveYearsLoanPanel = new javax.swing.JPanel();
         fiveYearsLoanLabel = new javax.swing.JLabel();
         fiveYearLoansInterestLabel = new javax.swing.JLabel();
+        openLTLFrame = new javax.swing.JButton();
         navBarPannel = new javax.swing.JPanel();
         transactionsBtn = new javax.swing.JButton();
         contactUsBtn = new javax.swing.JButton();
@@ -71,22 +78,34 @@ public class LoansFrame extends javax.swing.JFrame {
 
         oneMonthLoanLabel1.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         oneMonthLoanLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        oneMonthLoanLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         oneMonthLoanLabel1.setText("1 Month Loan");
 
         oneMonthLoansInterestLabel.setFont(new java.awt.Font("Gadugi", 0, 38)); // NOI18N
         oneMonthLoansInterestLabel.setForeground(new java.awt.Color(0, 0, 0));
         oneMonthLoansInterestLabel.setText("5% montly interest");
 
+        openSTLFrame.setText("Choose");
+        openSTLFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openSTLFrameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout oneMonthLoansPanelLayout = new javax.swing.GroupLayout(oneMonthLoansPanel);
         oneMonthLoansPanel.setLayout(oneMonthLoansPanelLayout);
         oneMonthLoansPanelLayout.setHorizontalGroup(
             oneMonthLoansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, oneMonthLoansPanelLayout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
-                .addGroup(oneMonthLoansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(oneMonthLoanLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oneMonthLoansInterestLabel))
-                .addGap(130, 130, 130))
+            .addGroup(oneMonthLoansPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(oneMonthLoanLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(oneMonthLoansPanelLayout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addGroup(oneMonthLoansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(openSTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oneMonthLoansInterestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         oneMonthLoansPanelLayout.setVerticalGroup(
             oneMonthLoansPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +114,9 @@ public class LoansFrame extends javax.swing.JFrame {
                 .addComponent(oneMonthLoanLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(oneMonthLoansInterestLabel)
-                .addGap(56, 56, 56))
+                .addGap(18, 18, 18)
+                .addComponent(openSTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
         );
 
         oneYearLoanPanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -107,7 +128,15 @@ public class LoansFrame extends javax.swing.JFrame {
 
         oneYearLoanLabel.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         oneYearLoanLabel.setForeground(new java.awt.Color(0, 0, 0));
+        oneYearLoanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         oneYearLoanLabel.setText("1 Year Loan");
+
+        openMTLFrame.setText("Choose");
+        openMTLFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openMTLFrameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout oneYearLoanPanelLayout = new javax.swing.GroupLayout(oneYearLoanPanel);
         oneYearLoanPanel.setLayout(oneYearLoanPanelLayout);
@@ -115,22 +144,25 @@ public class LoansFrame extends javax.swing.JFrame {
             oneYearLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oneYearLoanPanelLayout.createSequentialGroup()
                 .addContainerGap(129, Short.MAX_VALUE)
-                .addGroup(oneYearLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, oneYearLoanPanelLayout.createSequentialGroup()
-                        .addComponent(oneYearLoansInterestLabel)
-                        .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, oneYearLoanPanelLayout.createSequentialGroup()
-                        .addComponent(oneYearLoanLabel)
-                        .addGap(161, 161, 161))))
+                .addGroup(oneYearLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(openMTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oneYearLoansInterestLabel))
+                .addGap(107, 107, 107))
+            .addGroup(oneYearLoanPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(oneYearLoanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         oneYearLoanPanelLayout.setVerticalGroup(
             oneYearLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(oneYearLoanPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(67, 67, 67)
                 .addComponent(oneYearLoanLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(oneYearLoansInterestLabel)
-                .addGap(61, 61, 61))
+                .addGap(18, 18, 18)
+                .addComponent(openMTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
 
         fiveYearsLoanPanel.setBackground(new java.awt.Color(201, 201, 201));
@@ -138,34 +170,48 @@ public class LoansFrame extends javax.swing.JFrame {
 
         fiveYearsLoanLabel.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         fiveYearsLoanLabel.setForeground(new java.awt.Color(0, 0, 0));
+        fiveYearsLoanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fiveYearsLoanLabel.setText("5 Years Loan");
 
         fiveYearLoansInterestLabel.setFont(new java.awt.Font("Gadugi", 0, 38)); // NOI18N
         fiveYearLoansInterestLabel.setForeground(new java.awt.Color(0, 0, 0));
         fiveYearLoansInterestLabel.setText("1% montly interest");
 
+        openLTLFrame.setText("Choose");
+        openLTLFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openLTLFrameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout fiveYearsLoanPanelLayout = new javax.swing.GroupLayout(fiveYearsLoanPanel);
         fiveYearsLoanPanel.setLayout(fiveYearsLoanPanelLayout);
         fiveYearsLoanPanelLayout.setHorizontalGroup(
             fiveYearsLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fiveYearsLoanPanelLayout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(fiveYearsLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fiveYearsLoanPanelLayout.createSequentialGroup()
-                        .addComponent(fiveYearsLoanLabel)
-                        .addGap(157, 157, 157))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fiveYearsLoanPanelLayout.createSequentialGroup()
-                        .addComponent(fiveYearLoansInterestLabel)
-                        .addGap(121, 121, 121))))
+                    .addGroup(fiveYearsLoanPanelLayout.createSequentialGroup()
+                        .addGap(0, 130, Short.MAX_VALUE)
+                        .addGroup(fiveYearsLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fiveYearsLoanPanelLayout.createSequentialGroup()
+                                .addComponent(openLTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(100, 100, 100))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fiveYearsLoanPanelLayout.createSequentialGroup()
+                                .addComponent(fiveYearLoansInterestLabel)
+                                .addGap(117, 117, 117))))
+                    .addComponent(fiveYearsLoanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         fiveYearsLoanPanelLayout.setVerticalGroup(
             fiveYearsLoanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fiveYearsLoanPanelLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(70, 70, 70)
                 .addComponent(fiveYearsLoanLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 472, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                 .addComponent(fiveYearLoansInterestLabel)
-                .addGap(62, 62, 62))
+                .addGap(18, 18, 18)
+                .addComponent(openLTLFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75))
         );
 
         navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
@@ -366,6 +412,21 @@ public class LoansFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    private void openLTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLTLFrameActionPerformed
+        // TODO add your handling code here:
+        CreateLoanFrame clf = new CreateLoanFrame(_app, new LongTermLoanType());
+    }//GEN-LAST:event_openLTLFrameActionPerformed
+
+    private void openMTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMTLFrameActionPerformed
+        // TODO add your handling code here:
+        CreateLoanFrame clf = new CreateLoanFrame(_app, new MediumTermLoanType());
+    }//GEN-LAST:event_openMTLFrameActionPerformed
+
+    private void openSTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSTLFrameActionPerformed
+        // TODO add your handling code here:
+        CreateLoanFrame clf = new CreateLoanFrame(_app, new ShortTermLoanType());
+    }//GEN-LAST:event_openSTLFrameActionPerformed
+
     private void loadData() {
         User user = _app.getUser();
         
@@ -387,6 +448,9 @@ public class LoansFrame extends javax.swing.JFrame {
     private javax.swing.JLabel oneYearLoanLabel;
     private javax.swing.JPanel oneYearLoanPanel;
     private javax.swing.JLabel oneYearLoansInterestLabel;
+    private javax.swing.JButton openLTLFrame;
+    private javax.swing.JButton openMTLFrame;
+    private javax.swing.JButton openSTLFrame;
     private javax.swing.JButton transactionsBtn;
     private javax.swing.JLabel userNameNavbar;
     private javax.swing.JButton viewUserProfileBtn;

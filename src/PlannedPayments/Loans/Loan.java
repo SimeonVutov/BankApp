@@ -6,13 +6,14 @@
 package PlannedPayments.Loans;
 
 import PlannedPayments.PlannedPayment;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  *
  * @author Moni
  */
-public class Loan extends PlannedPayment {
+public class Loan extends PlannedPayment implements Serializable {
     private LoanType loanType;
     
     public Loan(LoanType loanType, String bankAccountIban, BigDecimal money, String name) throws LoanLimitExceededException {
@@ -30,7 +31,7 @@ public class Loan extends PlannedPayment {
     }
     
     private static BigDecimal calculateReturnMoney(LoanType loanType, BigDecimal money) {
-        return money.add(money.multiply(loanType.INTEREST_RATE));
+        return money.add(money.multiply(loanType.getInterestRateForCalculations()));
     }
 
     @Override

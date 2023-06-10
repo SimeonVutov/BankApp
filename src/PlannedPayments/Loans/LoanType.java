@@ -4,15 +4,15 @@
  */
 package PlannedPayments.Loans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 /**
  *
  * @author Simeon
  */
-public abstract class LoanType {
+public abstract class LoanType implements Serializable {
     protected final BigDecimal INTEREST_RATE;
     protected final BigDecimal LOAN_LIMIT;
     
