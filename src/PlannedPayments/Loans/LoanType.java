@@ -5,6 +5,7 @@
 package PlannedPayments.Loans;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 
 /**
@@ -15,14 +16,18 @@ public abstract class LoanType {
     protected final BigDecimal INTEREST_RATE;
     protected final BigDecimal LOAN_LIMIT;
     
-    public LoanType(float interestRate, BigDecimal loanLimit) {
+    public LoanType(BigDecimal interestRate, BigDecimal loanLimit) {
         //The interestRate is converted from percentage
-        INTEREST_RATE = new BigDecimal(interestRate / 100);
+        INTEREST_RATE = interestRate;
         LOAN_LIMIT = loanLimit;
     }
     
     public BigDecimal getInterestRate() {
         return INTEREST_RATE;
+    }
+
+    public BigDecimal getInterestRateForCalculations() {
+        return INTEREST_RATE.divide(new BigDecimal(100));
     }
     
     public BigDecimal loanLimit() {
@@ -30,5 +35,6 @@ public abstract class LoanType {
     }
 
     public abstract LocalDate getReturnDate();
-    public abstract String getLoanName();
+    @Override
+    public abstract String toString();
 }

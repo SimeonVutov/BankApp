@@ -68,11 +68,6 @@ public class LoansFrame extends javax.swing.JFrame {
 
         oneMonthLoansPanel.setBackground(new java.awt.Color(201, 201, 201));
         oneMonthLoansPanel.setPreferredSize(new java.awt.Dimension(578, 792));
-        oneMonthLoansPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                oneMonthLoansPanelMouseClicked(evt);
-            }
-        });
 
         oneMonthLoanLabel1.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         oneMonthLoanLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -105,11 +100,6 @@ public class LoansFrame extends javax.swing.JFrame {
 
         oneYearLoanPanel.setBackground(new java.awt.Color(201, 201, 201));
         oneYearLoanPanel.setPreferredSize(new java.awt.Dimension(578, 792));
-        oneYearLoanPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                oneYearLoanPanelMouseClicked(evt);
-            }
-        });
 
         oneYearLoansInterestLabel.setFont(new java.awt.Font("Gadugi", 0, 38)); // NOI18N
         oneYearLoansInterestLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -145,11 +135,6 @@ public class LoansFrame extends javax.swing.JFrame {
 
         fiveYearsLoanPanel.setBackground(new java.awt.Color(201, 201, 201));
         fiveYearsLoanPanel.setPreferredSize(new java.awt.Dimension(578, 792));
-        fiveYearsLoanPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                fiveYearsLoanPanelMouseClicked(evt);
-            }
-        });
 
         fiveYearsLoanLabel.setFont(new java.awt.Font("Gadugi", 1, 45)); // NOI18N
         fiveYearsLoanLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -343,19 +328,7 @@ public class LoansFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void oneYearLoanPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneYearLoanPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oneYearLoanPanelMouseClicked
-
-    private void fiveYearsLoanPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fiveYearsLoanPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fiveYearsLoanPanelMouseClicked
-
-    private void oneMonthLoansPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_oneMonthLoansPanelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oneMonthLoansPanelMouseClicked
-
+        
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);

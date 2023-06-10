@@ -16,7 +16,7 @@ public class LongTermLoanType extends LoanType {
     public LongTermLoanType() {
         //The interest rate is set here
         //The loan limit is set here
-        super(1, new BigDecimal(100000));
+        super(new BigDecimal(1), new BigDecimal(100000));
     }
     
     @Override
@@ -25,7 +25,11 @@ public class LongTermLoanType extends LoanType {
     }
 
     @Override
-    public String getLoanName() {
-        return "Long Term Loan";
+    public String toString() {
+        return String.format(
+                "Long Term Loan(%s%% for %s)",
+                getInterestRate(),
+                "5 years"
+        );
     }
 }

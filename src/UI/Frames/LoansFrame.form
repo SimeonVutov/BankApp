@@ -66,9 +66,6 @@
           <Dimension value="[578, 792]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="oneMonthLoansPanelMouseClicked"/>
-      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -129,9 +126,6 @@
           <Dimension value="[578, 792]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="oneYearLoanPanelMouseClicked"/>
-      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -197,9 +191,6 @@
           <Dimension value="[578, 792]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fiveYearsLoanPanelMouseClicked"/>
-      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
