@@ -47,7 +47,7 @@ public class CreateLoansFrame extends EditFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        createPlannedPaymentTitleLabel = new javax.swing.JLabel();
+        takeOutLoanTitleLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         bankAccountsList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
@@ -59,14 +59,14 @@ public class CreateLoansFrame extends EditFrame {
         createBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
         typeOfLoanLabel = new javax.swing.JLabel();
-        returnAmountLabel = new javax.swing.JLabel();
+        returnLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(201, 201, 201));
 
-        createPlannedPaymentTitleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
-        createPlannedPaymentTitleLabel.setForeground(new java.awt.Color(0, 0, 0));
-        createPlannedPaymentTitleLabel.setText("Take out a loan");
+        takeOutLoanTitleLabel.setFont(new java.awt.Font("Gadugi", 1, 48)); // NOI18N
+        takeOutLoanTitleLabel.setForeground(new java.awt.Color(0, 0, 0));
+        takeOutLoanTitleLabel.setText("Take out a loan");
 
         bankAccountsList.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
         jScrollPane1.setViewportView(bankAccountsList);
@@ -117,8 +117,8 @@ public class CreateLoansFrame extends EditFrame {
         typeOfLoanLabel.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
         typeOfLoanLabel.setText("This is a 5% 1 month loan");
 
-        returnAmountLabel.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
-        returnAmountLabel.setText("You will need to return your soul until 21.2.2025.");
+        returnLabel.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
+        returnLabel.setText("You will need to return your soul until 21.2.2025.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,16 +133,12 @@ public class CreateLoansFrame extends EditFrame {
                         .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(166, 166, 166))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(createPlannedPaymentTitleLabel)
+                        .addComponent(takeOutLoanTitleLabel)
                         .addGap(240, 240, 240))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(309, 309, 309)
                 .addComponent(typeOfLoanLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(returnAmountLabel)
-                .addGap(214, 214, 214))
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -158,12 +154,16 @@ public class CreateLoansFrame extends EditFrame {
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(144, 144, 144))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(returnLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addComponent(createPlannedPaymentTitleLabel)
+                .addComponent(takeOutLoanTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(typeOfLoanLabel)
                 .addGap(57, 57, 57)
@@ -180,9 +180,9 @@ public class CreateLoansFrame extends EditFrame {
                     .addComponent(amountOfMoneyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(65, 65, 65)
-                .addComponent(returnAmountLabel)
-                .addGap(41, 41, 41)
+                .addGap(64, 64, 64)
+                .addComponent(returnLabel)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,12 +258,12 @@ public class CreateLoansFrame extends EditFrame {
     private javax.swing.JList<BankAccount> bankAccountsList;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton createBtn;
-    private javax.swing.JLabel createPlannedPaymentTitleLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JLabel returnAmountLabel;
+    private javax.swing.JLabel returnLabel;
+    private javax.swing.JLabel takeOutLoanTitleLabel;
     private javax.swing.JLabel typeOfLoanLabel;
     // End of variables declaration//GEN-END:variables
 }

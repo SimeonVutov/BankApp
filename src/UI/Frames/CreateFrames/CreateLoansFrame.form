@@ -36,7 +36,7 @@
                       <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="createPlannedPaymentTitleLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="takeOutLoanTitleLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -45,11 +45,6 @@
               <EmptySpace min="-2" pref="309" max="-2" attributes="0"/>
               <Component id="typeOfLoanLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="returnAmountLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
@@ -70,13 +65,18 @@
               </Group>
               <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
+              <Component id="returnLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Component id="createPlannedPaymentTitleLabel" min="-2" max="-2" attributes="0"/>
+              <Component id="takeOutLoanTitleLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="typeOfLoanLabel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -96,9 +96,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-              <Component id="returnAmountLabel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Component id="returnLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="createBtn" min="-2" max="-2" attributes="0"/>
                   <Component id="cancelBtn" min="-2" max="-2" attributes="0"/>
@@ -109,7 +109,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="createPlannedPaymentTitleLabel">
+    <Component class="javax.swing.JLabel" name="takeOutLoanTitleLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Gadugi" size="48" style="1"/>
@@ -261,7 +261,7 @@
         <Property name="text" type="java.lang.String" value="This is a 5% 1 month loan"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="returnAmountLabel">
+    <Component class="javax.swing.JLabel" name="returnLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Gadugi" size="18" style="0"/>
