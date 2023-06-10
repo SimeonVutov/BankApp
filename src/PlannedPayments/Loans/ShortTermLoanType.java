@@ -5,6 +5,7 @@
 
 package PlannedPayments.Loans;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -14,7 +15,8 @@ import java.time.LocalDate;
 public class ShortTermLoanType extends LoanType {
     public ShortTermLoanType() {
         //The interest rate is set here
-        super(5);
+        //The loan limit is set here
+        super(5, new BigDecimal(1000));
     }
     
     @Override

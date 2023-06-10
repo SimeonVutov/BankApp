@@ -5,6 +5,7 @@
 
 package PlannedPayments.Loans;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -12,10 +13,10 @@ import java.time.LocalDate;
  * @author Moni
  */
 public class LongTermLoanType extends LoanType {
-
     public LongTermLoanType() {
         //The interest rate is set here
-        super(1);
+        //The loan limit is set here
+        super(1, new BigDecimal(100000));
     }
     
     @Override
