@@ -73,7 +73,7 @@ public class TransactionProcessor implements Runnable {
             } else {
                 try {
                     _dataChangedEvent.fireDataChangedEvent();
-                    Thread.sleep(_processorWaitTime);
+                    Thread.sleep(_processorWaitTime.toMillis());
                 } catch (InterruptedException e) {
                     // Interrupted, release the semaphore and exit the loop
                     _semaphore.release();
