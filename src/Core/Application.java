@@ -13,6 +13,9 @@ import java.util.LinkedList;
 import Database.DataSource;
 import Database.InvalidUserCredentialsException;
 import Database.ItemAlreadyExistsException;
+import PlannedPayments.Loans.Loan;
+import PlannedPayments.Loans.LoanLimitExceededException;
+import PlannedPayments.Loans.LoanType;
 import TransactionSystem.TransactionManager;
 import Users.Person;
 import java.math.BigDecimal;
@@ -146,6 +149,12 @@ public class Application {
         PlannedPayment newPlannedPayment = new PlannedPayment(paymentDate, bankAccountIban, money, name);
         DataSource.DATA_SOURCE.addPlannedPayment(newPlannedPayment);
         _plannedPayments.add(newPlannedPayment);
+    }
+    
+    public void createLoan(LoanType loanType, String bankAccountIban, BigDecimal money, String name) throws LoanLimitExceededException, ItemAlreadyExistsException {
+        Loan loan = new Loan(loanType, bankAccountIban, money, name);
+        DataSource.DATA_SOURCE.addPlannedPayment(loan);
+        _plannedPayments.add(loan);
     }
     
     public void payPlannedPayment(PlannedPayment payment) {

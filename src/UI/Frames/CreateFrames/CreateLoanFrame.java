@@ -7,9 +7,10 @@ package UI.Frames.CreateFrames;
 import BankAccount.BankAccount;
 import Core.Application;
 import Database.ItemAlreadyExistsException;
+import PlannedPayments.Loans.LoanLimitExceededException;
+import PlannedPayments.Loans.LoanType;
 import UI.Frames.EditFrames.EditFrame;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -19,21 +20,27 @@ import javax.swing.JOptionPane;
  *
  * @author Bubo & Yana
  */
-public class CreateLoansFrame extends EditFrame {
-    private Application _app;
-    private BankAccount _selectedBankAccount = null;
-    private String _name;
-    private String _money;
-    private String _date;
+public class CreateLoanFrame extends EditFrame {
+    private Application app;
+    private BankAccount selectedBankAccount = null;
+    private String name;
+    private String money;
+    private LoanType loanType;
     /**
      * Creates new form CreatePlannedPaymentFrame
      */
-    public CreateLoansFrame(Application app) {
+    public CreateLoanFrame(Application app, LoanType loanType) {
         initComponents();
-        _app = app;
+        this.app = app;
+        this.loanType = loanType;
+        
         DefaultListModel<BankAccount> defaultListModel = new DefaultListModel<>();
         bankAccountsList.setModel(defaultListModel);
-        defaultListModel.addAll(_app.getAllBankAccounts());
+        defaultListModel.addAll(app.getAllBankAccounts());
+        
+        //Configure frame based on loan type
+        typeOfLoanLabel.setText(String.format("This is %s", loanType.toString()));
+        returnLabel.setText(returnLabel.getText() + " " + loanType.getReturnDate());
         
         setVisible(true);
     }
@@ -89,6 +96,13 @@ public class CreateLoansFrame extends EditFrame {
         nameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         amountOfMoneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
+        amountOfMoneyTextField.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                amountOfMoneyTextFieldInputMethodTextChanged(evt);
+            }
+        });
 
         createBtn.setBackground(new java.awt.Color(255, 115, 115));
         createBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -115,30 +129,31 @@ public class CreateLoansFrame extends EditFrame {
         });
 
         typeOfLoanLabel.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
+        typeOfLoanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         typeOfLoanLabel.setText("This is a 5% 1 month loan");
 
         returnLabel.setFont(new java.awt.Font("Gadugi", 0, 18)); // NOI18N
-        returnLabel.setText("You will need to return your soul until 21.2.2025.");
+        returnLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        returnLabel.setText("You will need to return the money until");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(161, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(166, 166, 166))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(takeOutLoanTitleLabel)
-                        .addGap(240, 240, 240))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(309, 309, 309)
-                .addComponent(typeOfLoanLabel)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(240, 240, 240))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(returnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(82, 82, 82)
+                                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(166, 166, 166))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -154,10 +169,10 @@ public class CreateLoansFrame extends EditFrame {
                     .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(144, 144, 144))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
-                .addComponent(returnLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(typeOfLoanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,27 +209,21 @@ public class CreateLoansFrame extends EditFrame {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _selectedBankAccount = bankAccountsList.getSelectedValue();
-        _name = nameTextField.getText();
-        _money = amountOfMoneyTextField.getText();
+        selectedBankAccount = bankAccountsList.getSelectedValue();
+        name = nameTextField.getText();
+        money = amountOfMoneyTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
-            var dateStringArr = _date.split("[.]");
-            LocalDate date = LocalDate.of(
-                    Integer.parseInt(dateStringArr[2]),
-                    Integer.parseInt(dateStringArr[1]),
-                    Integer.parseInt(dateStringArr[0])
-            );
-            
             try {
-                _app.createPlannedPayment(date, _selectedBankAccount.getIban(), new BigDecimal(_money), _name);
-                getDataChangedEvent().fireDataChangedEvent();
+                app.createLoan(loanType, selectedBankAccount.getIban(), new BigDecimal(money), name);
                 dispose();
+            } catch (LoanLimitExceededException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", 0);
             } catch (ItemAlreadyExistsException ex) {
                 JOptionPane.showMessageDialog(this, "An error occured", "Error", 0);
-            }
+            } 
         }
         else {
             String errorMessage = "";
@@ -232,20 +241,22 @@ public class CreateLoansFrame extends EditFrame {
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void amountOfMoneyTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_amountOfMoneyTextFieldInputMethodTextChanged
+        // TODO add your handling code here:
+        System.out.println("test");
+    }//GEN-LAST:event_amountOfMoneyTextFieldInputMethodTextChanged
+
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_selectedBankAccount == null) {
+        if(selectedBankAccount == null) {
             errors.add("Bank account was not selected");
         }
-        if(_name.length() == 0) {
+        if(name.length() == 0) {
             errors.add("Planned payment name field cannot be empty");
         }
-        if(!_money.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+        if(!money.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
             errors.add("Invalid amount of money");
-        }
-        if(!_date.matches("^\\d{2}.\\d{2}.\\d{4}$")) {
-            errors.add("Invalid date");
         }
 
         return errors;

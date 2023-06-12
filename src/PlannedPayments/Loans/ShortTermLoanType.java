@@ -5,6 +5,7 @@
 
 package PlannedPayments.Loans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,11 +13,11 @@ import java.time.LocalDate;
  *
  * @author Moni
  */
-public class ShortTermLoanType extends LoanType {
+public class ShortTermLoanType extends LoanType implements Serializable {
     public ShortTermLoanType() {
         //The interest rate is set here
         //The loan limit is set here
-        super(5, new BigDecimal(1000));
+        super(new BigDecimal(5), new BigDecimal(1000));
     }
     
     @Override
@@ -25,7 +26,11 @@ public class ShortTermLoanType extends LoanType {
     }
 
     @Override
-    public String getLoanName() {
-        return "Short Term Loan";
+    public String toString() {
+        return String.format(
+                "Short Term Loan(%s%% for %s)",
+                getInterestRate(),
+                "1 month"
+        );
     }
 }
