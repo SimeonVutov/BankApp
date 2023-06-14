@@ -32,9 +32,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace pref="57" max="32767" attributes="0"/>
               <Component id="oneMonthLoansPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="oneYearLoanPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               <Component id="fiveYearsLoanPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
