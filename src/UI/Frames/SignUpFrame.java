@@ -307,6 +307,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //SingUp button checks
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
         _firstName = firstNameTextField.getText();
@@ -343,6 +344,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    //LogIn button functionalities
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOGIN_FRAME);

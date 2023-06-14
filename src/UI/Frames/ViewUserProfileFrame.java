@@ -364,6 +364,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Edit and delete button functionalities
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         EditUserFrame editUserFrame = new EditUserFrame(_app.getUser());
@@ -378,6 +379,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    //Setting navbar button fuctionalities
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -415,6 +417,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    //Loading user information
     private void loadData() {
         User user = _app.getUser();
         

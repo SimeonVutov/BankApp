@@ -411,6 +411,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Transaction options
     private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
@@ -429,6 +430,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
 
+    //Setting navbar button fuctionalities
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -466,6 +468,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
     
+    //Loading user information
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
         

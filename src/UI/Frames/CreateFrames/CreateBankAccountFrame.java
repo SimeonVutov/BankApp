@@ -122,6 +122,8 @@ public class CreateBankAccountFrame extends CreateFrame {
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         _bankAccountName = nameTextField.getText();
+        
+        //Errors
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
@@ -144,11 +146,13 @@ public class CreateBankAccountFrame extends CreateFrame {
         }
     }//GEN-LAST:event_createBtnActionPerformed
 
+    //Cancle button functionalities
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    //Validating input
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         

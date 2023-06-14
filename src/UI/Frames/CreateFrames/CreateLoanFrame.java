@@ -207,6 +207,7 @@ public class CreateLoanFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Create button checks
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         selectedBankAccount = bankAccountsList.getSelectedValue();
@@ -235,7 +236,8 @@ public class CreateLoanFrame extends EditFrame {
             JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
         }
     }//GEN-LAST:event_createBtnActionPerformed
-
+    
+    //Cancel button function
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
@@ -246,6 +248,7 @@ public class CreateLoanFrame extends EditFrame {
         System.out.println("test");
     }//GEN-LAST:event_amountOfMoneyTextFieldInputMethodTextChanged
 
+    //Validating information
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         

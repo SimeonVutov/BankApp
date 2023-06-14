@@ -421,6 +421,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Edit and remove buttons functionalities
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(_bankAccount);
@@ -434,6 +435,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         dispose();
     }//GEN-LAST:event_removeBtnActionPerformed
 
+    //Setting navbar button fuctionalities
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -471,6 +473,8 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    
+    //Loading user information
     private void loadData() {
         ibanLabel.setText(_bankAccount.getIban());
         accountNameLabel.setText(_bankAccount.getName());

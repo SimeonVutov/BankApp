@@ -394,7 +394,8 @@ public class LoansFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-        
+    
+    //Setting navbar button fuctionalities
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -432,6 +433,7 @@ public class LoansFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    //Setting different loans option buttons
     private void openSTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new ShortTermLoanType());
@@ -447,6 +449,7 @@ public class LoansFrame extends javax.swing.JFrame {
         CreateLoanFrame clf = new CreateLoanFrame(_app, new MediumTermLoanType());
     }//GEN-LAST:event_openMTLFrameActionPerformed
 
+    //Loading user information
     private void loadData() {
         User user = _app.getUser();
         

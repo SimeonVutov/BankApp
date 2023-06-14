@@ -422,6 +422,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Setting navbar button fuctionalities
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -447,6 +448,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Updating lists 
     private void bankAccountsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_bankAccountsListValueChanged
         // TODO add your handling code here:
         _selectedBankAccount = bankAccountsList.getSelectedValue();
@@ -457,6 +459,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         _selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
     }//GEN-LAST:event_plannedPaymentsListValueChanged
 
+    //Bank accounts create and Edit buttons fuctionalities
     private void createBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBankAccountBtnActionPerformed
         // TODO add your handling code here:
         CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(_app);
@@ -470,7 +473,8 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             dispose();
         }
     }//GEN-LAST:event_editBankAccountBtnActionPerformed
-
+    
+    //Planned payments create and delete buttons functionalities
     private void plannedPaymentsCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsCreateBtnActionPerformed
         // TODO add your handling code here:
         CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(_app);
@@ -497,6 +501,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    //Loading user information
     private void loadData() {
         userNameNavbar.setText(_app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());

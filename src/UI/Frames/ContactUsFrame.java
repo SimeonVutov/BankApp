@@ -281,7 +281,7 @@ public class ContactUsFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Navbar button fuctionalities 
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
@@ -318,7 +318,8 @@ public class ContactUsFrame extends javax.swing.JFrame {
         _framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
-
+    
+    //Loading user information
     private void loadData() {
         userNameNavbar.setText(_app.getUser().getUsername());
     }

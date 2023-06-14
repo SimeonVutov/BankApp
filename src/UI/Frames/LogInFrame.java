@@ -195,6 +195,7 @@ public class LogInFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Log In button fuctinalities and checks
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
         _username = userNameTextField.getText();
@@ -223,12 +224,14 @@ public class LogInFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logInBtnActionPerformed
 
+    //Opening SingUp frame
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.SIGN_UP_FRAME);
         dispose();
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    //Errors
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
