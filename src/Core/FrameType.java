@@ -19,53 +19,62 @@ import javax.swing.JFrame;
  */
 public enum FrameType {
     LOGIN_FRAME {
+        // Returns the class for the LogInFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return LogInFrame.class;
         }
     },
     SIGN_UP_FRAME {
+        // Returns the class for the SignUpFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return SignUpFrame.class;
         }
     },
     MAIN_FRAME {
+        // Returns the class for the MainFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return MainPageFrame.class;
         }
     },
     VIEW_USER_FRAME {
+        // Returns the class for the ViewUserProfileFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return ViewUserProfileFrame.class;
         }
     },
     VIEW_ACCOUNT_FRAME {
+        // Returns the class for the ViewAccountFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return ViewAccountInformationFrame.class;
         }
     },
     TRANSACTION_FRAME {
+        // Returns the class for the TransactionPageFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return TransactionPageFrame.class;
         }
     },
     CONTACT_US_FRAME {
+        // Returns the class for the ContactUsFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return ContactUsFrame.class;
         }
     },
     LOANS_FRAME {
+        // Returns the class for the LoanFrame
         @Override
         public Class<? extends JFrame> getFrameClass() {
             return LoansFrame.class;
         }
     };
     
+    // Returns the class for a given Frame
     public abstract Class<? extends JFrame> getFrameClass();
 }

@@ -18,6 +18,7 @@ public class FramesController {
         _app = app;
     }
     
+    // Creates a new frame of the specified FrameType
     public void openFrame(FrameType frameType) {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
         
@@ -29,6 +30,7 @@ public class FramesController {
         }
     }
     
+    // Creates a new frame of the specified FrameType and pass the given data to it
     public void openFrame(FrameType frameType, Object data) {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
         

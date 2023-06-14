@@ -20,14 +20,17 @@ public class DataChangedEvent extends EventObject{
         _listeners = new LinkedList<>();
     }
     
+    // Adds a listener to the event
     public void addListener(DataChangedListener listener) {
         _listeners.add(listener);
     }
     
+    // Removes a listener to the event
     public void removeListener(DataChangedListener listener) {
         _listeners.remove(listener);
     }
     
+    // Fire the event which notifies all listeners
     public void fireDataChangedEvent() {
         for(var listener : _listeners) {
             listener.onDataChangedEvent();
