@@ -8,6 +8,9 @@ package Database;
  *
  * @author Moni
  */
+
+// This exception is typically thrown when attempting to add an item that already exists in the database,
+// such as adding a duplicate entry or creating a new item with a unique identifier that is already in use
 public class ItemAlreadyExistsException extends Exception {
     public ItemAlreadyExistsException(String errorMessage) {
         super(errorMessage);

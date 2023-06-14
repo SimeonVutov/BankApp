@@ -36,19 +36,19 @@ public class DataSource {
     private HashMap<UUID, PlannedPayment> _plannedPayments;
     private FileController<PlannedPayment> _plannedPaymentsFileController;
     
+    // Initializes the file controllers for data storage and loads all the data
     private DataSource() {
         Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(ApplicationName);
+
         _usersFileController = new FileController(tempPath.resolve("users.txt"));
-        
         _bankAccountsFileController = new FileController<>(tempPath.resolve("bankAccounts.txt"));
-        
         _transactionsFileController = new FileController<>(tempPath.resolve("transactions.txt"));
-        
         _plannedPaymentsFileController = new FileController<>(tempPath.resolve("plannedPayments.txt"));
         
         loadAllData();
     }
     
+    // Saves the new user to the database
     public void addUser(User user) throws ItemAlreadyExistsException {
         for (User currUser : _users.values()) {
             if(currUser.getUsername().equals(user.getUsername())) {
@@ -65,11 +65,13 @@ public class DataSource {
         }
     }
     
+    // Deletes the user with the specified id
     public void removeUser(UUID userId) {
         _users.remove(userId);
         _usersFileController.save(_users);
     }
     
+    // Saves the new bank account to the database
     public void addBankAccount(BankAccount bankAccount) throws ItemAlreadyExistsException {
         if(_bankAccounts.containsKey(bankAccount.getIban())) {
             throw new ItemAlreadyExistsException("Bank account with this iban already exists");
@@ -80,11 +82,13 @@ public class DataSource {
         }
     }
     
+    // Deletes the bank account with the specified iban
     public void removeBankAccount(String iban) {
         _bankAccounts.remove(iban);
         _bankAccountsFileController.save(_bankAccounts);
     }
     
+    // Saves the new transaction to the database
     public void addTransaction(Transaction transaction) throws ItemAlreadyExistsException {
         if(_transactions.containsKey(transaction.getTransactionId())) {
             throw new ItemAlreadyExistsException("Transaction with this id already exists");
@@ -95,11 +99,13 @@ public class DataSource {
         }
     }
     
+    // Delete the transaction with the specified id
     public void removeTransaction(UUID transactionId) {
         _transactions.remove(transactionId);
         _transactionsFileController.save(_transactions);
     }
     
+    // Saves the new planned payment to the database
     public void addPlannedPayment(PlannedPayment plannedPayment) throws ItemAlreadyExistsException {
         if(_plannedPayments.containsKey(plannedPayment.getId())) {
             throw new ItemAlreadyExistsException("Planned payment with this id already exists.");
@@ -110,15 +116,18 @@ public class DataSource {
         }
     }
     
+    // Deletes a planned payment with the specified id from the database
     public void removePlannedPayment(UUID plannedPaymentId) {
         _plannedPayments.remove(plannedPaymentId);
         _plannedPaymentsFileController.save(_plannedPayments);
     }
     
+    // Returns the user with the specified id
     public User getUserById(UUID id) {
         return _users.get(id);
     }
     
+    // Returns the user with the specified username and password
     public User getUserByCredentials(String username, char[] password) throws InvalidUserCredentialsException {
         for(var user : _users.values()) {
             if(user.getUsername().equals(username)) {
@@ -131,10 +140,12 @@ public class DataSource {
         throw new InvalidUserCredentialsException("Username or password is wrong.");
     }
     
+    // Returns the bank account with the specified iban
     public BankAccount getBankAccountByIban(String iban) {
         return _bankAccounts.get(iban);
     }
     
+    // Returns all bank accounts for the specified user
     public List<BankAccount> getBankAccountsForUser(User user) {
         List<BankAccount> list = new ArrayList<>();
         
@@ -147,14 +158,17 @@ public class DataSource {
         return list;
     }
     
+    // Returns a transaction with the specified id
     public Transaction getTransactionById(UUID id) {
         return _transactions.get(id);
     }
     
+    // Returns all transactions
     public List<Transaction> getTransactions() {
         return new LinkedList<>(_transactions.values());
     }
     
+    // Returns all planned payments by specified bank account iban
     public List<PlannedPayment> getPlannedPaymentsByBankAccountIban(String iban) {
         List<PlannedPayment> list = new ArrayList<>();
         
@@ -167,6 +181,7 @@ public class DataSource {
         return list;
     }
     
+    // Loads all data from the database
     public void loadAllData() {
         HashMap<UUID, User> users = (HashMap<UUID, User>) _usersFileController.load();
         if(users != null) {
@@ -201,6 +216,7 @@ public class DataSource {
         }
     }
     
+    // Saves all data to the database
     public void saveAllData() {
         _usersFileController.save(_users);
         _bankAccountsFileController.save(_bankAccounts);
