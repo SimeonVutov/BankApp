@@ -30,10 +30,12 @@ public class Loan extends PlannedPayment implements Serializable {
         this.loanType = loanType;
     }
     
+    // Calculates the money that must be returned by taking into account the loanType
     private static BigDecimal calculateReturnMoney(LoanType loanType, BigDecimal money) {
         return money.add(money.multiply(loanType.getInterestRateForCalculations()));
     }
 
+    // Returns the String representation of the loan
     @Override
     public String toString() {
         return String.format("(LOAN) %s - %s %s", getName(), getPaymentDate(), getMoney());

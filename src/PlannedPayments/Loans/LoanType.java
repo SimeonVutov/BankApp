@@ -22,19 +22,24 @@ public abstract class LoanType implements Serializable {
         LOAN_LIMIT = loanLimit;
     }
     
+    // Returns the interest rate in percentages
     public BigDecimal getInterestRate() {
         return INTEREST_RATE;
     }
 
+    // Returns the interest rate by converting it from percetages to a decimal number
     public BigDecimal getInterestRateForCalculations() {
         return INTEREST_RATE.divide(new BigDecimal(100));
     }
     
+    // Returns the loan limit
     public BigDecimal loanLimit() {
         return LOAN_LIMIT;
     }
 
+    // Returns the return date
     public abstract LocalDate getReturnDate();
+    // Returns the String representation of the specific loan
     @Override
     public abstract String toString();
 }

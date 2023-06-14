@@ -20,6 +20,7 @@ public class LongTermLoanType extends LoanType implements Serializable {
         super(new BigDecimal(1), new BigDecimal(100000));
     }
     
+    // The return rate for this loan is current date plus 5 years
     @Override
     public LocalDate getReturnDate() {
         return LocalDate.now().plusYears(5);
