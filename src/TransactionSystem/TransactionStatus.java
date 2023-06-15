@@ -11,5 +11,5 @@ package TransactionSystem;
 public enum TransactionStatus {
     Pending,
     Succeded,
-    Faild
+    Failed
 }

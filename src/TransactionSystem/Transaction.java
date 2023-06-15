@@ -90,7 +90,7 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Faild;
+                    _status = TransactionStatus.Failed;
                 }
             }
             // Withdraw transaction has only fromBankAccount
@@ -103,7 +103,7 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Faild;
+                    _status = TransactionStatus.Failed;
                 }
             }
             
@@ -120,11 +120,11 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Faild;
+                    _status = TransactionStatus.Failed;
                 }
             }
         } catch (Exception e) {
-            _status = TransactionStatus.Faild;
+            _status = TransactionStatus.Failed;
             
             //If in the transfer transaction the removal of money has passed, but the adding has failed
             //Return the removed money
