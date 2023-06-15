@@ -59,22 +59,24 @@ public class Application {
     
     // Get the up to date information from the database
     public void refreshUserInformation() {
-        _bankAccounts = DataSource.DATA_SOURCE.getBankAccountsForUser(_user);
+        _bankAccounts = DataSource.DATA_SOURCE.getBankAccountsForUser(_user); // Time and space - O(n)
         
         for(var bankAccount : _bankAccounts) {
             _transactions.addAll(
                     TransactionManager.TRANSACTION_MANAGER.getTransactionsByBankAccountIban(
                             bankAccount.getIban()
                     )
-            );
+            ); // Time - O(t) | Space - O(t)
             
             _plannedPayments.addAll(
                     DataSource.DATA_SOURCE.getPlannedPaymentsByBankAccountIban(
                             bankAccount.getIban()
                     )
-            );
+            ); // Time - O(p) | Space - O(p)
+            
+            //Time and space - O(t + p)
         }
-    }
+    } // Time complexity - O(n *(t + p)) | Space complexity - O(n * (t + p))
     
     // Clear the user information
     private void setDefaultUserInformation() {

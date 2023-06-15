@@ -74,7 +74,7 @@ public class Transaction implements Serializable {
         else if(fromBankAccount != null && toBankAccount != null) {
             _type = TransactionType.Transfer;
         }
-    }
+    } // Time - O(1) | Space - O(1)
     
     // Executes the transaction based on its type and updates the status of the transaction accordingly
     public void Execute() {

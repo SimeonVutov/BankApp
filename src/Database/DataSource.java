@@ -138,7 +138,7 @@ public class DataSource {
         }
         
         throw new InvalidUserCredentialsException("Username or password is wrong.");
-    }
+    } // Time complexity - O(n) | Space complexity - O(1)
     
     // Returns the bank account with the specified iban
     public BankAccount getBankAccountByIban(String iban) {
@@ -156,7 +156,7 @@ public class DataSource {
         }
         
         return list;
-    }
+    } // Time complexity - O(n) | Space complexity - O(n)
     
     // Returns a transaction with the specified id
     public Transaction getTransactionById(UUID id) {
@@ -179,7 +179,7 @@ public class DataSource {
         }
         
         return list;
-    }
+    } // Time complexity - O(n) | Space complexity - O(n
     
     // Loads all data from the database
     public void loadAllData() {
