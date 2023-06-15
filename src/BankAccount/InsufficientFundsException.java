@@ -11,9 +11,12 @@ import java.math.BigDecimal;
  *
  * @author Simeon_32
  */
+
+// Represents an exception that is thrown when there are insufficient funds for a transaction
 public class InsufficientFundsException extends Exception {
     private BigDecimal _needed;
 
+    // Returns the amount of money that is required to fulfill the failed transaction due to insufficient funds
     public BigDecimal getNeeded() {
         return _needed;
     }
