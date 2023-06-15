@@ -50,14 +50,17 @@ public class PlannedPayment implements Serializable {
         _id = UUID.randomUUID();
     }
     
+    // Checks if the payment overdue by comparing the payment date and the current date
     public boolean IsPaymentOverdue() {
         return _paymentDate.isBefore(LocalDate.now());
     }
     
+    // Pays the planned payment by creating transaction
     public Transaction Pay() throws IllegalArgumentException, ItemAlreadyExistsException {
         return TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(_money, _bankAccountIban, null);
     }
     
+    // Returns string representation of the planned payment
     @Override
     public String toString() {
         return String.format("%s - %s %s", _name, _paymentDate.toString(), _money.toString());
