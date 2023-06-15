@@ -23,6 +23,7 @@ public class TransactionProcessor implements Runnable {
     private Duration _processorWaitTime;
     private DataChangedEvent _dataChangedEvent;
     
+    // Returns the data changed event for the transaction processor
     public DataChangedEvent getDataChangedEvent() {
         return _dataChangedEvent;
     }
@@ -33,24 +34,29 @@ public class TransactionProcessor implements Runnable {
         _dataChangedEvent = new DataChangedEvent(this);
     }
 
+    // Starts the transaction processor thread
     public void Start() {
         thread = new Thread(this);
         thread.start();
     }
     
+    // Resumes the transaction processor thread if it was paused
     public void Resume() {
         _semaphore.release();
     }
     
+    // Stops the transaction processor thread
     public void Stop() {
         _running = false;
         _semaphore.release();
     }
     
+    // Adds a transaction to the pending queue for processing
     public void addTransactionToQueue(Transaction transaction) {
         _pendingTransactions.add(transaction);
     }
 
+    // Performs the transaction processing in a continuous loop until the processor is stopped or interrupted
     @Override
     public void run() {
         while (true) {

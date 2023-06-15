@@ -21,6 +21,7 @@ public class TransactionManager {
     private List<Transaction> _transactions;
     private TransactionProcessor _transactionProcessor;
     
+    // Returns the data changed event associated with the transaction processor
     public DataChangedEvent getDataChangedEvent() {
         return _transactionProcessor.getDataChangedEvent();
     }
@@ -36,6 +37,7 @@ public class TransactionManager {
         _transactionProcessor.Start();
     }
     
+    // Creates a new transaction and saves it to the database
     public Transaction createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
         Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
         DataSource.DATA_SOURCE.addTransaction(newTransaction);
@@ -45,6 +47,7 @@ public class TransactionManager {
         return newTransaction;
     }
     
+    // Returns all transactions associated with a specific bank account
     public List<Transaction> getTransactionsByBankAccountIban(String iban) {
         List<Transaction> transactions = new LinkedList<>();
         

@@ -60,6 +60,7 @@ public class Transaction implements Serializable {
         DetermineTransactionType(fromBankAccountIban, toBankAccountIban);
     }
     
+    // Determines the transaction type based on the information within the transaction
     private void DetermineTransactionType(String fromBankAccount, String toBankAccount) throws IllegalArgumentException {
         if(fromBankAccount == null && toBankAccount == null) {
             throw new IllegalArgumentException("Invalid transaction.");
@@ -75,9 +76,12 @@ public class Transaction implements Serializable {
         }
     }
     
+    // Executes the transaction based on its type and updates the status of the transaction accordingly
     public void Execute() {
         boolean transferMoneyRemoved = false;
         try {
+            // Deposit transaction has only toBankAccount
+            // This is the bank account in which the money will be added
             if(_type == TransactionType.Deposit) {
                 BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_toBankAccountIban);
                 
@@ -86,9 +90,11 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
+            // Withdraw transaction has only fromBankAccount
+            // This is the bank account from which the money will be removed
             else if(_type == TransactionType.Withdraw) {
                 BankAccount fromBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_fromBankAccountIban);
                 
@@ -97,9 +103,12 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
+            
+            // Transfer has both fromBankAccount and toBankAccount
+            // The money will be transfered from the first account to the second
             else if(_type == TransactionType.Transfer) {
                 BankAccount fromBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_fromBankAccountIban);
                 BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(_toBankAccountIban);
@@ -111,11 +120,11 @@ public class Transaction implements Serializable {
                     _status = TransactionStatus.Succeded;
                 }
                 else {
-                    _status = TransactionStatus.Failded;
+                    _status = TransactionStatus.Faild;
                 }
             }
         } catch (Exception e) {
-            _status = TransactionStatus.Failded;
+            _status = TransactionStatus.Faild;
             
             //If in the transfer transaction the removal of money has passed, but the adding has failed
             //Return the removed money
@@ -125,6 +134,7 @@ public class Transaction implements Serializable {
         }
     }
     
+    // Returns string representation of the transaction
     @Override
     public String toString() {
         if(_type == TransactionType.Deposit) {
