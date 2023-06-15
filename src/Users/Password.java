@@ -43,6 +43,7 @@ public class Password implements Serializable {
         hash = Base64.getDecoder().decode(parts[1]);
     }
     
+    // Checks if the given password matches the current password
     public boolean verify(char[] password) {
         byte[] testHash = hashPassword(password);
         
@@ -56,6 +57,7 @@ public class Password implements Serializable {
         return false;
     }
     
+    // Changes the current password to the specified one
     public void changePassword(char[] newPassword) {
         SecureRandom random = new SecureRandom();
         salt = new byte[SALT_SIZE];
@@ -71,6 +73,7 @@ public class Password implements Serializable {
         }
     }
     
+    // Performs a hash function on the given password
     private byte[] hashPassword(char[] password) {
         try {
             MessageDigest md = MessageDigest.getInstance(ALGORITHM);
@@ -82,6 +85,7 @@ public class Password implements Serializable {
         }
     }
     
+    // Returns the string representation of a password
     @Override
     public String toString() {
         return Base64.getEncoder().encodeToString(salt) + "`" +
