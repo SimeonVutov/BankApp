@@ -21,22 +21,22 @@ import Core.DataRefreshListener;
  * @author Bubo & Yana
  */
 public class ViewAccountInformationFrame extends javax.swing.JFrame implements DataEditedListener, DataRefreshListener {
-    private Application _app;
-    private FramesController _framesController;
-    private BankAccount _bankAccount;
-    private DefaultListModel<Transaction> _transactionsDefaultListModel;
+    private Application app;
+    private FramesController framesController;
+    private BankAccount bankAccount;
+    private DefaultListModel<Transaction> transactionsDefaultListModel;
     
     /**
      * Creates new form ViewAccountInformationFrame
      */
     public ViewAccountInformationFrame(Application application, FramesController framesController, Object iban) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
-        _bankAccount = _app.getBankAccountByIban((String) iban);
-        _transactionsDefaultListModel = new DefaultListModel<>();
-        transactionHistoryList.setModel(_transactionsDefaultListModel);
+        bankAccount = app.getBankAccountByIban((String) iban);
+        transactionsDefaultListModel = new DefaultListModel<>();
+        transactionHistoryList.setModel(transactionsDefaultListModel);
         TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
         
         //UI settings
@@ -44,7 +44,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         //Setting infromation
-        userNameNavbar.setText(_app.getUser().getUsername());
+        userNameNavbar.setText(app.getUser().getUsername());
         loadData();
         
         setVisible(true);
@@ -432,58 +432,58 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     //Edits the bank account
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
-        EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(_bankAccount);
+        EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(bankAccount);
         editBankAccountFrame.getDataEditedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
     //Removes bank account
     private void removeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBtnActionPerformed
         // TODO add your handling code here:
-        _app.removeBankAccount(_bankAccount);
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        app.removeBankAccount(bankAccount);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_removeBtnActionPerformed
 
     //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
-        _app.logOut();
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.logOut();
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
     //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
     //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.LOANS_FRAME);
+        framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
@@ -494,14 +494,14 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     
     //Loads user information
     private void loadData() {
-        ibanLabel.setText(_bankAccount.getIban());
-        accountNameLabel.setText(_bankAccount.getName());
-        currentBalanceLabel.setText(_bankAccount.getBalance().toString());
+        ibanLabel.setText(bankAccount.getIban());
+        accountNameLabel.setText(bankAccount.getName());
+        currentBalanceLabel.setText(bankAccount.getBalance().toString());
         
-        List<Transaction> list = _app.getTransactionsForBankAccount(_bankAccount.getIban());
-        _transactionsDefaultListModel.clear();
+        List<Transaction> list = app.getTransactionsForBankAccount(bankAccount.getIban());
+        transactionsDefaultListModel.clear();
         for(int i = list.size() - 1; i >= 0; i--) {
-            _transactionsDefaultListModel.addElement(list.get(i));
+            transactionsDefaultListModel.addElement(list.get(i));
         }
     }
     
@@ -509,7 +509,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     @Override
     public void onDataEditedEvent() {
         loadData();
-        _app.save();
+        app.save();
     }
     
     @Override

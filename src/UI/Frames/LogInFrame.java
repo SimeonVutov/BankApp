@@ -16,18 +16,18 @@ import javax.swing.JOptionPane;
  * @author Bubo & Yana
  */
 public class LogInFrame extends javax.swing.JFrame {
-    private Application _app;
-    private FramesController _framesController;
+    private Application app;
+    private FramesController framesController;
     
-    private String _username;
-    private char[] _password;
+    private String username;
+    private char[] password;
     /**
      * Creates new form LogInFrame
      */
     public LogInFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
         //UI settings
         setSize(1920, 935);
@@ -198,16 +198,16 @@ public class LogInFrame extends javax.swing.JFrame {
     //Checks if the user information is correct and logs in the user
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
-        _username = userNameTextField.getText();
-        _password = passwordField.getPassword();
+        username = userNameTextField.getText();
+        password = passwordField.getPassword();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             try {
-                _app.logIn(_username, _password);
+                app.logIn(username, password);
                 
-                _framesController.openFrame(FrameType.MAIN_FRAME);
+                framesController.openFrame(FrameType.MAIN_FRAME);
                 dispose();
             } catch (InvalidUserCredentialsException ex) {
                 JOptionPane.showMessageDialog(this, "Username or password is incorrect!", "Error", 0);
@@ -227,7 +227,7 @@ public class LogInFrame extends javax.swing.JFrame {
     //Opens SingUp frame
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.SIGN_UP_FRAME);
+        framesController.openFrame(FrameType.SIGN_UP_FRAME);
         dispose();
     }//GEN-LAST:event_signUpBtnActionPerformed
 
@@ -235,10 +235,10 @@ public class LogInFrame extends javax.swing.JFrame {
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_username.isBlank()) {
+        if(username.isBlank()) {
             errors.add("Username field cannot be empty");
         }
-        if(_password.length == 0) {
+        if(password.length == 0) {
             errors.add("Password field cannot be empty");
         }
         

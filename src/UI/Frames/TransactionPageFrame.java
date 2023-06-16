@@ -25,20 +25,20 @@ import Core.DataRefreshListener;
  * @author Bubo & Yana
  */
 public class TransactionPageFrame extends javax.swing.JFrame implements DataRefreshListener {
-    private Application _app;
-    private FramesController _framesController;
-    DefaultListModel<Transaction> _transactionsListModel;
+    private Application app;
+    private FramesController framesController;
+    DefaultListModel<Transaction> transactionsListModel;
     
     /**
      * Creates new form TransactionPageFrame
      */
     public TransactionPageFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
-        _transactionsListModel = new DefaultListModel<>();
-        transactionHistoryList.setModel(_transactionsListModel);
+        transactionsListModel = new DefaultListModel<>();
+        transactionHistoryList.setModel(transactionsListModel);
         TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
         
         //UI settings
@@ -47,7 +47,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
         
         //Setting information
         loadData();
-        userNameNavbar.setText(_app.getUser().getUsername());
+        userNameNavbar.setText(app.getUser().getUsername());
         
         setVisible(true);
     }
@@ -418,64 +418,64 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
     //Opens a deposit frame
     private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
         // TODO add your handling code here:
-        CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
+        CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(app);
         createDepositTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
 
     //Opens a withdraw frame
     private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
         // TODO add your handling code here:
-        CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
+        CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(app);
         createWithdrawTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
 
     //Opens a transfer frame
     private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
         // TODO add your handling code here:
-        CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
+        CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(app);
         createTransferTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
 
     //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
-        _app.logOut();
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.logOut();
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
     //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
     //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.LOANS_FRAME);
+        framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
@@ -488,10 +488,10 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
         
-        _transactionsListModel.clear();
-        List<Transaction> list = _app.getAllTransactions();
+        transactionsListModel.clear();
+        List<Transaction> list = app.getAllTransactions();
         for(int i = list.size() - 1; i >= 0; i--) {
-            _transactionsListModel.addElement(list.get(i));
+            transactionsListModel.addElement(list.get(i));
         }
         
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
@@ -500,7 +500,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
     //Calculates the current balance of the user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
-        List<BankAccount> list = _app.getAllBankAccounts();
+        List<BankAccount> list = app.getAllBankAccounts();
         
         for(var bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
@@ -512,7 +512,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
     //Calculates the sum of all planned payments of the user
     private BigDecimal calculatePlannedPayments() {
         BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
-        List<PlannedPayment> list = _app.getAllPlannedPayments();
+        List<PlannedPayment> list = app.getAllPlannedPayments();
         
         for(var plannedPayment : list) {
             plannedPaymentsValue = plannedPaymentsValue.add(plannedPayment.getMoney());
