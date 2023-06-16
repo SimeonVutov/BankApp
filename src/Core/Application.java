@@ -28,10 +28,10 @@ import java.util.UUID;
  * @author Moni
  */
 public class Application {
-    private User _user;
-    private List<BankAccount> _bankAccounts;
-    private List<Transaction> _transactions;
-    private List<PlannedPayment> _plannedPayments;
+    private User user;
+    private List<BankAccount> bankAccounts;
+    private List<Transaction> transactions;
+    private List<PlannedPayment> plannedPayments;
     
     public Application() {
         setDefaultUserInformation();
@@ -40,7 +40,7 @@ public class Application {
     // Logs in the user
     public void logIn(String username, char[] password) throws InvalidUserCredentialsException {
         User user = DataSource.DATA_SOURCE.getUserByCredentials(username, password);
-        _user = user;
+        this.user = user;
         refreshUserInformation();
     }
 
@@ -59,16 +59,16 @@ public class Application {
     
     // Get the up to date information from the database
     public void refreshUserInformation() {
-        _bankAccounts = DataSource.DATA_SOURCE.getBankAccountsForUser(_user); // Time and space - O(n)
+        bankAccounts = DataSource.DATA_SOURCE.getBankAccountsForUser(user); // Time and space - O(n)
         
-        for(var bankAccount : _bankAccounts) {
-            _transactions.addAll(
+        for(var bankAccount : bankAccounts) {
+            transactions.addAll(
                     TransactionManager.TRANSACTION_MANAGER.getTransactionsByBankAccountIban(
                             bankAccount.getIban()
                     )
             ); // Time - O(t) | Space - O(t)
             
-            _plannedPayments.addAll(
+            plannedPayments.addAll(
                     DataSource.DATA_SOURCE.getPlannedPaymentsByBankAccountIban(
                             bankAccount.getIban()
                     )
@@ -80,25 +80,25 @@ public class Application {
     
     // Clear the user information
     private void setDefaultUserInformation() {
-        _user = null;
-        _bankAccounts = new ArrayList<>();
-        _transactions = new LinkedList<>();
-        _plannedPayments = new ArrayList<>();
+        user = null;
+        bankAccounts = new ArrayList<>();
+        transactions = new LinkedList<>();
+        plannedPayments = new ArrayList<>();
     }
     
     // Returns the current user
     public User getUser() {
-        return _user;
+        return user;
     }
     
     // Returns all bank accounts for the current user
     public List<BankAccount> getAllBankAccounts() {
-        return _bankAccounts;
+        return bankAccounts;
     }
     
     // Returns a bank account by given iban
     public BankAccount getBankAccountByIban(String iban) {
-        for(var bankAccount : _bankAccounts) {
+        for(var bankAccount : bankAccounts) {
             if(bankAccount.getIban().equals(iban)) {
                 return bankAccount;
             }
@@ -114,25 +114,25 @@ public class Application {
     
     // Returns all transactions for the current user
     public List<Transaction> getAllTransactions() {
-        return _transactions;
+        return transactions;
     }
     
     // Returns all planned payments for the current user
     public List<PlannedPayment> getAllPlannedPayments() {
-        return _plannedPayments;
+        return plannedPayments;
     }
     
     // Gets all overdue planned payments for the current user
     public List<PlannedPayment> getOverduePlannedPayments() {
-        List<PlannedPayment> plannedPayments = new ArrayList<>();
+        List<PlannedPayment> overduePlannedPayments = new ArrayList<>();
         
-        for(var plannedPayment : _plannedPayments) {
-            if(plannedPayment.IsPaymentOverdue()) {
-                plannedPayments.add(plannedPayment);
+        for(var plannedPayment : plannedPayments) {
+            if(plannedPayment.isPaymentOverdue()) {
+                overduePlannedPayments.add(plannedPayment);
             }
         }
         
-        return plannedPayments;
+        return overduePlannedPayments;
     }
     
     // Deletes a user from the database by ID
@@ -142,9 +142,9 @@ public class Application {
     
     // Creates a new bank account with specified name
     public void createBankAccount(String name) throws ItemAlreadyExistsException {
-        BankAccount newBankAccount = new BankAccount(name, _user.getUserId());
+        BankAccount newBankAccount = new BankAccount(name, user.getUserId());
         DataSource.DATA_SOURCE.addBankAccount(newBankAccount);
-        _bankAccounts.add(newBankAccount);
+        bankAccounts.add(newBankAccount);
     }
     
     // Deletes a bank account from the database
@@ -152,15 +152,15 @@ public class Application {
     public void removeBankAccount(BankAccount bankAccount) {
         DataSource.DATA_SOURCE.removeBankAccount(bankAccount.getIban());
         LinkedList<PlannedPayment> plannedPaymentsForRemoving = new LinkedList<>();
-        for (PlannedPayment payment : _plannedPayments) {
+        for (PlannedPayment payment : plannedPayments) {
             if(payment.getBankAccountIban().equals(bankAccount.getIban())) {
                 plannedPaymentsForRemoving.add(payment);
             }
         }
         
-        _plannedPayments.removeAll(plannedPaymentsForRemoving);
+        plannedPayments.removeAll(plannedPaymentsForRemoving);
         
-        _bankAccounts.remove(bankAccount);
+        bankAccounts.remove(bankAccount);
     }
     
     // Creates a new transation
@@ -168,21 +168,21 @@ public class Application {
         Transaction newTransaction = TransactionManager.TRANSACTION_MANAGER.createTransaction(
             amountOfMoney, fromBankAccountIban, toBankAccountIban
         );
-        _transactions.add(newTransaction);
+        transactions.add(newTransaction);
     }
     
     // Creates a new planned payment
     public void createPlannedPayment(LocalDate paymentDate, String bankAccountIban, BigDecimal money, String name) throws ItemAlreadyExistsException {
         PlannedPayment newPlannedPayment = new PlannedPayment(paymentDate, bankAccountIban, money, name);
         DataSource.DATA_SOURCE.addPlannedPayment(newPlannedPayment);
-        _plannedPayments.add(newPlannedPayment);
+        plannedPayments.add(newPlannedPayment);
     }
     
     // Creates a new loan
     public void createLoan(LoanType loanType, String bankAccountIban, BigDecimal money, String name) throws LoanLimitExceededException, ItemAlreadyExistsException {
         Loan loan = new Loan(loanType, bankAccountIban, money, name);
         DataSource.DATA_SOURCE.addPlannedPayment(loan);
-        _plannedPayments.add(loan);
+        plannedPayments.add(loan);
     }
     
     // Pays a given planned payment
@@ -201,9 +201,9 @@ public class Application {
     public void removePlannedPayment(UUID id) {
         DataSource.DATA_SOURCE.removePlannedPayment(id);
         
-        for(var plannedPayment : _plannedPayments) {
+        for(var plannedPayment : plannedPayments) {
             if(plannedPayment.getId().equals(id)) {
-                _plannedPayments.remove(plannedPayment);
+                plannedPayments.remove(plannedPayment);
 
                 //only one planned payment with this id is possible
             }

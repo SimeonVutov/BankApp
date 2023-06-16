@@ -12,10 +12,10 @@ import javax.swing.JFrame;
  * @author Moni
  */
 public class FramesController {
-    private Application _app;
+    private Application app;
     
     public FramesController(Application app) {
-        _app = app;
+        this.app = app;
     }
     
     // Creates a new frame of the specified FrameType
@@ -24,7 +24,7 @@ public class FramesController {
         
         try {
             Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
-            frameConstructor.newInstance(_app, this);
+            frameConstructor.newInstance(app, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class FramesController {
         
         try {
             Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class, Object.class);
-            frameConstructor.newInstance(_app, this, data);
+            frameConstructor.newInstance(app, this, data);
         } catch (Exception e) {
             e.printStackTrace();
         }

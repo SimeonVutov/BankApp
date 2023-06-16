@@ -16,16 +16,16 @@ import Core.DataEditedListener;
  * @author Bubo & Yana
  */
 public class ViewUserProfileFrame extends javax.swing.JFrame implements DataEditedListener {
-    private Application _app;
-    private FramesController _framesController;
+    private Application app;
+    private FramesController framesController;
     
     /**
      * Creates new form ViewUserProfielFrame
      */
     public ViewUserProfileFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
         //UI settings
         setSize(1920, 935);
@@ -367,15 +367,15 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataEdit
     //Edits the user information
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
-        EditUserFrame editUserFrame = new EditUserFrame(_app.getUser());
+        EditUserFrame editUserFrame = new EditUserFrame(app.getUser());
         editUserFrame.getDataEditedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
     //Deletes the user
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        _app.removeUser(_app.getUser().getUserId());
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.removeUser(app.getUser().getUserId());
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         
         dispose();
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -383,51 +383,51 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataEdit
     //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
-        _app.logOut();
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.logOut();
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     //Opens the user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
     //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
     //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.LOANS_FRAME);
+        framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
     //Loading user information
     private void loadData() {
-        User user = _app.getUser();
+        User user = app.getUser();
         
-        userNameNavbar.setText(_app.getUser().getUsername());
+        userNameNavbar.setText(app.getUser().getUsername());
         usernameLabel.setText(user.getUsername());
         fullNameLabel.setText(user.getPerson().toString());
         emailLabel.setText(user.getEmail());
@@ -438,7 +438,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataEdit
     @Override
     public void onDataEditedEvent() {
         loadData();
-        _app.save();
+        app.save();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

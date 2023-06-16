@@ -19,20 +19,21 @@ import javax.swing.JOptionPane;
  * @author Bubo & Yana
  */
 public class CreatePlannedPaymentFrame extends CreateFrame {
-    private Application _app;
-    private BankAccount _selectedBankAccount = null;
-    private String _name;
-    private String _money;
-    private String _date;
+    private Application app;
+    private BankAccount selectedBankAccount = null;
+    private String name;
+    private String money;
+    private String date;
     /**
      * Creates new form CreatePlannedPaymentFrame
      */
     public CreatePlannedPaymentFrame(Application app) {
         initComponents();
-        _app = app;
+        this.app = app;
+        
         DefaultListModel<BankAccount> defaultListModel = new DefaultListModel<>();
         bankAccountsList.setModel(defaultListModel);
-        defaultListModel.addAll(_app.getAllBankAccounts());
+        defaultListModel.addAll(app.getAllBankAccounts());
         
         setVisible(true);
     }
@@ -188,15 +189,15 @@ public class CreatePlannedPaymentFrame extends CreateFrame {
     //Creates a planned payment
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _selectedBankAccount = bankAccountsList.getSelectedValue();
-        _name = nameTextField.getText();
-        _money = amountOfMoneyTextField.getText();
-        _date = dateTextField.getText();
+        selectedBankAccount = bankAccountsList.getSelectedValue();
+        name = nameTextField.getText();
+        money = amountOfMoneyTextField.getText();
+        date = dateTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
-            var dateStringArr = _date.split("[.]");
+            var dateStringArr = date.split("[.]");
             LocalDate date = LocalDate.of(
                     Integer.parseInt(dateStringArr[2]),
                     Integer.parseInt(dateStringArr[1]),
@@ -204,7 +205,7 @@ public class CreatePlannedPaymentFrame extends CreateFrame {
             );
             
             try {
-                _app.createPlannedPayment(date, _selectedBankAccount.getIban(), new BigDecimal(_money), _name);
+                app.createPlannedPayment(date, selectedBankAccount.getIban(), new BigDecimal(money), name);
                 getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (ItemAlreadyExistsException ex) {
@@ -232,16 +233,16 @@ public class CreatePlannedPaymentFrame extends CreateFrame {
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_selectedBankAccount == null) {
+        if(selectedBankAccount == null) {
             errors.add("Bank account was not selected");
         }
-        if(_name.length() == 0) {
+        if(name.length() == 0) {
             errors.add("Planned payment name field cannot be empty");
         }
-        if(!_money.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+        if(!money.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
             errors.add("Invalid amount of money");
         }
-        if(!_date.matches("^\\d{2}.\\d{2}.\\d{4}$")) {
+        if(!date.matches("^\\d{2}.\\d{2}.\\d{4}$")) {
             errors.add("Invalid date");
         }
 

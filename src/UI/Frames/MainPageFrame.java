@@ -22,25 +22,25 @@ import java.util.List;
  * @author Bubo & Yana
  */
 public class MainPageFrame extends javax.swing.JFrame implements DataRefreshListener {
-    private Application _app;
-    private FramesController _framesController;
-    private DefaultListModel<PlannedPayment> _plannedPaymentsDefaultListModel;
-    private DefaultListModel<BankAccount> _bankAccountsDefaultListModel;
-    private BankAccount _selectedBankAccount = null;
-    private PlannedPayment _selectedPlannedPayment = null;
+    private Application app;
+    private FramesController framesController;
+    private DefaultListModel<PlannedPayment> plannedPaymentsDefaultListModel;
+    private DefaultListModel<BankAccount> bankAccountsDefaultListModel;
+    private BankAccount selectedBankAccount = null;
+    private PlannedPayment selectedPlannedPayment = null;
     
     /**
      * Creates new form MainPageFrame
      */
     public MainPageFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
-        _plannedPaymentsDefaultListModel = new DefaultListModel<>();
-        plannedPaymentsList.setModel(_plannedPaymentsDefaultListModel);
-        _bankAccountsDefaultListModel= new DefaultListModel<>();
-        bankAccountsList.setModel(_bankAccountsDefaultListModel);
+        plannedPaymentsDefaultListModel = new DefaultListModel<>();
+        plannedPaymentsList.setModel(plannedPaymentsDefaultListModel);
+        bankAccountsDefaultListModel= new DefaultListModel<>();
+        bankAccountsList.setModel(bankAccountsDefaultListModel);
         
         //UI settings
         setBackground(UI_Variables.BACKGROUND_COLOR);
@@ -50,7 +50,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
         //Setting infromation
         loadData();
         
-        processPlannedPayments(_app.getOverduePlannedPayments());
+        processPlannedPayments(app.getOverduePlannedPayments());
         TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
     }
 
@@ -431,56 +431,56 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
     //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
     //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
     //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
-        _app.logOut();
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.logOut();
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
     //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
     //Updates the selected bank account from the list
     private void bankAccountsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_bankAccountsListValueChanged
         // TODO add your handling code here:
-        _selectedBankAccount = bankAccountsList.getSelectedValue();
+        selectedBankAccount = bankAccountsList.getSelectedValue();
     }//GEN-LAST:event_bankAccountsListValueChanged
 
     //Updates the selected planned payment from the list
     private void plannedPaymentsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_plannedPaymentsListValueChanged
         // TODO add your handling code here:
-        _selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
+        selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
     }//GEN-LAST:event_plannedPaymentsListValueChanged
 
     //Creates a new bank account
     private void createBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBankAccountBtnActionPerformed
         // TODO add your handling code here:
-        CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(_app);
+        CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(app);
         createBankAccountFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_createBankAccountBtnActionPerformed
 
     //Edits an existing bank account
     private void editBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBankAccountBtnActionPerformed
         // TODO add your handling code here:
-        if(_selectedBankAccount != null) {
-            _framesController.openFrame(FrameType.VIEW_ACCOUNT_FRAME, _selectedBankAccount.getIban());
+        if(selectedBankAccount != null) {
+            framesController.openFrame(FrameType.VIEW_ACCOUNT_FRAME, selectedBankAccount.getIban());
             dispose();
         }
     }//GEN-LAST:event_editBankAccountBtnActionPerformed
@@ -488,15 +488,15 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
     //Creates a new planned payment
     private void plannedPaymentsCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsCreateBtnActionPerformed
         // TODO add your handling code here:
-        CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(_app);
+        CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(app);
         createPlannedPaymentFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_plannedPaymentsCreateBtnActionPerformed
 
     //Removes a planned payment
     private void plannedPaymentsDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsDeleteBtnActionPerformed
         // TODO add your handling code here:
-        if(_selectedPlannedPayment != null) {
-            _app.removePlannedPayment(_selectedPlannedPayment.getId());
+        if(selectedPlannedPayment != null) {
+            app.removePlannedPayment(selectedPlannedPayment.getId());
             loadData();
         }
     }//GEN-LAST:event_plannedPaymentsDeleteBtnActionPerformed
@@ -504,14 +504,14 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
     //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
     //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.LOANS_FRAME);
+        framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
@@ -522,20 +522,20 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
 
     //Loading user information
     private void loadData() {
-        userNameNavbar.setText(_app.getUser().getUsername());
+        userNameNavbar.setText(app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
         
-        _plannedPaymentsDefaultListModel.clear();
-        _plannedPaymentsDefaultListModel.addAll(_app.getAllPlannedPayments());
+        plannedPaymentsDefaultListModel.clear();
+        plannedPaymentsDefaultListModel.addAll(app.getAllPlannedPayments());
 
-        _bankAccountsDefaultListModel.clear();
-        _bankAccountsDefaultListModel.addAll(_app.getAllBankAccounts());
+        bankAccountsDefaultListModel.clear();
+        bankAccountsDefaultListModel.addAll(app.getAllBankAccounts());
     }
     
     //Calculates the current balance of the current user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
-        List<BankAccount> list = _app.getAllBankAccounts();
+        List<BankAccount> list = app.getAllBankAccounts();
         
         for(var bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
@@ -550,7 +550,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
             int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);
             if(result == 0) {
                 for(var payment : plannedPayments) {
-                    _app.payPlannedPayment(payment);
+                    app.payPlannedPayment(payment);
                 }
             }
         }

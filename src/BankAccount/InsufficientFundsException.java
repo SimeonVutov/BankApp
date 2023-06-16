@@ -14,15 +14,15 @@ import java.math.BigDecimal;
 
 // Represents an exception that is thrown when there are insufficient funds for a transaction
 public class InsufficientFundsException extends Exception {
-    private BigDecimal _needed;
+    private BigDecimal needed;
 
     // Returns the amount of money that is required to fulfill the failed transaction due to insufficient funds
     public BigDecimal getNeeded() {
-        return _needed;
+        return needed;
     }
     
     public InsufficientFundsException(BigDecimal needed) {
         super("Insufficient Funds");
-        _needed = needed;
+        this.needed = needed;
     }
 }

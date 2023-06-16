@@ -17,20 +17,20 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class CreateWithdrawTransactionFrame extends CreateFrame {
-    private Application _app;
-    private BankAccount _bankAccount;
-    private String _amouthOfMoney;
+    private Application app;
+    private BankAccount bankAccount;
+    private String amouthOfMoney;
     /**
      * Creates new form CreateWithdrawTransactionFrame
      */
     public CreateWithdrawTransactionFrame(Application app) {
         initComponents();
-        _app = app;
+        this.app = app;
 
         DefaultListModel<BankAccount> bankAccountsListModel = new DefaultListModel<>();
         bankAccountsList.setModel(bankAccountsListModel);
         
-        for(var bankAccount : _app.getAllBankAccounts()) {
+        for(var bankAccount : app.getAllBankAccounts()) {
             bankAccountsListModel.addElement(bankAccount);
         }
         
@@ -149,14 +149,14 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
     //Creates a withdaraw transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _bankAccount = bankAccountsList.getSelectedValue();
-        _amouthOfMoney = moneyTextField.getText();
+        bankAccount = bankAccountsList.getSelectedValue();
+        amouthOfMoney = moneyTextField.getText();
 
         List<String> errors = validateInput();
 
         if(errors.size() == 0) {
             try {
-                _app.createTransaction(new BigDecimal(_amouthOfMoney), _bankAccount.getIban(), null);
+                app.createTransaction(new BigDecimal(amouthOfMoney), bankAccount.getIban(), null);
                 getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
@@ -186,7 +186,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
      private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(!_amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+        if(!amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
             
             errors.add("Invalid amouth of money");
         }
@@ -196,7 +196,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
                 errors.add("The amouth of money cannot be equal or less than zero.");
             }
         }
-        if(_bankAccount == null) {
+        if(bankAccount == null) {
             errors.add("A bank account was not selected");
         }
         

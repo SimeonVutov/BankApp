@@ -20,24 +20,24 @@ import javax.swing.JOptionPane;
  * @author Bubo & Yana
  */
 public class SignUpFrame extends javax.swing.JFrame {
-    private Application _app;
-    private FramesController _framesController;
+    private Application app;
+    private FramesController framesController;
     
-    private String _firstName;
-    private String _secondName;
-    private String _lastName;
-    private String _email;
-    private char[] _password;
-    private String _username;
-    private  String _phoneNumber;
+    private String firstName;
+    private String secondName;
+    private String lastName;
+    private String email;
+    private char[] password;
+    private String username;
+    private  String phoneNumber;
     
     /**
      * Creates new form SignUpFrame
      */
     public SignUpFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
         //UI Settings
         setSize(1920, 935);
@@ -311,22 +311,22 @@ public class SignUpFrame extends javax.swing.JFrame {
     //If everything is correct it creates a new user
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
-        _firstName = firstNameTextField.getText();
-        _secondName = secondNameTextField.getText();
-        _lastName = lastNameTextField.getText();
-        _email = emailTextField.getText();
-        _password = passwordField.getPassword();
-        _username = usernameTextField.getText();
-        _phoneNumber = phoneNumberTextField.getText();
+        firstName = firstNameTextField.getText();
+        secondName = secondNameTextField.getText();
+        lastName = lastNameTextField.getText();
+        email = emailTextField.getText();
+        password = passwordField.getPassword();
+        username = usernameTextField.getText();
+        phoneNumber = phoneNumberTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             try {
-                _app.signUp(new Person(_firstName, _secondName, _lastName),
-                        _username, _password, _email, _phoneNumber);
+                app.signUp(new Person(firstName, secondName, lastName),
+                        username, password, email, phoneNumber);
                 
-                _framesController.openFrame(FrameType.MAIN_FRAME);
+                framesController.openFrame(FrameType.MAIN_FRAME);
                 dispose();
             } catch (ItemAlreadyExistsException e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Error", 0);
@@ -348,37 +348,36 @@ public class SignUpFrame extends javax.swing.JFrame {
     //Opens the LogIn frame
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logInBtnActionPerformed
 
     //Validates the input
     public List<String> validateInput() {
-        
         List<String> errors = new LinkedList<>();
         
-        if(_firstName.isBlank()) {
+        if(firstName.isBlank()) {
             errors.add("First name field cannot be empty");
         }
-        if(_secondName.isBlank()) {
+        if(secondName.isBlank()) {
             errors.add("Second name field cannot be empty");
         }
-        if(_lastName.isBlank()) {
+        if(lastName.isBlank()) {
             errors.add("Last name field cannot be empty");
         }
-        if(!_email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+        if(!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
             errors.add("Invalid email");
         }
-        if(_password.length == 0) {
+        if(password.length == 0) {
             errors.add("Password field cannot be empty");
         }
-        if(!Arrays.equals(_password, confirmPasswordField.getPassword())) {
+        if(!Arrays.equals(password, confirmPasswordField.getPassword())) {
             errors.add("You should confirm your password");
         }
-        if(_username.isBlank()) {
+        if(username.isBlank()) {
             errors.add("Username field cannot be empty");
         }
-        if(!_phoneNumber.matches("^[0-9]+$")) {
+        if(!phoneNumber.matches("^[0-9]+$")) {
             errors.add("Phone field should cantain only numbers");
         }
         
