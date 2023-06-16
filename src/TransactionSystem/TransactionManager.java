@@ -51,7 +51,7 @@ public class TransactionManager {
     public List<Transaction> getTransactionsByBankAccountIban(String iban) {
         List<Transaction> list = new LinkedList<>();
         
-        for(var transaction : transactions) {
+        for(Transaction transaction : transactions) {
             String fromBankAccountIban = transaction.getFromBankAccountIban();
             String toBankAccountIban = transaction.getToBankAccountIban();
             

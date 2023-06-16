@@ -61,7 +61,7 @@ public class Application {
     public void refreshUserInformation() {
         bankAccounts = DataSource.DATA_SOURCE.getBankAccountsForUser(user); // Time and space - O(n)
         
-        for(var bankAccount : bankAccounts) {
+        for(BankAccount bankAccount : bankAccounts) {
             transactions.addAll(
                     TransactionManager.TRANSACTION_MANAGER.getTransactionsByBankAccountIban(
                             bankAccount.getIban()
@@ -98,7 +98,7 @@ public class Application {
     
     // Returns a bank account by given iban
     public BankAccount getBankAccountByIban(String iban) {
-        for(var bankAccount : bankAccounts) {
+        for(BankAccount bankAccount : bankAccounts) {
             if(bankAccount.getIban().equals(iban)) {
                 return bankAccount;
             }
@@ -126,7 +126,7 @@ public class Application {
     public List<PlannedPayment> getOverduePlannedPayments() {
         List<PlannedPayment> overduePlannedPayments = new ArrayList<>();
         
-        for(var plannedPayment : plannedPayments) {
+        for(PlannedPayment plannedPayment : plannedPayments) {
             if(plannedPayment.isPaymentOverdue()) {
                 overduePlannedPayments.add(plannedPayment);
             }
@@ -202,7 +202,7 @@ public class Application {
     public void removePlannedPayment(UUID id) {
         DataSource.DATA_SOURCE.removePlannedPayment(id);
         
-        for(var plannedPayment : plannedPayments) {
+        for(PlannedPayment plannedPayment : plannedPayments) {
             if(plannedPayment.getId().equals(id)) {
                 plannedPayments.remove(plannedPayment);
 

@@ -67,7 +67,7 @@ public class FileController<T> {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             
-            var hashMap = (HashMap<? extends Object, T>) ois.readObject();
+            HashMap<? extends Object, T> hashMap = (HashMap<? extends Object, T>) ois.readObject();
             ois.close();
             fis.close();
             

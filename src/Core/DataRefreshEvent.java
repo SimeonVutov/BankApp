@@ -32,7 +32,7 @@ public class DataRefreshEvent extends EventObject {
     
     // Fire the event which notifies all listeners
     public void fireDataRefreshEvent() {
-        for(var listener : listeners) {
+        for(DataRefreshListener listener : listeners) {
             listener.onDataRefreshEvent();
         }
     }
