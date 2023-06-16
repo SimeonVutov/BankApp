@@ -15,6 +15,14 @@ import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
 import UI.Frames.CreateFrames.CreateBankAccountFrame;
 import javax.swing.DefaultListModel;
 import PlannedPayments.PlannedPayment;
+import TransactionSystem.TransactionManager;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.JOptionPane;
+import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
+import UI.Frames.CreateFrames.CreateBankAccountFrame;
+import javax.swing.DefaultListModel;
+import PlannedPayments.PlannedPayment;
 import java.math.BigDecimal;
 import java.util.List;
 /**
@@ -47,10 +55,11 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         
         setVisible(true);
         
-        processPlannedPayments(_app.getOverduePlannedPayments());
-        
         //Setting infromation
         loadData();
+        
+        processPlannedPayments(_app.getOverduePlannedPayments());
+        TransactionManager.TRANSACTION_MANAGER.getDataChangedEvent().addListener(this);
     }
 
     /**
@@ -548,13 +557,11 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     @Override
     public void onDataChangedEvent() {
         loadData();
-        _app.save();
     }
 
     @Override
     public void onDataCreatedEvent() {
         loadData();
-        _app.save();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
