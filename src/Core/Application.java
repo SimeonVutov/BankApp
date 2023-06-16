@@ -105,7 +105,7 @@ public class Application {
         }
         
         return null;
-    }
+    } // Time complexity - O(n) | Space comeplexity - O(1)
     
     // Gets all transactions for specific bank account from the database
     public List<Transaction> getTransactionsForBankAccount(String iban) {
