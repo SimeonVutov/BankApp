@@ -148,11 +148,19 @@ public class Application {
     }
     
     // Deletes a bank account from the database
+    // Also removes all planned payments assocciated with the bank account
     public void removeBankAccount(BankAccount bankAccount) {
         DataSource.DATA_SOURCE.removeBankAccount(bankAccount.getIban());
-        if(bankAccount.getIban().equals(bankAccount.getIban())) {
-            _bankAccounts.remove(bankAccount);
+        LinkedList<PlannedPayment> plannedPaymentsForRemoving = new LinkedList<>();
+        for (PlannedPayment payment : _plannedPayments) {
+            if(payment.getBankAccountIban().equals(bankAccount.getIban())) {
+                plannedPaymentsForRemoving.add(payment);
+            }
         }
+        
+        _plannedPayments.removeAll(plannedPaymentsForRemoving);
+        
+        _bankAccounts.remove(bankAccount);
     }
     
     // Creates a new transation
@@ -196,9 +204,8 @@ public class Application {
         for(var plannedPayment : _plannedPayments) {
             if(plannedPayment.getId().equals(id)) {
                 _plannedPayments.remove(plannedPayment);
-                
+
                 //only one planned payment with this id is possible
-                break;
             }
         }
     }
