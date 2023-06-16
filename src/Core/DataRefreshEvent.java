@@ -13,26 +13,26 @@ import java.util.List;
  * @author Moni
  */
 public class DataRefreshEvent extends EventObject {
-    private List<DataRefreshListener> _listeners;
+    private List<DataRefreshListener> listeners;
     
     public DataRefreshEvent(Object source) {
         super(source);
-        _listeners = new LinkedList<>();
+        listeners = new LinkedList<>();
     }
     
     // Adds a listener to the event
     public void addListener(DataRefreshListener listener) {
-        _listeners.add(listener);
+        listeners.add(listener);
     }
     
     // Removes a listener to the event
     public void removeListener(DataRefreshListener listener) {
-        _listeners.remove(listener);
+        listeners.remove(listener);
     }
     
     // Fire the event which notifies all listeners
     public void fireDataRefreshEvent() {
-        for(var listener : _listeners) {
+        for(var listener : listeners) {
             listener.onDataRefreshEvent();
         }
     }
