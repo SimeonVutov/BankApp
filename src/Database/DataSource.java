@@ -184,32 +184,32 @@ public class DataSource {
     // Loads all data from the database
     public void loadAllData() {
         HashMap<UUID, User> loadedUsers = (HashMap<UUID, User>) usersFileController.load();
-        if(loadedUsers != null) {
-            this.users = loadedUsers;
+        if(users != null) {
+            users = loadedUsers;
         }
         else {
-            loadedUsers = new HashMap<>();
+            users = new HashMap<>();
         }
         
         HashMap<String, BankAccount> loadedBankAccounts = (HashMap<String, BankAccount>) bankAccountsFileController.load();
-        if(loadedBankAccounts != null) {
-            this.bankAccounts = loadedBankAccounts;
+        if(bankAccounts != null) {
+            bankAccounts = loadedBankAccounts;
         }
         else {
-            loadedBankAccounts = new HashMap<>();
+            bankAccounts = new HashMap<>();
         }
         
         HashMap<UUID, Transaction> loadedTransactions = (HashMap<UUID, Transaction>) transactionsFileController.load();
-        if(loadedTransactions != null) {
-            this.transactions = loadedTransactions;
+        if(transactions != null) {
+            transactions = loadedTransactions;
         }
         else {
-            loadedTransactions = new HashMap<>();
+            transactions = new HashMap<>();
         }
         
-        HashMap<UUID, PlannedPayment> plannedPayments = (HashMap<UUID, PlannedPayment>) plannedPaymentsFileController.load();
+        HashMap<UUID, PlannedPayment> loadedPlannedPayments = (HashMap<UUID, PlannedPayment>) plannedPaymentsFileController.load();
         if(plannedPayments != null) {
-            this.plannedPayments = plannedPayments;
+            plannedPayments = loadedPlannedPayments;
         }
         else {
             plannedPayments = new HashMap<>();
