@@ -96,13 +96,6 @@ public class CreateLoanFrame extends EditFrame {
         nameTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
 
         amountOfMoneyTextField.setFont(new java.awt.Font("Gadugi", 0, 16)); // NOI18N
-        amountOfMoneyTextField.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                amountOfMoneyTextFieldInputMethodTextChanged(evt);
-            }
-        });
 
         createBtn.setBackground(new java.awt.Color(255, 115, 115));
         createBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
@@ -207,6 +200,7 @@ public class CreateLoanFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Creates a loan
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         selectedBankAccount = bankAccountsList.getSelectedValue();
@@ -235,17 +229,14 @@ public class CreateLoanFrame extends EditFrame {
             JOptionPane.showMessageDialog(this, errorMessage, "Error", 0);
         }
     }//GEN-LAST:event_createBtnActionPerformed
-
+    
+    //Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
-    private void amountOfMoneyTextFieldInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_amountOfMoneyTextFieldInputMethodTextChanged
-        // TODO add your handling code here:
-        System.out.println("test");
-    }//GEN-LAST:event_amountOfMoneyTextFieldInputMethodTextChanged
-
+    //Validating information
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         

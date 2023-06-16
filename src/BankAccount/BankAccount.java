@@ -45,6 +45,7 @@ public class BankAccount implements Serializable {
         _userId = userId;
     }
     
+    // Adds a given amount of money to the bank account
     public void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
@@ -53,6 +54,7 @@ public class BankAccount implements Serializable {
         _balance = _balance.add(amountOfMoney);
     }
     
+    // Removes a given amount of money from the bank account
     public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException, InsufficientFundsException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");

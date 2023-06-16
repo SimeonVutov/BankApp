@@ -80,7 +80,7 @@
                           <Component id="jLabel5" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="phoneNumberLabel" pref="641" max="32767" attributes="0"/>
+                          <Component id="phoneNumberLabel" pref="647" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                           <Component id="editBtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>

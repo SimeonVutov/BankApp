@@ -13,6 +13,8 @@ import java.util.Random;
 public class IBANGenerator {
     private static final int _numberOfDigits = 16;
     
+    // Generates a unique iban
+    // A country code is needed for the process
     public static String Generate(String countryCode) {
         Random rand = new Random();
         String result = countryCode;

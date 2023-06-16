@@ -307,6 +307,8 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Gets the input and then validates it
+    //If everything is correct it creates a new user
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
         _firstName = firstNameTextField.getText();
@@ -343,12 +345,14 @@ public class SignUpFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    //Opens the LogIn frame
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logInBtnActionPerformed
 
+    //Validates the input
     public List<String> validateInput() {
         
         List<String> errors = new LinkedList<>();

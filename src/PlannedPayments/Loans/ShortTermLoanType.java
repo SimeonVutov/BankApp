@@ -20,6 +20,7 @@ public class ShortTermLoanType extends LoanType implements Serializable {
         super(new BigDecimal(5), new BigDecimal(1000));
     }
     
+    // The return rate for this loan is current date plus 1 months
     @Override
     public LocalDate getReturnDate() {
         return LocalDate.now().plusMonths(1);

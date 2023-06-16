@@ -422,18 +422,21 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         _app.logOut();
@@ -441,28 +444,33 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Updates the selected bank account from the list
     private void bankAccountsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_bankAccountsListValueChanged
         // TODO add your handling code here:
         _selectedBankAccount = bankAccountsList.getSelectedValue();
     }//GEN-LAST:event_bankAccountsListValueChanged
 
+    //Updates the selected planned payment from the list
     private void plannedPaymentsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_plannedPaymentsListValueChanged
         // TODO add your handling code here:
         _selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
     }//GEN-LAST:event_plannedPaymentsListValueChanged
 
+    //Creates a new bank account
     private void createBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBankAccountBtnActionPerformed
         // TODO add your handling code here:
         CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(_app);
         createBankAccountFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_createBankAccountBtnActionPerformed
 
+    //Edits an existing bank account
     private void editBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBankAccountBtnActionPerformed
         // TODO add your handling code here:
         if(_selectedBankAccount != null) {
@@ -470,13 +478,15 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             dispose();
         }
     }//GEN-LAST:event_editBankAccountBtnActionPerformed
-
+    
+    //Creates a new planned payment
     private void plannedPaymentsCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsCreateBtnActionPerformed
         // TODO add your handling code here:
         CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(_app);
         createPlannedPaymentFrame.getDataChangedEvent().addListener(this);
     }//GEN-LAST:event_plannedPaymentsCreateBtnActionPerformed
 
+    //Removes a planned payment
     private void plannedPaymentsDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsDeleteBtnActionPerformed
         // TODO add your handling code here:
         if(_selectedPlannedPayment != null) {
@@ -485,18 +495,21 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         }
     }//GEN-LAST:event_plannedPaymentsDeleteBtnActionPerformed
 
+    //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    //Loading user information
     private void loadData() {
         userNameNavbar.setText(_app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
@@ -508,6 +521,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         _bankAccountsDefaultListModel.addAll(_app.getAllBankAccounts());
     }
     
+    //Calculates the current balance of the current user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
@@ -519,6 +533,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         return currentBalance;
     }
     
+    //Checks if the user has a planned payment that needs to be paid
     private void processPlannedPayments(List<PlannedPayment> plannedPayments) {
         if(plannedPayments.size() > 0) {
             int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);

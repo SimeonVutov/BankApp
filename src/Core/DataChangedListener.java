@@ -9,5 +9,6 @@ package Core;
  * @author Moni
  */
 public interface DataChangedListener {
+    // Called when a data change event occurs
     public void onDataChangedEvent();
 }

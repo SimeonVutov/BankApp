@@ -9,5 +9,6 @@ package Core;
  * @author Moni
  */
 public interface DataCreatedListener {
+    //Called when a data creation event occurs
     public void onDataCreatedEvent();
 }

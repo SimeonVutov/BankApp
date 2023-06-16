@@ -120,6 +120,7 @@ public class EditBankAccountFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Saves the edited bank account information
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         _bankAccountName = bankAccountNameTextField.getText();
@@ -143,11 +144,13 @@ public class EditBankAccountFrame extends EditFrame {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    // Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    // Validates the input
     public List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         

@@ -394,19 +394,22 @@ public class LoansFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-        
+    
+    //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         _app.logOut();
@@ -414,39 +417,46 @@ public class LoansFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    //Opens the view user frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    //Opens a short term loan frame
     private void openSTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new ShortTermLoanType());
     }//GEN-LAST:event_openSTLFrameActionPerformed
 
+    //Opens a long term loan frame
     private void openLTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new LongTermLoanType());
     }//GEN-LAST:event_openLTLFrameActionPerformed
 
+    //Opens a medium term loan frame
     private void openMTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new MediumTermLoanType());
     }//GEN-LAST:event_openMTLFrameActionPerformed
 
+    //Loading user information
     private void loadData() {
         User user = _app.getUser();
         

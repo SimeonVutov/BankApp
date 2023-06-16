@@ -23,6 +23,8 @@ import java.util.HashMap;
 public class FileController<T> {
     private Path _filePath;
     
+    // Creates the directories if they do not exist
+    // Creates the file for storing information if it does not exist
     public FileController(Path path) {
         _filePath = path;
         
@@ -38,6 +40,8 @@ public class FileController<T> {
         }
     }
     
+    // Saves all given data to the file
+    // The data is serialized before it is written to the file
     public void save(HashMap<? extends Object, T> hashMap) {
         File file = new File(_filePath.toString());
         try {
@@ -54,6 +58,8 @@ public class FileController<T> {
         }
     }
     
+    // Returns all of the data from the file
+    // The data is deserialized before it is returned
     public HashMap<? extends Object, T> load() {
         File file = new File(_filePath.toString());
         
