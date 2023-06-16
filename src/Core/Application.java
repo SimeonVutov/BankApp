@@ -182,6 +182,7 @@ public class Application {
     public void createLoan(LoanType loanType, String bankAccountIban, BigDecimal money, String name) throws LoanLimitExceededException, ItemAlreadyExistsException {
         Loan loan = new Loan(loanType, bankAccountIban, money, name);
         DataSource.DATA_SOURCE.addPlannedPayment(loan);
+        createTransaction(money, null, bankAccountIban);
         plannedPayments.add(loan);
     }
     
