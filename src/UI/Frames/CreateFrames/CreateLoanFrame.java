@@ -222,7 +222,7 @@ public class CreateLoanFrame extends EditFrame {
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             

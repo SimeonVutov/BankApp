@@ -502,7 +502,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = app.getAllBankAccounts();
         
-        for(var bankAccount : list) {
+        for(BankAccount bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
         }
         
@@ -514,7 +514,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
         BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
         List<PlannedPayment> list = app.getAllPlannedPayments();
         
-        for(var plannedPayment : list) {
+        for(PlannedPayment plannedPayment : list) {
             plannedPaymentsValue = plannedPaymentsValue.add(plannedPayment.getMoney());
         }
         

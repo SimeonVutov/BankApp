@@ -30,7 +30,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         DefaultListModel<BankAccount> bankAccountsListModel = new DefaultListModel<>();
         bankAccountsList.setModel(bankAccountsListModel);
         
-        for(var bankAccount : app.getAllBankAccounts()) {
+        for(BankAccount bankAccount : app.getAllBankAccounts()) {
             bankAccountsListModel.addElement(bankAccount);
         }
         
@@ -167,7 +167,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         else {
             String errorMessage = "";
 
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
 

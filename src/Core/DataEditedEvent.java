@@ -32,7 +32,7 @@ public class DataEditedEvent extends EventObject{
     
     // Fire the event which notifies all listeners
     public void fireDataEditedEvent() {
-        for(var listener : listeners) {
+        for(DataEditedListener listener : listeners) {
             listener.onDataEditedEvent();
         }
     }

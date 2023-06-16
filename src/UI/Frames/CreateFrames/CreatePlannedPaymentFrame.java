@@ -197,7 +197,7 @@ public class CreatePlannedPaymentFrame extends CreateFrame {
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
-            var dateStringArr = date.split("[.]");
+            String[] dateStringArr = date.split("[.]");
             LocalDate date = LocalDate.of(
                     Integer.parseInt(dateStringArr[2]),
                     Integer.parseInt(dateStringArr[1]),
@@ -215,7 +215,7 @@ public class CreatePlannedPaymentFrame extends CreateFrame {
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             

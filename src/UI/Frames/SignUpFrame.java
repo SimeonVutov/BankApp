@@ -337,7 +337,7 @@ public class SignUpFrame extends javax.swing.JFrame {
         else {
             String errorMessage = "Errors:\n";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             

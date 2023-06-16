@@ -537,7 +537,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = app.getAllBankAccounts();
         
-        for(var bankAccount : list) {
+        for(BankAccount bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
         }
         
@@ -549,7 +549,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataRefreshList
         if(plannedPayments.size() > 0) {
             int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);
             if(result == 0) {
-                for(var payment : plannedPayments) {
+                for(PlannedPayment payment : plannedPayments) {
                     app.payPlannedPayment(payment);
                 }
             }
