@@ -344,13 +344,14 @@ public class SignUpFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
-    //LogIn button functionalities
+    //Opens the LogIn frame
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logInBtnActionPerformed
 
+    //Validates the input
     public List<String> validateInput() {
         
         List<String> errors = new LinkedList<>();

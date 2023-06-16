@@ -207,7 +207,7 @@ public class CreateLoanFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Create button checks
+    //Creates a loan
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         selectedBankAccount = bankAccountsList.getSelectedValue();
@@ -237,7 +237,7 @@ public class CreateLoanFrame extends EditFrame {
         }
     }//GEN-LAST:event_createBtnActionPerformed
     
-    //Cancel button function
+    //Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();

@@ -411,38 +411,42 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Transaction options
+    //Opens a deposit frame
     private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
         createDepositTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
 
+    //Opens a withdraw frame
     private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
         createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
 
+    //Opens a make a transfer frame
     private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
         createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
 
-    //Setting navbar button fuctionalities
+    //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         _app.logOut();
@@ -450,18 +454,21 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOANS_FRAME);
@@ -481,6 +488,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
     }
     
+    //Gets the current balance of the user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
@@ -492,6 +500,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         return currentBalance;
     }
     
+    //Gets the current planed payments of the user
     private BigDecimal calculatePlannedPayments() {
         BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
         List<PlannedPayment> list = _app.getAllPlannedPayments();

@@ -151,7 +151,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Create button checks
+    //Creates a deposit
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         _bankAccount = bankAccountsList.getSelectedValue();
@@ -180,7 +180,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         }
     }//GEN-LAST:event_createBtnActionPerformed
 
-    //Cancel button function
+    //Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();

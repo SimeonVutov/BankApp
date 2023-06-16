@@ -364,13 +364,14 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    //Edit and delete button functionalities
+    //Edits the user information
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         EditUserFrame editUserFrame = new EditUserFrame(_app.getUser());
         editUserFrame.getDataChangedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
+    //Deletse the user
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
         _app.removeUser(_app.getUser().getUserId());
@@ -379,19 +380,21 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
-    //Setting navbar button fuctionalities
+    //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         _app.logOut();
@@ -399,18 +402,21 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    //Opens the user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    //Opens the loans frame
     private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
         // TODO add your handling code here:
         _framesController.openFrame(FrameType.LOANS_FRAME);
@@ -428,6 +434,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         phoneNumberLabel.setText(user.getPhoneNumber());
     }
     
+    //Updates the data
     @Override
     public void onDataChangedEvent() {
         loadData();

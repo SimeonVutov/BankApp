@@ -195,7 +195,7 @@ public class LogInFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Log In button fuctinalities and checks
+    //Checks the if the user information is correct and logs in the user
     private void logInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInBtnActionPerformed
         // TODO add your handling code here:
         _username = userNameTextField.getText();
