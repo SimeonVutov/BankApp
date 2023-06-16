@@ -13,6 +13,7 @@ import TransactionSystem.Transaction;
 import PlannedPayments.PlannedPayment;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,105 +22,114 @@ import java.util.List;
  * @author Simeon_32
  */
 public class DataSource {
-    private final String ApplicationName = "BankApp";
+    private final String APPLICATION_NAME = "BankApp";
     public static final DataSource DATA_SOURCE = new DataSource();
-    private HashMap<UUID, User> _users;
-    private FileController<User> _usersFileController;
+    private HashMap<UUID, User> users;
+    private FileController<User> usersFileController;
     
-    private HashMap<String, BankAccount> _bankAccounts;
-    private FileController<BankAccount> _bankAccountsFileController;
+    private HashMap<String, BankAccount> bankAccounts;
+    private FileController<BankAccount> bankAccountsFileController;
     
-    private HashMap<UUID, Transaction> _transactions;
-    private FileController<Transaction> _transactionsFileController;
+    private HashMap<UUID, Transaction> transactions;
+    private FileController<Transaction> transactionsFileController;
     
-    private HashMap<UUID, PlannedPayment> _plannedPayments;
-    private FileController<PlannedPayment> _plannedPaymentsFileController;
+    private HashMap<UUID, PlannedPayment> plannedPayments;
+    private FileController<PlannedPayment> plannedPaymentsFileController;
     
+    // Initializes the file controllers for data storage and loads all the data
     private DataSource() {
-        Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(ApplicationName);
-        _usersFileController = new FileController(tempPath.resolve("users.txt"));
-        
-        _bankAccountsFileController = new FileController<>(tempPath.resolve("bankAccounts.txt"));
-        
-        _transactionsFileController = new FileController<>(tempPath.resolve("transactions.txt"));
-        
-        _plannedPaymentsFileController = new FileController<>(tempPath.resolve("plannedPayments.txt"));
+        Path tempPath = Paths.get(System.getProperty("java.io.tmpdir")).resolve(APPLICATION_NAME);
+
+        usersFileController = new FileController(tempPath.resolve("users.txt"));
+        bankAccountsFileController = new FileController<>(tempPath.resolve("bankAccounts.txt"));
+        transactionsFileController = new FileController<>(tempPath.resolve("transactions.txt"));
+        plannedPaymentsFileController = new FileController<>(tempPath.resolve("plannedPayments.txt"));
         
         loadAllData();
     }
     
+    // Saves the new user to the database
     public void addUser(User user) throws ItemAlreadyExistsException {
-        for (User currUser : _users.values()) {
+        for (User currUser : users.values()) {
             if(currUser.getUsername().equals(user.getUsername())) {
                 throw new ItemAlreadyExistsException("User with this username already exists");
             }
         }
         
-        if(_users.containsKey(user.getUserId().toString())) {
+        if(users.containsKey(user.getUserId().toString())) {
             throw new ItemAlreadyExistsException("User with this id already exists.");
         }
         else {
-            _users.put(user.getUserId(), user);
-            _usersFileController.save(_users);
+            users.put(user.getUserId(), user);
+            usersFileController.save(users);
         }
     }
     
+    // Deletes the user with the specified id
     public void removeUser(UUID userId) {
-        _users.remove(userId);
-        _usersFileController.save(_users);
+        users.remove(userId);
+        usersFileController.save(users);
     }
     
+    // Saves the new bank account to the database
     public void addBankAccount(BankAccount bankAccount) throws ItemAlreadyExistsException {
-        if(_bankAccounts.containsKey(bankAccount.getIban())) {
+        if(bankAccounts.containsKey(bankAccount.getIban())) {
             throw new ItemAlreadyExistsException("Bank account with this iban already exists");
         }
         else {
-            _bankAccounts.put(bankAccount.getIban(), bankAccount);
-            _bankAccountsFileController.save(_bankAccounts);
+            bankAccounts.put(bankAccount.getIban(), bankAccount);
+            bankAccountsFileController.save(bankAccounts);
         }
     }
     
+    // Deletes the bank account with the specified iban
     public void removeBankAccount(String iban) {
-        _bankAccounts.remove(iban);
-        _bankAccountsFileController.save(_bankAccounts);
+        bankAccounts.remove(iban);
+        bankAccountsFileController.save(bankAccounts);
     }
     
+    // Saves the new transaction to the database
     public void addTransaction(Transaction transaction) throws ItemAlreadyExistsException {
-        if(_transactions.containsKey(transaction.getTransactionId())) {
+        if(transactions.containsKey(transaction.getTransactionId())) {
             throw new ItemAlreadyExistsException("Transaction with this id already exists");
         }
         else {
-            _transactions.put(transaction.getTransactionId(), transaction);
-            _transactionsFileController.save(_transactions);
+            transactions.put(transaction.getTransactionId(), transaction);
+            transactionsFileController.save(transactions);
         }
     }
     
+    // Delete the transaction with the specified id
     public void removeTransaction(UUID transactionId) {
-        _transactions.remove(transactionId);
-        _transactionsFileController.save(_transactions);
+        transactions.remove(transactionId);
+        transactionsFileController.save(transactions);
     }
     
+    // Saves the new planned payment to the database
     public void addPlannedPayment(PlannedPayment plannedPayment) throws ItemAlreadyExistsException {
-        if(_plannedPayments.containsKey(plannedPayment.getId())) {
+        if(plannedPayments.containsKey(plannedPayment.getId())) {
             throw new ItemAlreadyExistsException("Planned payment with this id already exists.");
         }
         else {
-            _plannedPayments.put(plannedPayment.getId(), plannedPayment);
-            _plannedPaymentsFileController.save(_plannedPayments);
+            plannedPayments.put(plannedPayment.getId(), plannedPayment);
+            plannedPaymentsFileController.save(plannedPayments);
         }
     }
     
+    // Deletes a planned payment with the specified id from the database
     public void removePlannedPayment(UUID plannedPaymentId) {
-        _plannedPayments.remove(plannedPaymentId);
-        _plannedPaymentsFileController.save(_plannedPayments);
+        plannedPayments.remove(plannedPaymentId);
+        plannedPaymentsFileController.save(plannedPayments);
     }
     
+    // Returns the user with the specified id
     public User getUserById(UUID id) {
-        return _users.get(id);
+        return users.get(id);
     }
     
+    // Returns the user with the specified username and password
     public User getUserByCredentials(String username, char[] password) throws InvalidUserCredentialsException {
-        for(var user : _users.values()) {
+        for(User user : users.values()) {
             if(user.getUsername().equals(username)) {
                 if(user.getPassword().verify(password)) {
                     return user;
@@ -128,82 +138,89 @@ public class DataSource {
         }
         
         throw new InvalidUserCredentialsException("Username or password is wrong.");
-    }
+    } // Time complexity - O(n) | Space complexity - O(1)
     
+    // Returns the bank account with the specified iban
     public BankAccount getBankAccountByIban(String iban) {
-        return _bankAccounts.get(iban);
+        return bankAccounts.get(iban);
     }
     
+    // Returns all bank accounts for the specified user
     public List<BankAccount> getBankAccountsForUser(User user) {
-        List<BankAccount> list = new LinkedList<>();
+        List<BankAccount> list = new ArrayList<>();
         
-        for(var bankAccount : _bankAccounts.values()) {
+        for(BankAccount bankAccount : bankAccounts.values()) {
             if(bankAccount.getUserId().equals(user.getUserId())) {
                 list.add(bankAccount);
             }
         }
         
         return list;
-    }
+    } // Time complexity - O(n) | Space complexity - O(n)
     
+    // Returns a transaction with the specified id
     public Transaction getTransactionById(UUID id) {
-        return _transactions.get(id);
+        return transactions.get(id);
     }
     
+    // Returns all transactions
     public List<Transaction> getTransactions() {
-        return new LinkedList<>(_transactions.values());
+        return new LinkedList<>(transactions.values());
     }
     
+    // Returns all planned payments by specified bank account iban
     public List<PlannedPayment> getPlannedPaymentsByBankAccountIban(String iban) {
-        List<PlannedPayment> list = new LinkedList<>();
+        List<PlannedPayment> list = new ArrayList<>();
         
-        for(var plannedPayment : _plannedPayments.values()) {
+        for(PlannedPayment plannedPayment : plannedPayments.values()) {
             if(plannedPayment.getBankAccountIban().equals(iban)) {
                 list.add(plannedPayment);
             }
         }
         
         return list;
-    }
+    } // Time complexity - O(n) | Space complexity - O(n
     
+    // Loads all data from the database
     public void loadAllData() {
-        HashMap<UUID, User> usersHashMap = (HashMap<UUID, User>) _usersFileController.load();
-        if(usersHashMap != null) {
-            _users = usersHashMap;
+        HashMap<UUID, User> loadedUsers = (HashMap<UUID, User>) usersFileController.load();
+        if(loadedUsers != null) {
+            users = loadedUsers;
         }
         else {
-            _users = new HashMap<>();
+            users = new HashMap<>();
         }
         
-        HashMap<String, BankAccount> bankAccountsHashMap = (HashMap<String, BankAccount>) _bankAccountsFileController.load();
-        if(bankAccountsHashMap != null) {
-            _bankAccounts = bankAccountsHashMap;
+        HashMap<String, BankAccount> loadedBankAccounts = (HashMap<String, BankAccount>) bankAccountsFileController.load();
+        if(loadedBankAccounts != null) {
+            bankAccounts = loadedBankAccounts;
         }
         else {
-            _bankAccounts = new HashMap<>();
+            bankAccounts = new HashMap<>();
         }
         
-        HashMap<UUID, Transaction> transactionsHashMap = (HashMap<UUID, Transaction>) _transactionsFileController.load();
-        if(transactionsHashMap != null) {
-            _transactions = transactionsHashMap;
+        HashMap<UUID, Transaction> loadedTransactions = (HashMap<UUID, Transaction>) transactionsFileController.load();
+        if(loadedTransactions != null) {
+            transactions = loadedTransactions;
         }
         else {
-            _transactions = new HashMap<>();
+            transactions = new HashMap<>();
         }
         
-        HashMap<UUID, PlannedPayment> plannedPaymentsHashMap = (HashMap<UUID, PlannedPayment>) _plannedPaymentsFileController.load();
-        if(plannedPaymentsHashMap != null) {
-            _plannedPayments = plannedPaymentsHashMap;
+        HashMap<UUID, PlannedPayment> loadedPlannedPayments = (HashMap<UUID, PlannedPayment>) plannedPaymentsFileController.load();
+        if(loadedPlannedPayments != null) {
+            plannedPayments = loadedPlannedPayments;
         }
         else {
-            _plannedPayments = new HashMap<>();
+            plannedPayments = new HashMap<>();
         }
     }
     
+    // Saves all data to the database
     public void saveAllData() {
-        _usersFileController.save(_users);
-        _bankAccountsFileController.save(_bankAccounts);
-        _transactionsFileController.save(_transactions);
-        _plannedPaymentsFileController.save(_plannedPayments);
+        usersFileController.save(users);
+        bankAccountsFileController.save(bankAccounts);
+        transactionsFileController.save(transactions);
+        plannedPaymentsFileController.save(plannedPayments);
     }
 }

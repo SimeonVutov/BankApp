@@ -8,6 +8,7 @@ package Core;
  *
  * @author Moni
  */
-public interface DataCreatedListener {
-    public void onDataCreatedEvent();
+public interface DataEditedListener {
+    // Called when a data edited event occurs
+    public void onDataEditedEvent();
 }

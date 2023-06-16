@@ -6,7 +6,7 @@ package TransactionSystem;
 
 import Database.ItemAlreadyExistsException;
 import Database.DataSource;
-import Core.DataChangedEvent;
+import Core.DataRefreshEvent;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -18,48 +18,51 @@ import java.util.List;
  */
 public class TransactionManager {
     public static final TransactionManager TRANSACTION_MANAGER = new TransactionManager(DataSource.DATA_SOURCE.getTransactions());
-    private List<Transaction> _transactions;
-    private TransactionProcessor _transactionProcessor;
+    private List<Transaction> transactions;
+    private TransactionProcessor transactionProcessor;
     
-    public DataChangedEvent getDataChangedEvent() {
-        return _transactionProcessor.getDataChangedEvent();
+    // Returns the data refresh event associated with the transaction processor
+    public DataRefreshEvent getDataRefreshEvent() {
+        return transactionProcessor.getDataRefreshEvent();
     }
     
     private TransactionManager(List<Transaction> transactions) {
-        _transactions = transactions;
-        _transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
+        this.transactions = transactions;
+        transactionProcessor = new TransactionProcessor(Duration.ofSeconds(5));
         for (Transaction transaction : transactions) {
             if(transaction.getStatus() == TransactionStatus.Pending) {
-                _transactionProcessor.AddTransactionToQueue(transaction);
+                transactionProcessor.addTransactionToQueue(transaction);
             }
         }
-        _transactionProcessor.Start();
+        transactionProcessor.start();
     }
     
+    // Creates a new transaction and saves it to the database
     public Transaction createTransaction(BigDecimal money, String fromBankAccountIban, String toBankAccountIban) throws IllegalArgumentException, ItemAlreadyExistsException {
         Transaction newTransaction = new Transaction(money, fromBankAccountIban, toBankAccountIban);
         DataSource.DATA_SOURCE.addTransaction(newTransaction);
-        _transactions.add(newTransaction);
-        _transactionProcessor.AddTransactionToQueue(newTransaction);
+        transactions.add(newTransaction);
+        transactionProcessor.addTransactionToQueue(newTransaction);
         
         return newTransaction;
     }
     
+    // Returns all transactions associated with a specific bank account
     public List<Transaction> getTransactionsByBankAccountIban(String iban) {
-        List<Transaction> transactions = new LinkedList<>();
+        List<Transaction> list = new LinkedList<>();
         
-        for(var transaction : _transactions) {
+        for(Transaction transaction : transactions) {
             String fromBankAccountIban = transaction.getFromBankAccountIban();
             String toBankAccountIban = transaction.getToBankAccountIban();
             
             if(fromBankAccountIban != null && fromBankAccountIban.equals(iban)) {
-                transactions.add(transaction);
+                list.add(transaction);
             }
             else if(toBankAccountIban != null && toBankAccountIban.equals(iban)) {
-                transactions.add(transaction);
+                list.add(transaction);
             }
         }
         
-        return transactions;
-    }
+        return list;
+    } // Time complexity - O(n) | Space complexity - O(n)
 }

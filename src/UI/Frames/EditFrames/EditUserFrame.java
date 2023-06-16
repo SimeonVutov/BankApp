@@ -15,41 +15,41 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class EditUserFrame extends EditFrame {
-    private User _user;
-    private String _firstName;
-    private String _secondName;
-    private String _lastName;
-    private String _username;
-    private char[] _password;
-    private String _email;
-    private String _phoneNumber;
-    private boolean _isPasswordChanged;
+    private User user;
+    private String firstName;
+    private String secondName;
+    private String lastName;
+    private String username;
+    private char[] password;
+    private String email;
+    private String phoneNumber;
+    private boolean isPasswordChanged;
     
     /**
      * Creates new form EditUserFrame
      */
     public EditUserFrame(User user) {
         initComponents();
-        _user = user;
+        this.user = user;
         Person person = user.getPerson();
         
-        _firstName = person.getFirstName();
-        firstNameTextField.setText(_firstName);
+        firstName = person.getFirstName();
+        firstNameTextField.setText(firstName);
       
-        _secondName = person.getSecondName();
-        secondNameTextField.setText(_secondName);
+        secondName = person.getSecondName();
+        secondNameTextField.setText(secondName);
         
-        _lastName = person.getLastName();
-        lastNameTextField.setText(_lastName);
+        lastName = person.getLastName();
+        lastNameTextField.setText(lastName);
         
-        _username = user.getUsername();
-        usernameTextField.setText(_username);
+        username = user.getUsername();
+        usernameTextField.setText(username);
         
-        _email = user.getEmail();
-        emailTextField.setText(_email);
+        email = user.getEmail();
+        emailTextField.setText(email);
         
-        _phoneNumber = user.getPhoneNumber();
-        phoneNumberTextField.setText(_phoneNumber);
+        phoneNumber = user.getPhoneNumber();
+        phoneNumberTextField.setText(phoneNumber);
         
         setVisible(true);
     }
@@ -253,44 +253,46 @@ public class EditUserFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Checks if the box for changing password is checked
     private void changePasswordCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordCheckBoxActionPerformed
         // TODO add your handling code here:
         passwordTextField.setEditable(changePasswordCheckBox.isSelected());
-        _isPasswordChanged = changePasswordCheckBox.isSelected();
+        isPasswordChanged = changePasswordCheckBox.isSelected();
     }//GEN-LAST:event_changePasswordCheckBoxActionPerformed
 
+    // Saves the edited user information
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
-        _firstName = firstNameTextField.getText();
-        _secondName = secondNameTextField.getText();
-        _lastName = lastNameTextField.getText();
-        _username = usernameTextField.getText();
-        if(_isPasswordChanged) {
-            _password = passwordTextField.getText().toCharArray();
+        firstName = firstNameTextField.getText();
+        secondName = secondNameTextField.getText();
+        lastName = lastNameTextField.getText();
+        username = usernameTextField.getText();
+        if(isPasswordChanged) {
+            password = passwordTextField.getText().toCharArray();
         }
-        _email = emailTextField.getText();
-        _phoneNumber = phoneNumberTextField.getText();
+        email = emailTextField.getText();
+        phoneNumber = phoneNumberTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
-            Person person = new Person(_firstName, _secondName, _lastName);
-            _user.setPerson(person);
-            if(_isPasswordChanged) {
-                _user.getPassword().changePassword(_password);
+            Person person = new Person(firstName, secondName, lastName);
+            user.setPerson(person);
+            if(isPasswordChanged) {
+                user.getPassword().changePassword(password);
             }
-            _user.setUsername(_username);
-            _user.setEmail(_email);
-            _user.setPhoneNumber(_phoneNumber);
-            getDataChangedEvent().fireDataChangedEvent();
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setPhoneNumber(phoneNumber);
+            getDataEditedEvent().fireDataEditedEvent();
 
             dispose();
         }
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             
@@ -298,35 +300,37 @@ public class EditUserFrame extends EditFrame {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    // Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    // Validates the input
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_firstName.isBlank()) {
+        if(firstName.isBlank()) {
             errors.add("First name field cannot be empty");
         }
-        if(_secondName.isBlank()) {
+        if(secondName.isBlank()) {
             errors.add("Second name field cannot be empty");
         }
-        if(_lastName.isBlank()) {
+        if(lastName.isBlank()) {
             errors.add("Last name field cannot be empty");
         }
-        if(_username.isBlank()) {
+        if(username.isBlank()) {
             errors.add("Username field cannot be empty");
         }
-        if(_isPasswordChanged) {
-            if(_password.length == 0) {
+        if(isPasswordChanged) {
+            if(password.length == 0) {
             errors.add("Password field cannot be empty");
             }
         }
-        if(!_email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
+        if(!email.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
             errors.add("Invalid email");
         }
-        if(!_phoneNumber.matches("^[0-9]+$")) {
+        if(!phoneNumber.matches("^[0-9]+$")) {
             errors.add("Phone field should cantain only numbers");
         }
         

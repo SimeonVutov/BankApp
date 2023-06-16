@@ -13,59 +13,61 @@ import java.io.Serializable;
  * @author Moni
  */
 public class BankAccount implements Serializable {
-    private final String _iban;
-    private BigDecimal _balance;
-    private String _name;
-    private final UUID _userId;
+    private final String iban;
+    private BigDecimal balance;
+    private String name;
+    private final UUID userId;
 
     public String getIban() {
-        return _iban;
+        return iban;
     }
 
     public BigDecimal getBalance() {
-        return _balance;
+        return balance;
     }
 
     public String getName() {
-        return _name;
+        return name;
     }
 
     public void setName(String _name) {
-        this._name = _name;
+        this.name = _name;
     }
 
     public UUID getUserId() {
-        return _userId;
+        return userId;
     }
     
     public BankAccount(String name, UUID userId) {
-        _iban = IBANGenerator.Generate("BG");
-        _balance = BigDecimal.ZERO;
-        _name = name;
-        _userId = userId;
+        iban = IBANGenerator.generate("BG");
+        balance = BigDecimal.ZERO;
+        this.name = name;
+        this.userId = userId;
     }
     
-    public void AddMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
+    // Adds a given amount of money to the bank account
+    public void addMoney(BigDecimal amountOfMoney) throws IllegalArgumentException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
         
-        _balance = _balance.add(amountOfMoney);
+        balance = balance.add(amountOfMoney);
     }
     
-    public void RemoveMoney(BigDecimal amountOfMoney) throws IllegalArgumentException, InsufficientFundsException {
+    // Removes a given amount of money from the bank account
+    public void removeMoney(BigDecimal amountOfMoney) throws IllegalArgumentException, InsufficientFundsException {
         if(amountOfMoney.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("The amount of money cannot be equal or less than zero");
         }
-        if(amountOfMoney.compareTo(_balance) > 0) {
+        if(amountOfMoney.compareTo(balance) > 0) {
             throw new InsufficientFundsException(amountOfMoney);
         }
         
-        _balance = _balance.subtract(amountOfMoney);
+        balance = balance.subtract(amountOfMoney);
     }
     
     @Override
     public String toString() {
-        return String.format("%s %s", _name, _iban);
+        return String.format("%s %s", name, iban);
     }
 }

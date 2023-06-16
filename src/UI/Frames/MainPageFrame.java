@@ -5,11 +5,11 @@
 package UI.Frames;
 import BankAccount.BankAccount;
 import Core.Application;
-import Core.DataChangedListener;
-import Core.DataCreatedListener;
 import Core.FrameType;
 import Core.FramesController;
 import UI.UI_Variables;;
+import Core.DataRefreshListener;
+import TransactionSystem.TransactionManager;
 import javax.swing.JOptionPane;
 import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
 import UI.Frames.CreateFrames.CreateBankAccountFrame;
@@ -21,36 +21,37 @@ import java.util.List;
  *
  * @author Bubo & Yana
  */
-public class MainPageFrame extends javax.swing.JFrame implements DataChangedListener, DataCreatedListener{
-    private Application _app;
-    private FramesController _framesController;
-    private DefaultListModel<PlannedPayment> _plannedPaymentsDefaultListModel;
-    private DefaultListModel<BankAccount> _bankAccountsDefaultListModel;
-    private BankAccount _selectedBankAccount = null;
-    private PlannedPayment _selectedPlannedPayment = null;
+public class MainPageFrame extends javax.swing.JFrame implements DataRefreshListener {
+    private Application app;
+    private FramesController framesController;
+    private DefaultListModel<PlannedPayment> plannedPaymentsDefaultListModel;
+    private DefaultListModel<BankAccount> bankAccountsDefaultListModel;
+    private BankAccount selectedBankAccount = null;
+    private PlannedPayment selectedPlannedPayment = null;
     
     /**
      * Creates new form MainPageFrame
      */
     public MainPageFrame(Application application, FramesController framesController) {
         initComponents();
-        _app = application;
-        _framesController = framesController;
+        this.app = application;
+        this.framesController = framesController;
         
-        _plannedPaymentsDefaultListModel = new DefaultListModel<>();
-        plannedPaymentsList.setModel(_plannedPaymentsDefaultListModel);
-        _bankAccountsDefaultListModel= new DefaultListModel<>();
-        bankAccountsList.setModel(_bankAccountsDefaultListModel);
+        plannedPaymentsDefaultListModel = new DefaultListModel<>();
+        plannedPaymentsList.setModel(plannedPaymentsDefaultListModel);
+        bankAccountsDefaultListModel= new DefaultListModel<>();
+        bankAccountsList.setModel(bankAccountsDefaultListModel);
         
         //UI settings
         setBackground(UI_Variables.BACKGROUND_COLOR);
         
         setVisible(true);
         
-        processPlannedPayments(_app.getOverduePlannedPayments());
-        
         //Setting infromation
         loadData();
+        
+        processPlannedPayments(app.getOverduePlannedPayments());
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
     }
 
     /**
@@ -69,6 +70,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         logOutBtn = new javax.swing.JButton();
         viewUserProfileBtn = new javax.swing.JButton();
         mainPageBtn = new javax.swing.JButton();
+        loansBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         plannedPaymentsTitle = new javax.swing.JLabel();
         plannedPaymentsCreateBtn = new javax.swing.JButton();
@@ -88,6 +90,11 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BankApp - Main Page");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
         navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
@@ -162,6 +169,20 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
             }
         });
 
+        loansBtn.setBackground(new java.awt.Color(255, 115, 115));
+        loansBtn.setFont(new java.awt.Font("Gadugi", 1, 22)); // NOI18N
+        loansBtn.setForeground(new java.awt.Color(0, 0, 0));
+        loansBtn.setText("Loans");
+        loansBtn.setToolTipText("");
+        loansBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(163, 77, 77)));
+        loansBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        loansBtn.setPreferredSize(new java.awt.Dimension(185, 99));
+        loansBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loansBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout navBarPannelLayout = new javax.swing.GroupLayout(navBarPannel);
         navBarPannel.setLayout(navBarPannelLayout);
         navBarPannelLayout.setHorizontalGroup(
@@ -171,6 +192,8 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
                 .addComponent(mainPageBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(transactionsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,22 +207,24 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         navBarPannelLayout.setVerticalGroup(
             navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(navBarPannelLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(transactionsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainPageBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(contactUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loansBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(navBarPannelLayout.createSequentialGroup()
-                        .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewUserProfileBtn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addGroup(navBarPannelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(logOutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(navBarPannelLayout.createSequentialGroup()
+                                .addComponent(userNameNavbar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(viewUserProfileBtn)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel1.setBackground(new java.awt.Color(201, 201, 201));
@@ -403,118 +428,137 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Opens the transaction frame
     private void transactionsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.TRANSACTION_FRAME);
+        framesController.openFrame(FrameType.TRANSACTION_FRAME);
         dispose();
     }//GEN-LAST:event_transactionsBtnActionPerformed
 
+    //Opens the contact us frame
     private void contactUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactUsBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.CONTACT_US_FRAME);
+        framesController.openFrame(FrameType.CONTACT_US_FRAME);
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
-        _app.logOut();
-        _framesController.openFrame(FrameType.LOGIN_FRAME);
+        app.logOut();
+        framesController.openFrame(FrameType.LOGIN_FRAME);
         dispose();
     }//GEN-LAST:event_logOutBtnActionPerformed
 
+    //Opens the view user profile frame
     private void viewUserProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUserProfileBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.VIEW_USER_FRAME);
+        framesController.openFrame(FrameType.VIEW_USER_FRAME);
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
+    //Updates the selected bank account from the list
     private void bankAccountsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_bankAccountsListValueChanged
         // TODO add your handling code here:
-        _selectedBankAccount = bankAccountsList.getSelectedValue();
+        selectedBankAccount = bankAccountsList.getSelectedValue();
     }//GEN-LAST:event_bankAccountsListValueChanged
 
+    //Updates the selected planned payment from the list
     private void plannedPaymentsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_plannedPaymentsListValueChanged
         // TODO add your handling code here:
-        _selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
+        selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
     }//GEN-LAST:event_plannedPaymentsListValueChanged
 
+    //Creates a new bank account
     private void createBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBankAccountBtnActionPerformed
         // TODO add your handling code here:
-        CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(_app);
-        createBankAccountFrame.getDataCreatedEvent().addListener(this);
+        CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(app);
+        createBankAccountFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_createBankAccountBtnActionPerformed
 
+    //Edits an existing bank account
     private void editBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBankAccountBtnActionPerformed
         // TODO add your handling code here:
-        if(_selectedBankAccount != null) {
-            _framesController.openFrame(FrameType.VIEW_ACCOUNT_FRAME, _selectedBankAccount.getIban());
+        if(selectedBankAccount != null) {
+            framesController.openFrame(FrameType.VIEW_ACCOUNT_FRAME, selectedBankAccount.getIban());
             dispose();
         }
     }//GEN-LAST:event_editBankAccountBtnActionPerformed
-
+    
+    //Creates a new planned payment
     private void plannedPaymentsCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsCreateBtnActionPerformed
         // TODO add your handling code here:
-        CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(_app);
-        createPlannedPaymentFrame.getDataChangedEvent().addListener(this);
+        CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(app);
+        createPlannedPaymentFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_plannedPaymentsCreateBtnActionPerformed
 
+    //Removes a planned payment
     private void plannedPaymentsDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsDeleteBtnActionPerformed
         // TODO add your handling code here:
-        if(_selectedPlannedPayment != null) {
-            _app.removePlannedPayment(_selectedPlannedPayment.getId());
+        if(selectedPlannedPayment != null) {
+            app.removePlannedPayment(selectedPlannedPayment.getId());
             loadData();
         }
     }//GEN-LAST:event_plannedPaymentsDeleteBtnActionPerformed
 
+    //Opens the main page frame
     private void mainPageBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainPageBtnActionPerformed
         // TODO add your handling code here:
-        _framesController.openFrame(FrameType.MAIN_FRAME);
+        framesController.openFrame(FrameType.MAIN_FRAME);
         dispose();
     }//GEN-LAST:event_mainPageBtnActionPerformed
 
+    //Opens the loans frame
+    private void loansBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loansBtnActionPerformed
+        // TODO add your handling code here:
+        framesController.openFrame(FrameType.LOANS_FRAME);
+        dispose();
+    }//GEN-LAST:event_loansBtnActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
+    }//GEN-LAST:event_formWindowClosed
+
+    //Loading user information
     private void loadData() {
-        userNameNavbar.setText(_app.getUser().getUsername());
+        userNameNavbar.setText(app.getUser().getUsername());
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
         
-        _plannedPaymentsDefaultListModel.clear();
-        _plannedPaymentsDefaultListModel.addAll(_app.getAllPlannedPayments());
+        plannedPaymentsDefaultListModel.clear();
+        plannedPaymentsDefaultListModel.addAll(app.getAllPlannedPayments());
 
-        _bankAccountsDefaultListModel.clear();
-        _bankAccountsDefaultListModel.addAll(_app.getAllBankAccounts());
+        bankAccountsDefaultListModel.clear();
+        bankAccountsDefaultListModel.addAll(app.getAllBankAccounts());
     }
     
+    //Calculates the current balance of the current user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
-        List<BankAccount> list = _app.getAllBankAccounts();
+        List<BankAccount> list = app.getAllBankAccounts();
         
-        for(var bankAccount : list) {
+        for(BankAccount bankAccount : list) {
             currentBalance = currentBalance.add(bankAccount.getBalance());
         }
         
         return currentBalance;
     }
     
+    //Checks if the user has a planned payment that needs to be paid
     private void processPlannedPayments(List<PlannedPayment> plannedPayments) {
         if(plannedPayments.size() > 0) {
             int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);
             if(result == 0) {
-                for(var payment : plannedPayments) {
-                    _app.payPlannedPayment(payment);
+                for(PlannedPayment payment : plannedPayments) {
+                    app.payPlannedPayment(payment);
                 }
             }
         }
     }
     
     @Override
-    public void onDataChangedEvent() {
+    public void onDataRefreshEvent() {
         loadData();
-        _app.save();
-    }
-
-    @Override
-    public void onDataCreatedEvent() {
-        loadData();
-        _app.save();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -528,6 +572,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton loansBtn;
     private javax.swing.JButton logOutBtn;
     private javax.swing.JButton mainPageBtn;
     private javax.swing.JPanel navBarPannel;

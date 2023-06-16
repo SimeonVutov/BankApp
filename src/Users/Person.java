@@ -13,42 +13,42 @@ import java.io.Serializable;
  * @author Simeon_32
  */
 public class Person implements Serializable {
-    private String _firstName;
-    private String _secondName;
-    private String _lastName;
+    private String firstName;
+    private String secondName;
+    private String lastName;
 
     public String getFirstName() {
-        return _firstName;
+        return firstName;
     }
 
-    public void setFirstName(String _firstName) {
-        _firstName = _firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getSecondName() {
-        return _secondName;
+        return secondName;
     }
 
-    public void setSecondName(String _secondName) {
-        _secondName = _secondName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getLastName() {
-        return _lastName;
+        return lastName;
     }
 
-    public void setLastName(String _lastName) {
-        _lastName = _lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
     
     public Person(String firstName, String secondName, String lastName) {
-        _firstName = firstName;
-        _secondName = secondName;
-        _lastName = lastName;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.lastName = lastName;
     }
     
     @Override
     public String toString() {
-        return String.format("%s %s %s", _firstName, _secondName, _lastName);
+        return String.format("%s %s %s", firstName, secondName, lastName);
     }
 }

@@ -12,29 +12,31 @@ import javax.swing.JFrame;
  * @author Moni
  */
 public class FramesController {
-    private Application _app;
+    private Application app;
     
     public FramesController(Application app) {
-        _app = app;
+        this.app = app;
     }
     
+    // Creates a new frame of the specified FrameType
     public void openFrame(FrameType frameType) {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
         
         try {
             Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class);
-            frameConstructor.newInstance(_app, this);
+            frameConstructor.newInstance(app, this);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
+    // Creates a new frame of the specified FrameType and pass the given data to it
     public void openFrame(FrameType frameType, Object data) {
         Class<? extends JFrame> frameClass = frameType.getFrameClass();
         
         try {
             Constructor<? extends JFrame> frameConstructor = frameClass.getConstructor(Application.class, FramesController.class, Object.class);
-            frameConstructor.newInstance(_app, this, data);
+            frameConstructor.newInstance(app, this, data);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -14,17 +14,17 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class EditBankAccountFrame extends EditFrame {
-    private BankAccount _bankAccount;
-    private String _bankAccountName;
+    private BankAccount bankAccount;
+    private String bankAccountName;
     
     /**
      * Creates new form EditBankAccountFrame
      */
     public EditBankAccountFrame(BankAccount bankAccount) {
         initComponents();
-        _bankAccount = bankAccount;
-        _bankAccountName = _bankAccount.getName();
-        bankAccountNameTextField.setText(_bankAccountName);
+        this.bankAccount = bankAccount;
+        bankAccountName = bankAccount.getName();
+        bankAccountNameTextField.setText(bankAccountName);
         
         setVisible(true);
     }
@@ -120,22 +120,23 @@ public class EditBankAccountFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Saves the edited bank account information
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        _bankAccountName = bankAccountNameTextField.getText();
+        bankAccountName = bankAccountNameTextField.getText();
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             //continue
-            _bankAccount.setName(_bankAccountName);
-            getDataChangedEvent().fireDataChangedEvent();
+            bankAccount.setName(bankAccountName);
+            getDataEditedEvent().fireDataEditedEvent();
             
             dispose();
         }
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             
@@ -143,15 +144,17 @@ public class EditBankAccountFrame extends EditFrame {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    // Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    // Validates the input
     public List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_bankAccountName.length() == 0) {
+        if(bankAccountName.length() == 0) {
             errors.add("Bank account name field cannot be empty");
         }
         

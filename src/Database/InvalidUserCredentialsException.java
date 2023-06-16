@@ -8,6 +8,8 @@ package Database;
  *
  * @author Moni
  */
+
+// This exception is typically thrown when user authentication fails due to invalid credentials
 public class InvalidUserCredentialsException extends Exception {
     public InvalidUserCredentialsException(String message) {
         super(message);

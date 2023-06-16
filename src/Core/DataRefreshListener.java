@@ -8,6 +8,7 @@ package Core;
  *
  * @author Moni
  */
-public interface DataChangedListener {
-    public void onDataChangedEvent();
+public interface DataRefreshListener {
+    //Called when a data refresh event occurs
+    public void onDataRefreshEvent();
 }

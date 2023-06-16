@@ -17,20 +17,20 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class CreateDepositTransactionFrame extends CreateFrame {
-    private Application _app;
-    private BankAccount _bankAccount;
-    private String _amouthOfMoney;
+    private Application app;
+    private BankAccount bankAccount;
+    private String amouthOfMoney;
     /**
      * Creates new form CreateTransactionFrame
      */
     public CreateDepositTransactionFrame(Application app) {
         initComponents();
-        _app = app;
+        this.app = app;
         
         DefaultListModel<BankAccount> bankAccountsListModel = new DefaultListModel<>();
         bankAccountsList.setModel(bankAccountsListModel);
         
-        for(var bankAccount : _app.getAllBankAccounts()) {
+        for(BankAccount bankAccount : app.getAllBankAccounts()) {
             bankAccountsListModel.addElement(bankAccount);
         }
         
@@ -151,17 +151,18 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Creates a deposit transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _bankAccount = bankAccountsList.getSelectedValue();
-        _amouthOfMoney = moneyTextField.getText();
+        bankAccount = bankAccountsList.getSelectedValue();
+        amouthOfMoney = moneyTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             try {
-                _app.createTransaction(new BigDecimal(_amouthOfMoney), null, _bankAccount.getIban());
-                getDataCreatedEvent().fireDataCreatedEvent();
+                app.createTransaction(new BigDecimal(amouthOfMoney), null, bankAccount.getIban());
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "An error has occured!", "Error", 0);
@@ -171,7 +172,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         else {
             String errorMessage = "";
             
-            for(var error : errors) {
+            for(String error : errors) {
                 errorMessage = errorMessage.concat(error + '\n');
             }
             
@@ -179,15 +180,17 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         }
     }//GEN-LAST:event_createBtnActionPerformed
 
+    //Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    //Validating input
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(!_amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+        if(!amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
             errors.add("Invalid amouth of money");
         }
         else {
@@ -196,7 +199,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
                 errors.add("The amouth of money cannot be equal or less than zero.");
             }
         }
-        if(_bankAccount == null) {
+        if(bankAccount == null) {
             errors.add("A bank account was not selected");
         }
         

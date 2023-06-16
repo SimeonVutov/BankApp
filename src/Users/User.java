@@ -13,59 +13,59 @@ import java.util.UUID;
  * @author Simeon_32
  */
 public class User implements Serializable {
-    private Person _person;
-    private String _username;
-    private Password _password;
-    private String _email;
-    private String _phoneNumber;
-    private final UUID _userId;
+    private Person person;
+    private String username;
+    private Password password;
+    private String email;
+    private String phoneNumber;
+    private final UUID userId;
 
     public Person getPerson() {
-        return _person;
+        return person;
     }
     
     public void setPerson(Person person) {
-        _person = person;
+        this.person = person;
     }
 
     public String getUsername() {
-        return _username;
+        return username;
     }
 
     public void setUsername(String username) {
-        _username = username;
+        this.username = username;
     }
 
     public String getEmail() {
-        return _email;
+        return email;
     }
 
     public void setEmail(String email) {
-        _email = email;
+        this.email = email;
     }
     
     public Password getPassword() {
-        return _password;
+        return password;
     }
 
     public String getPhoneNumber() {
-        return _phoneNumber;
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
-        _phoneNumber = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
     
     public UUID getUserId() {
-        return _userId;
+        return userId;
     }
     
     public User(Person person, String username, char[] password, String email, String phoneNumber) {
-        _person = person;
-        _username = username;
-        _password = new Password(password);
-        _email = email;
-        _phoneNumber = phoneNumber;
-        _userId = UUID.randomUUID();
+        this.person = person;
+        this.username = username;
+        this.password = new Password(password);
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        userId = UUID.randomUUID();
     }
 }

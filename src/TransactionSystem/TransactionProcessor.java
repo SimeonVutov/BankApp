@@ -5,7 +5,7 @@
 
 package TransactionSystem;
 
-import Core.DataChangedEvent;
+import Core.DataRefreshEvent;
 import java.time.Duration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -16,72 +16,78 @@ import java.util.concurrent.Semaphore;
  * @author Simeon_32
  */
 public class TransactionProcessor implements Runnable {
-    private BlockingQueue<Transaction> _pendingTransactions;
-    private Semaphore _semaphore = new Semaphore(1);
-    private volatile boolean _running = true;
+    private BlockingQueue<Transaction> pendingTransactions;
+    private Semaphore semaphore = new Semaphore(1);
+    private volatile boolean running = true;
     private Thread thread;
-    private Duration _processorWaitTime;
-    private DataChangedEvent _dataChangedEvent;
+    private Duration processorWaitTime;
+    private DataRefreshEvent dataRefreshEvent;
     
-    public DataChangedEvent getDataChangedEvent() {
-        return _dataChangedEvent;
+    // Returns the data refresh event for the transaction processor
+    public DataRefreshEvent getDataRefreshEvent() {
+        return dataRefreshEvent;
     }
     
     public TransactionProcessor(Duration processorWaitTime) {
-        _pendingTransactions = new LinkedBlockingQueue<Transaction>();
-        _processorWaitTime = processorWaitTime;
-        _dataChangedEvent = new DataChangedEvent(this);
+        pendingTransactions = new LinkedBlockingQueue<Transaction>();
+        this.processorWaitTime = processorWaitTime;
+        dataRefreshEvent = new DataRefreshEvent(this);
     }
 
-    public void Start() {
+    // Starts the transaction processor thread
+    public void start() {
         thread = new Thread(this);
         thread.start();
     }
     
-    public void Resume() {
-        _semaphore.release();
+    // Resumes the transaction processor thread if it was paused
+    public void resume() {
+        semaphore.release();
     }
     
-    public void Stop() {
-        _running = false;
-        _semaphore.release();
+    // Stops the transaction processor thread
+    public void stop() {
+        running = false;
+        semaphore.release();
     }
     
-    public void AddTransactionToQueue(Transaction transaction) {
-        _pendingTransactions.add(transaction);
+    // Adds a transaction to the pending queue for processing
+    public void addTransactionToQueue(Transaction transaction) {
+        pendingTransactions.add(transaction);
     }
 
+    // Performs the transaction processing in a continuous loop until the processor is stopped or interrupted
     @Override
     public void run() {
         while (true) {
             // Try to acquire the semaphore
-            if (!_semaphore.tryAcquire()) {
+            if (!semaphore.tryAcquire()) {
                 // Semaphore not available, exit the loop
                 break;
             }
 
             // Check the running flag
-            if (!_running) {
+            if (!running) {
                 // Flag is false, release the semaphore and exit the loop
-                _semaphore.release();
+                semaphore.release();
                 break;
             }
 
-            Transaction transaction = _pendingTransactions.poll();
+            Transaction transaction = pendingTransactions.poll();
             if (transaction != null) {
-                transaction.Execute();
+                transaction.execute();
             } else {
                 try {
-                    _dataChangedEvent.fireDataChangedEvent();
-                    Thread.sleep(_processorWaitTime);
+                    dataRefreshEvent.fireDataRefreshEvent();
+                    Thread.sleep(processorWaitTime.toMillis());
                 } catch (InterruptedException e) {
                     // Interrupted, release the semaphore and exit the loop
-                    _semaphore.release();
+                    semaphore.release();
                     break;
                 }
             }
 
-            _semaphore.release();
+            semaphore.release();
         }
     }
 }

@@ -11,13 +11,15 @@ import java.util.Random;
  * @author Moni
  */
 public class IBANGenerator {
-    private static final int _numberOfDigits = 16;
+    private static final int numberOfDigits = 16;
     
-    public static String Generate(String countryCode) {
+    // Generates a unique iban
+    // A country code is needed for the process
+    public static String generate(String countryCode) {
         Random rand = new Random();
         String result = countryCode;
         
-        for(int i = 0; i < _numberOfDigits; i++) {
+        for(int i = 0; i < numberOfDigits; i++) {
             result += rand.nextInt(10);
         }
         
