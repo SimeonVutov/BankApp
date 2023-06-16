@@ -127,7 +127,7 @@ public class Application {
         List<PlannedPayment> overduePlannedPayments = new ArrayList<>();
         
         for(var plannedPayment : plannedPayments) {
-            if(plannedPayment.IsPaymentOverdue()) {
+            if(plannedPayment.isPaymentOverdue()) {
                 overduePlannedPayments.add(plannedPayment);
             }
         }

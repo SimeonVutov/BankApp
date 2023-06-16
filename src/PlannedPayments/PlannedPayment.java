@@ -16,53 +16,53 @@ import TransactionSystem.Transaction;
  * @author Moni
  */
 public class PlannedPayment implements Serializable {
-    private LocalDate _paymentDate;
-    private String _bankAccountIban;
-    private BigDecimal _money;
-    private String _name;
-    private UUID _id;
+    private LocalDate paymentDate;
+    private String bankAccountIban;
+    private BigDecimal money;
+    private String name;
+    private UUID id;
 
     public LocalDate getPaymentDate() {
-        return _paymentDate;
+        return paymentDate;
     }
 
     public String getBankAccountIban() {
-        return _bankAccountIban;
+        return bankAccountIban;
     }
 
     public BigDecimal getMoney() {
-        return _money;
+        return money;
     }
 
     public String getName() {
-        return _name;
+        return name;
     }
     
     public UUID getId() {
-        return _id;
+        return id;
     }
     
     public PlannedPayment(LocalDate paymentDate, String bankAccountIban,BigDecimal money, String name) {
-        _paymentDate = paymentDate;
-        _bankAccountIban = bankAccountIban;
-        _money = money;
-        _name = name;
-        _id = UUID.randomUUID();
+        this.paymentDate = paymentDate;
+        this.bankAccountIban = bankAccountIban;
+        this.money = money;
+        this.name = name;
+        id = UUID.randomUUID();
     }
     
     // Checks if the payment overdue by comparing the payment date and the current date
-    public boolean IsPaymentOverdue() {
-        return _paymentDate.isBefore(LocalDate.now());
+    public boolean isPaymentOverdue() {
+        return paymentDate.isBefore(LocalDate.now());
     }
     
     // Pays the planned payment by creating transaction
-    public Transaction Pay() throws IllegalArgumentException, ItemAlreadyExistsException {
-        return TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(_money, _bankAccountIban, null);
+    public Transaction pay() throws IllegalArgumentException, ItemAlreadyExistsException {
+        return TransactionSystem.TransactionManager.TRANSACTION_MANAGER.createTransaction(money, bankAccountIban, null);
     }
     
     // Returns string representation of the planned payment
     @Override
     public String toString() {
-        return String.format("%s - %s %s", _name, _paymentDate.toString(), _money.toString());
+        return String.format("%s - %s %s", name, paymentDate.toString(), money.toString());
     }
 }
