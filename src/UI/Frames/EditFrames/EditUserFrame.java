@@ -253,12 +253,14 @@ public class EditUserFrame extends EditFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Checks if the box for changing password is checked
     private void changePasswordCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordCheckBoxActionPerformed
         // TODO add your handling code here:
         passwordTextField.setEditable(changePasswordCheckBox.isSelected());
         _isPasswordChanged = changePasswordCheckBox.isSelected();
     }//GEN-LAST:event_changePasswordCheckBoxActionPerformed
 
+    // Saves the edited user information
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
@@ -298,11 +300,13 @@ public class EditUserFrame extends EditFrame {
         }
     }//GEN-LAST:event_saveBtnActionPerformed
 
+    // Closes the frame
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    // Validates the input
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         

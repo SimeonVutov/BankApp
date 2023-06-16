@@ -307,7 +307,8 @@ public class SignUpFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //SingUp button checks
+    //Gets the input and then validates it
+    //If everything is correct it creates a new user
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         // TODO add your handling code here:
         _firstName = firstNameTextField.getText();

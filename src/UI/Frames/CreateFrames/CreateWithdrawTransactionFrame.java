@@ -146,7 +146,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Creates a withdaraw
+    //Creates a withdaraw transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         _bankAccount = bankAccountsList.getSelectedValue();

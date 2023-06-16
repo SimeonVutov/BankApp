@@ -371,7 +371,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
         editUserFrame.getDataChangedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
-    //Deletse the user
+    //Deletes the user
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
         _app.removeUser(_app.getUser().getUserId());

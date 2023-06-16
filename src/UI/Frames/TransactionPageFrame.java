@@ -425,7 +425,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
 
-    //Opens a make a transfer frame
+    //Opens a transfer frame
     private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
@@ -475,7 +475,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
     
-    //Loading user information
+    //Loads user information
     private void loadData() {
         plannedPaymentsLabel.setText(calculatePlannedPayments().toString());
         
@@ -488,7 +488,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         currentBalanceLabel.setText(calculateCurrentBalance().toString());
     }
     
-    //Gets the current balance of the user
+    //Calculates the current balance of the user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
@@ -500,7 +500,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         return currentBalance;
     }
     
-    //Gets the current planed payments of the user
+    //Calculates the sum of all planned payments of the user
     private BigDecimal calculatePlannedPayments() {
         BigDecimal plannedPaymentsValue = BigDecimal.ZERO;
         List<PlannedPayment> list = _app.getAllPlannedPayments();

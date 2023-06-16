@@ -409,7 +409,7 @@ public class LoansFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_contactUsBtnActionPerformed
 
-    //Log outs the user
+    //Logs out the user
     private void logOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutBtnActionPerformed
         // TODO add your handling code here:
         _app.logOut();
@@ -438,19 +438,19 @@ public class LoansFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
-    //Creates a 1 month loan
+    //Opens a short term loan frame
     private void openSTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openSTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new ShortTermLoanType());
     }//GEN-LAST:event_openSTLFrameActionPerformed
 
-    //Creates a 1 year loan
+    //Opens a long term loan frame
     private void openLTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new LongTermLoanType());
     }//GEN-LAST:event_openLTLFrameActionPerformed
 
-    //Creates a 5 year loan
+    //Opens a medium term loan frame
     private void openMTLFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMTLFrameActionPerformed
         // TODO add your handling code here:
         CreateLoanFrame clf = new CreateLoanFrame(_app, new MediumTermLoanType());

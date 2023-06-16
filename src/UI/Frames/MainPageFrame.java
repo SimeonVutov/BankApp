@@ -451,13 +451,13 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         dispose();
     }//GEN-LAST:event_viewUserProfileBtnActionPerformed
 
-    //Updates the bank account list
+    //Updates the selected bank account from the list
     private void bankAccountsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_bankAccountsListValueChanged
         // TODO add your handling code here:
         _selectedBankAccount = bankAccountsList.getSelectedValue();
     }//GEN-LAST:event_bankAccountsListValueChanged
 
-    //Updates the planned payments list
+    //Updates the selected planned payment from the list
     private void plannedPaymentsListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_plannedPaymentsListValueChanged
         // TODO add your handling code here:
         _selectedPlannedPayment = plannedPaymentsList.getSelectedValue();
@@ -470,7 +470,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         createBankAccountFrame.getDataCreatedEvent().addListener(this);
     }//GEN-LAST:event_createBankAccountBtnActionPerformed
 
-    //Edits and existing bank account
+    //Edits an existing bank account
     private void editBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBankAccountBtnActionPerformed
         // TODO add your handling code here:
         if(_selectedBankAccount != null) {
@@ -521,7 +521,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         _bankAccountsDefaultListModel.addAll(_app.getAllBankAccounts());
     }
     
-    //Loads the current balance of the user
+    //Calculates the current balance of the current user
     private BigDecimal calculateCurrentBalance() {
         BigDecimal currentBalance = BigDecimal.ZERO;
         List<BankAccount> list = _app.getAllBankAccounts();
@@ -533,7 +533,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         return currentBalance;
     }
     
-    //Checks if you have a planned payment that you have to pay
+    //Checks if the user has a planned payment that needs to be paid
     private void processPlannedPayments(List<PlannedPayment> plannedPayments) {
         if(plannedPayments.size() > 0) {
             int result = JOptionPane.showConfirmDialog(this, "You have planned payments. Do you want to pay them?", "Caution", 1, 1);

@@ -480,7 +480,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     }//GEN-LAST:event_loansBtnActionPerformed
 
     
-    //Loading user information
+    //Loads user information
     private void loadData() {
         ibanLabel.setText(_bankAccount.getIban());
         accountNameLabel.setText(_bankAccount.getName());

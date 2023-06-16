@@ -151,7 +151,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Creates a deposit
+    //Creates a deposit transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         _bankAccount = bankAccountsList.getSelectedValue();

@@ -165,7 +165,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Creates a transaction
+    //Creates a tranfer transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
         _fromBankAccount = bankAccountsList.getSelectedValue();
