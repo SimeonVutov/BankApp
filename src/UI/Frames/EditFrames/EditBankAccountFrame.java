@@ -14,17 +14,17 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class EditBankAccountFrame extends EditFrame {
-    private BankAccount _bankAccount;
-    private String _bankAccountName;
+    private BankAccount bankAccount;
+    private String bankAccountName;
     
     /**
      * Creates new form EditBankAccountFrame
      */
     public EditBankAccountFrame(BankAccount bankAccount) {
         initComponents();
-        _bankAccount = bankAccount;
-        _bankAccountName = _bankAccount.getName();
-        bankAccountNameTextField.setText(_bankAccountName);
+        this.bankAccount = bankAccount;
+        bankAccountName = bankAccount.getName();
+        bankAccountNameTextField.setText(bankAccountName);
         
         setVisible(true);
     }
@@ -123,12 +123,12 @@ public class EditBankAccountFrame extends EditFrame {
     // Saves the edited bank account information
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        _bankAccountName = bankAccountNameTextField.getText();
+        bankAccountName = bankAccountNameTextField.getText();
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             //continue
-            _bankAccount.setName(_bankAccountName);
+            bankAccount.setName(bankAccountName);
             getDataEditedEvent().fireDataEditedEvent();
             
             dispose();
@@ -154,7 +154,7 @@ public class EditBankAccountFrame extends EditFrame {
     public List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_bankAccountName.length() == 0) {
+        if(bankAccountName.length() == 0) {
             errors.add("Bank account name field cannot be empty");
         }
         
