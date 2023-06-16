@@ -206,6 +206,7 @@ public class Application {
                 plannedPayments.remove(plannedPayment);
 
                 //only one planned payment with this id is possible
+                break;
             }
         }
     }
