@@ -87,8 +87,8 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1920, 935));
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -479,10 +479,10 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataRefr
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
-    }//GEN-LAST:event_formWindowClosing
+    }//GEN-LAST:event_formWindowClosed
     
     //Loads user information
     private void loadData() {

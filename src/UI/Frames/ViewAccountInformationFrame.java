@@ -86,8 +86,8 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -487,10 +487,10 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
-    }//GEN-LAST:event_formWindowClosing
+    }//GEN-LAST:event_formWindowClosed
     
     //Loads user information
     private void loadData() {
