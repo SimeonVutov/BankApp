@@ -86,7 +86,7 @@ public class Transaction implements Serializable {
                 BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(toBankAccountIban);
                 
                 if(toBankAccount != null) {
-                    toBankAccount.AddMoney(money);
+                    toBankAccount.addMoney(money);
                     status = TransactionStatus.Succeded;
                 }
                 else {
@@ -99,7 +99,7 @@ public class Transaction implements Serializable {
                 BankAccount fromBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(fromBankAccountIban);
                 
                 if(fromBankAccount != null) {
-                    fromBankAccount.RemoveMoney(money);
+                    fromBankAccount.removeMoney(money);
                     status = TransactionStatus.Succeded;
                 }
                 else {
@@ -114,9 +114,9 @@ public class Transaction implements Serializable {
                 BankAccount toBankAccount = DataSource.DATA_SOURCE.getBankAccountByIban(toBankAccountIban);
                 
                 if(fromBankAccount != null && toBankAccount != null) {
-                    fromBankAccount.RemoveMoney(money);
+                    fromBankAccount.removeMoney(money);
                     transferMoneyRemoved = true;
-                    toBankAccount.AddMoney(money);
+                    toBankAccount.addMoney(money);
                     status = TransactionStatus.Succeded;
                 }
                 else {
@@ -129,7 +129,7 @@ public class Transaction implements Serializable {
             //If in the transfer transaction the removal of money has passed, but the adding has failed
             //Return the removed money
             if(type == TransactionType.Transfer && transferMoneyRemoved) {
-                DataSource.DATA_SOURCE.getBankAccountByIban(fromBankAccountIban).AddMoney(money);
+                DataSource.DATA_SOURCE.getBankAccountByIban(fromBankAccountIban).addMoney(money);
             }
         }
     }
