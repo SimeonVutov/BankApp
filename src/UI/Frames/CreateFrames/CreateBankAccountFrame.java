@@ -15,14 +15,14 @@ import javax.swing.JOptionPane;
  * @author Bubo & Yana
  */
 public class CreateBankAccountFrame extends CreateFrame {
-    private Application _app;
-    private String _bankAccountName;
+    private Application app;
+    private String bankAccountName;
     /**
      * Creates new form CreateBankAccountFrame
      */
     public CreateBankAccountFrame(Application app) {
         initComponents();
-        _app = app;
+        this.app = app;
         
         setVisible(true);
     }
@@ -122,14 +122,14 @@ public class CreateBankAccountFrame extends CreateFrame {
     //Creates a new bank account
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _bankAccountName = nameTextField.getText();
+        bankAccountName = nameTextField.getText();
         
         //Errors
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             try {
-                _app.createBankAccount(_bankAccountName);
+                app.createBankAccount(bankAccountName);
                 getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (ItemAlreadyExistsException ex) {
@@ -157,7 +157,7 @@ public class CreateBankAccountFrame extends CreateFrame {
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(_bankAccountName.length() == 0) {
+        if(bankAccountName.length() == 0) {
             errors.add("Bank account name field cannot be empty");
         }
         

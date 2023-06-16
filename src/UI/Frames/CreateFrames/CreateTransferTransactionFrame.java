@@ -17,17 +17,17 @@ import javax.swing.JOptionPane;
  * @author Moni
  */
 public class CreateTransferTransactionFrame extends CreateFrame {
-    private Application _app;
-    private String _amouthOfMoney;
-    private BankAccount _fromBankAccount;
-    private String _toBankAccoutnIban;
+    private Application app;
+    private String amouthOfMoney;
+    private BankAccount fromBankAccount;
+    private String toBankAccoutnIban;
 
     /**
      * Creates new form CreateTransaferTransactionFrame
      */
     public CreateTransferTransactionFrame(Application app) {
         initComponents();
-        _app = app;
+        this.app = app;
         
         DefaultListModel<BankAccount> bankAccountsListModel = new DefaultListModel<>();
         bankAccountsList.setModel(bankAccountsListModel);
@@ -168,15 +168,15 @@ public class CreateTransferTransactionFrame extends CreateFrame {
     //Creates a tranfer transaction
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        _fromBankAccount = bankAccountsList.getSelectedValue();
-        _toBankAccoutnIban = otherIbanTextField.getText();
-        _amouthOfMoney = amountOfMoneyTextField.getText();
+        fromBankAccount = bankAccountsList.getSelectedValue();
+        toBankAccoutnIban = otherIbanTextField.getText();
+        amouthOfMoney = amountOfMoneyTextField.getText();
         
         List<String> errors = validateInput();
         
         if(errors.size() == 0) {
             try {
-                _app.createTransaction(new BigDecimal(_amouthOfMoney), _fromBankAccount.getIban(), _toBankAccoutnIban);
+                app.createTransaction(new BigDecimal(amouthOfMoney), fromBankAccount.getIban(), toBankAccoutnIban);
                 getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
@@ -205,16 +205,16 @@ public class CreateTransferTransactionFrame extends CreateFrame {
     private List<String> validateInput() {
         List<String> errors = new LinkedList<>();
         
-        if(!_amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
+        if(!amouthOfMoney.matches("^([1-9]{1}[0-9]*(\\.[0-9]{0,})?|0(\\.[0-9]{0,})?|(\\.[0-9]{1,}))$")) {
             errors.add("Invalid amouth of money");
         }
         else {
-            BigDecimal money = new BigDecimal(_amouthOfMoney);
+            BigDecimal money = new BigDecimal(amouthOfMoney);
             if(money.compareTo(BigDecimal.ZERO) <= 0) {
                 errors.add("The amouth of money cannot be equal or less than zero.");
             }
         }
-        if(_fromBankAccount == null) {
+        if(fromBankAccount == null) {
             errors.add("A bank account was not selected");
         }
         

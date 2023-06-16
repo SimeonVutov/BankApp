@@ -12,9 +12,9 @@ import javax.swing.JFrame;
  * @author Moni
  */
 public abstract class CreateFrame extends JFrame{
-    private DataRefreshEvent _dataRefreshEvent = new DataRefreshEvent(this);
+    private DataRefreshEvent dataRefreshEvent = new DataRefreshEvent(this);
     
     public DataRefreshEvent getDataRefreshEvent() {
-        return _dataRefreshEvent;
+        return dataRefreshEvent;
     }
 }
