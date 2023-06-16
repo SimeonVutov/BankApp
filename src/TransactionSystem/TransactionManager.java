@@ -6,7 +6,7 @@ package TransactionSystem;
 
 import Database.ItemAlreadyExistsException;
 import Database.DataSource;
-import Core.DataChangedEvent;
+import Core.DataRefreshEvent;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -21,9 +21,9 @@ public class TransactionManager {
     private List<Transaction> _transactions;
     private TransactionProcessor _transactionProcessor;
     
-    // Returns the data changed event associated with the transaction processor
-    public DataChangedEvent getDataChangedEvent() {
-        return _transactionProcessor.getDataChangedEvent();
+    // Returns the data refresh event associated with the transaction processor
+    public DataRefreshEvent getDataRefreshEvent() {
+        return _transactionProcessor.getDataRefreshEvent();
     }
     
     private TransactionManager(List<Transaction> transactions) {

@@ -7,7 +7,6 @@ package UI.Frames.CreateFrames;
 import BankAccount.BankAccount;
 import Core.Application;
 import Database.ItemAlreadyExistsException;
-import UI.Frames.EditFrames.EditFrame;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -19,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Bubo & Yana
  */
-public class CreatePlannedPaymentFrame extends EditFrame {
+public class CreatePlannedPaymentFrame extends CreateFrame {
     private Application _app;
     private BankAccount _selectedBankAccount = null;
     private String _name;
@@ -206,7 +205,7 @@ public class CreatePlannedPaymentFrame extends EditFrame {
             
             try {
                 _app.createPlannedPayment(date, _selectedBankAccount.getIban(), new BigDecimal(_money), _name);
-                getDataChangedEvent().fireDataChangedEvent();
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (ItemAlreadyExistsException ex) {
                 JOptionPane.showMessageDialog(this, "An error occured", "Error", 0);

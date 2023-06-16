@@ -6,16 +6,16 @@ package UI.Frames;
 import Core.Application;
 import Core.FrameType;
 import Core.FramesController;
-import Core.DataChangedListener;
 import UI.Frames.EditFrames.EditUserFrame;
 import UI.UI_Variables;
 import Users.User;
+import Core.DataEditedListener;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChangedListener{
+public class ViewUserProfileFrame extends javax.swing.JFrame implements DataEditedListener {
     private Application _app;
     private FramesController _framesController;
     
@@ -368,7 +368,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         EditUserFrame editUserFrame = new EditUserFrame(_app.getUser());
-        editUserFrame.getDataChangedEvent().addListener(this);
+        editUserFrame.getDataEditedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
     //Deletes the user
@@ -436,7 +436,7 @@ public class ViewUserProfileFrame extends javax.swing.JFrame implements DataChan
     
     //Updates the data
     @Override
-    public void onDataChangedEvent() {
+    public void onDataEditedEvent() {
         loadData();
         _app.save();
     }

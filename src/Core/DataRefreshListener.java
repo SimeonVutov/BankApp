@@ -8,7 +8,7 @@ package Core;
  *
  * @author Moni
  */
-public interface DataCreatedListener {
-    //Called when a data creation event occurs
-    public void onDataCreatedEvent();
+public interface DataRefreshListener {
+    //Called when a data refresh event occurs
+    public void onDataRefreshEvent();
 }

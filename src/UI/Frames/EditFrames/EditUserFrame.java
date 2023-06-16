@@ -285,7 +285,7 @@ public class EditUserFrame extends EditFrame {
             _user.setUsername(_username);
             _user.setEmail(_email);
             _user.setPhoneNumber(_phoneNumber);
-            getDataChangedEvent().fireDataChangedEvent();
+            getDataEditedEvent().fireDataEditedEvent();
 
             dispose();
         }

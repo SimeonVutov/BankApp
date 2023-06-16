@@ -4,7 +4,7 @@
  */
 package UI.Frames.EditFrames;
 
-import Core.DataChangedEvent;
+import Core.DataEditedEvent;
 import javax.swing.JFrame;
 
 /**
@@ -12,9 +12,9 @@ import javax.swing.JFrame;
  * @author Moni
  */
 public abstract class EditFrame extends JFrame{
-    private DataChangedEvent _dataChangedEvent = new DataChangedEvent(this);
+    private DataEditedEvent _dataEditedEvent = new DataEditedEvent(this);
 
-    public DataChangedEvent getDataChangedEvent() {
-        return _dataChangedEvent;
+    public DataEditedEvent getDataEditedEvent() {
+        return _dataEditedEvent;
     }
 }

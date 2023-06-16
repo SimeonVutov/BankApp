@@ -162,7 +162,7 @@ public class CreateDepositTransactionFrame extends CreateFrame {
         if(errors.size() == 0) {
             try {
                 _app.createTransaction(new BigDecimal(_amouthOfMoney), null, _bankAccount.getIban());
-                getDataCreatedEvent().fireDataCreatedEvent();
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "An error has occured!", "Error", 0);

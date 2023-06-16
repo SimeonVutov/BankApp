@@ -130,7 +130,7 @@ public class CreateBankAccountFrame extends CreateFrame {
         if(errors.size() == 0) {
             try {
                 _app.createBankAccount(_bankAccountName);
-                getDataCreatedEvent().fireDataCreatedEvent();
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (ItemAlreadyExistsException ex) {
                 JOptionPane.showMessageDialog(this, "An error has occured.", "Error", 0);

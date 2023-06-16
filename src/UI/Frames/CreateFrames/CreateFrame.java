@@ -4,7 +4,7 @@
  */
 package UI.Frames.CreateFrames;
 
-import Core.DataCreatedEvent;
+import Core.DataRefreshEvent;
 import javax.swing.JFrame;
 
 /**
@@ -12,9 +12,9 @@ import javax.swing.JFrame;
  * @author Moni
  */
 public abstract class CreateFrame extends JFrame{
-    private DataCreatedEvent _dataCreatedEvent = new DataCreatedEvent(this);
+    private DataRefreshEvent _dataRefreshEvent = new DataRefreshEvent(this);
     
-    public DataCreatedEvent getDataCreatedEvent() {
-        return _dataCreatedEvent;
+    public DataRefreshEvent getDataRefreshEvent() {
+        return _dataRefreshEvent;
     }
 }

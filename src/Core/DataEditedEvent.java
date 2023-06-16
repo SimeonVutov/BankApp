@@ -12,28 +12,28 @@ import java.util.List;
  *
  * @author Moni
  */
-public class DataCreatedEvent extends EventObject {
-    private List<DataCreatedListener> _listeners;
+public class DataEditedEvent extends EventObject{
+    private List<DataEditedListener> _listeners;
     
-    public DataCreatedEvent(Object source) {
+    public DataEditedEvent(Object source) {
         super(source);
         _listeners = new LinkedList<>();
     }
     
     // Adds a listener to the event
-    public void addListener(DataCreatedListener listener) {
+    public void addListener(DataEditedListener listener) {
         _listeners.add(listener);
     }
     
     // Removes a listener to the event
-    public void removeListener(DataCreatedListener listener) {
+    public void removeListener(DataEditedListener listener) {
         _listeners.remove(listener);
     }
     
     // Fire the event which notifies all listeners
-    public void fireDataCreatedEvent() {
+    public void fireDataEditedEvent() {
         for(var listener : _listeners) {
-            listener.onDataCreatedEvent();
+            listener.onDataEditedEvent();
         }
     }
 }
