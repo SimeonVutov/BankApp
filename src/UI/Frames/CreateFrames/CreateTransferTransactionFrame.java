@@ -177,7 +177,7 @@ public class CreateTransferTransactionFrame extends CreateFrame {
         if(errors.size() == 0) {
             try {
                 _app.createTransaction(new BigDecimal(_amouthOfMoney), _fromBankAccount.getIban(), _toBankAccoutnIban);
-                getDataCreatedEvent().fireDataCreatedEvent();
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "An error has occured!", "Error", 0);

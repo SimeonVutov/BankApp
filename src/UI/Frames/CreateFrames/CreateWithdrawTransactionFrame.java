@@ -157,7 +157,7 @@ public class CreateWithdrawTransactionFrame extends CreateFrame {
         if(errors.size() == 0) {
             try {
                 _app.createTransaction(new BigDecimal(_amouthOfMoney), _bankAccount.getIban(), null);
-                getDataCreatedEvent().fireDataCreatedEvent();
+                getDataRefreshEvent().fireDataRefreshEvent();
                 dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "An error has occured!", "Error", 0);

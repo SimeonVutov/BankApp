@@ -5,19 +5,11 @@
 package UI.Frames;
 import BankAccount.BankAccount;
 import Core.Application;
-import Core.DataChangedListener;
-import Core.DataCreatedListener;
 import Core.FrameType;
 import Core.FramesController;
 import UI.UI_Variables;;
-import javax.swing.JOptionPane;
-import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
-import UI.Frames.CreateFrames.CreateBankAccountFrame;
-import javax.swing.DefaultListModel;
-import PlannedPayments.PlannedPayment;
+import Core.DataRefreshListener;
 import TransactionSystem.TransactionManager;
-import java.math.BigDecimal;
-import java.util.List;
 import javax.swing.JOptionPane;
 import UI.Frames.CreateFrames.CreatePlannedPaymentFrame;
 import UI.Frames.CreateFrames.CreateBankAccountFrame;
@@ -29,7 +21,7 @@ import java.util.List;
  *
  * @author Bubo & Yana
  */
-public class MainPageFrame extends javax.swing.JFrame implements DataChangedListener, DataCreatedListener{
+public class MainPageFrame extends javax.swing.JFrame implements DataRefreshListener {
     private Application _app;
     private FramesController _framesController;
     private DefaultListModel<PlannedPayment> _plannedPaymentsDefaultListModel;
@@ -59,7 +51,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         loadData();
         
         processPlannedPayments(_app.getOverduePlannedPayments());
-        TransactionManager.TRANSACTION_MANAGER.getDataChangedEvent().addListener(this);
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
     }
 
     /**
@@ -98,6 +90,11 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BankApp - Main Page");
         setBackground(new java.awt.Color(255, 255, 255));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         navBarPannel.setBackground(new java.awt.Color(255, 115, 115));
         navBarPannel.setPreferredSize(new java.awt.Dimension(1920, 99));
@@ -297,7 +294,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
                     .addComponent(plannedPaymentsDeleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(201, 201, 201));
@@ -476,7 +473,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     private void createBankAccountBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBankAccountBtnActionPerformed
         // TODO add your handling code here:
         CreateBankAccountFrame createBankAccountFrame = new CreateBankAccountFrame(_app);
-        createBankAccountFrame.getDataCreatedEvent().addListener(this);
+        createBankAccountFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_createBankAccountBtnActionPerformed
 
     //Edits an existing bank account
@@ -492,7 +489,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     private void plannedPaymentsCreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plannedPaymentsCreateBtnActionPerformed
         // TODO add your handling code here:
         CreatePlannedPaymentFrame createPlannedPaymentFrame = new CreatePlannedPaymentFrame(_app);
-        createPlannedPaymentFrame.getDataChangedEvent().addListener(this);
+        createPlannedPaymentFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_plannedPaymentsCreateBtnActionPerformed
 
     //Removes a planned payment
@@ -517,6 +514,11 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
         _framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
+    }//GEN-LAST:event_formWindowClosed
 
     //Loading user information
     private void loadData() {
@@ -555,12 +557,7 @@ public class MainPageFrame extends javax.swing.JFrame implements DataChangedList
     }
     
     @Override
-    public void onDataChangedEvent() {
-        loadData();
-    }
-
-    @Override
-    public void onDataCreatedEvent() {
+    public void onDataRefreshEvent() {
         loadData();
     }
     

@@ -4,21 +4,23 @@
  */
 package UI.Frames;
 import UI.Frames.EditFrames.EditBankAccountFrame;
-import Core.DataChangedListener;
 import Core.Application;
 import Core.FramesController;
 import UI.UI_Variables;
 import BankAccount.BankAccount;
 import Core.FrameType;
 import TransactionSystem.Transaction;
+import TransactionSystem.TransactionManager;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import Core.DataEditedListener;
+import Core.DataRefreshListener;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class ViewAccountInformationFrame extends javax.swing.JFrame implements DataChangedListener {
+public class ViewAccountInformationFrame extends javax.swing.JFrame implements DataEditedListener, DataRefreshListener {
     private Application _app;
     private FramesController _framesController;
     private BankAccount _bankAccount;
@@ -35,6 +37,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         _bankAccount = _app.getBankAccountByIban((String) iban);
         _transactionsDefaultListModel = new DefaultListModel<>();
         transactionHistoryList.setModel(_transactionsDefaultListModel);
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
         
         //UI settings
         setSize(1920, 935);
@@ -82,6 +85,11 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         loansBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         transactionHistoryPanel.setBackground(new java.awt.Color(201, 201, 201));
 
@@ -425,7 +433,7 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         EditBankAccountFrame editBankAccountFrame = new EditBankAccountFrame(_bankAccount);
-        editBankAccountFrame.getDataChangedEvent().addListener(this);
+        editBankAccountFrame.getDataEditedEvent().addListener(this);
     }//GEN-LAST:event_editBtnActionPerformed
 
     //Removes bank account
@@ -479,6 +487,10 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
+    }//GEN-LAST:event_formWindowClosed
     
     //Loads user information
     private void loadData() {
@@ -495,9 +507,14 @@ public class ViewAccountInformationFrame extends javax.swing.JFrame implements D
     
     //Updates the data
     @Override
-    public void onDataChangedEvent() {
+    public void onDataEditedEvent() {
         loadData();
         _app.save();
+    }
+    
+    @Override
+    public void onDataRefreshEvent() {
+        loadData();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,18 +14,17 @@ import UI.UI_Variables;
 import UI.Frames.CreateFrames.CreateDepositTransactionFrame;
 import UI.Frames.CreateFrames.CreateTransferTransactionFrame;
 import UI.Frames.CreateFrames.CreateWithdrawTransactionFrame;
-import Core.DataCreatedListener;
-import Core.DataChangedListener;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import TransactionSystem.TransactionManager;
+import Core.DataRefreshListener;
 
 /**
  *
  * @author Bubo & Yana
  */
-public class TransactionPageFrame extends javax.swing.JFrame implements DataChangedListener, DataCreatedListener {
+public class TransactionPageFrame extends javax.swing.JFrame implements DataRefreshListener {
     private Application _app;
     private FramesController _framesController;
     DefaultListModel<Transaction> _transactionsListModel;
@@ -40,7 +39,7 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         
         _transactionsListModel = new DefaultListModel<>();
         transactionHistoryList.setModel(_transactionsListModel);
-        TransactionManager.TRANSACTION_MANAGER.getDataChangedEvent().addListener(this);
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().addListener(this);
         
         //UI settings
         setSize(1920, 935);
@@ -87,6 +86,11 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1920, 935));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         transactionsHistoryPanel.setBackground(new java.awt.Color(201, 201, 201));
         transactionsHistoryPanel.setMaximumSize(new java.awt.Dimension(1826, 639));
@@ -415,21 +419,21 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     private void makeDepositTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeDepositTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateDepositTransactionFrame createDepositTransactionFrame = new CreateDepositTransactionFrame(_app);
-        createDepositTransactionFrame.getDataCreatedEvent().addListener(this);
+        createDepositTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeDepositTransactionBtnActionPerformed
 
     //Opens a withdraw frame
     private void makeWithdrawTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeWithdrawTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateWithdrawTransactionFrame createWithdrawTransactionFrame = new CreateWithdrawTransactionFrame(_app);
-        createWithdrawTransactionFrame.getDataCreatedEvent().addListener(this);
+        createWithdrawTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeWithdrawTransactionBtnActionPerformed
 
     //Opens a transfer frame
     private void makeTransferTransactionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTransferTransactionBtnActionPerformed
         // TODO add your handling code here:
         CreateTransferTransactionFrame createTransferTransactionFrame = new CreateTransferTransactionFrame(_app);
-        createTransferTransactionFrame.getDataCreatedEvent().addListener(this);
+        createTransferTransactionFrame.getDataRefreshEvent().addListener(this);
     }//GEN-LAST:event_makeTransferTransactionBtnActionPerformed
 
     //Opens the transaction frame
@@ -474,6 +478,11 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
         _framesController.openFrame(FrameType.LOANS_FRAME);
         dispose();
     }//GEN-LAST:event_loansBtnActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        TransactionManager.TRANSACTION_MANAGER.getDataRefreshEvent().removeListener(this);
+    }//GEN-LAST:event_formWindowClosed
     
     //Loads user information
     private void loadData() {
@@ -513,14 +522,8 @@ public class TransactionPageFrame extends javax.swing.JFrame implements DataChan
     }
     
     @Override
-    public void onDataCreatedEvent() {
+    public void onDataRefreshEvent() {
         loadData();
-        _app.save();
-    }
-    @Override
-    public void onDataChangedEvent() {
-        loadData();
-        _app.save();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

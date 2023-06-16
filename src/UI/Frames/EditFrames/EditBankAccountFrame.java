@@ -129,7 +129,7 @@ public class EditBankAccountFrame extends EditFrame {
         if(errors.size() == 0) {
             //continue
             _bankAccount.setName(_bankAccountName);
-            getDataChangedEvent().fireDataChangedEvent();
+            getDataEditedEvent().fireDataEditedEvent();
             
             dispose();
         }
